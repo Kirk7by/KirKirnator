@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpertComputerService", "Ex
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpertCore", "ExpertCore\ExpertCore\ExpertCore.csproj", "{F280840A-BC7A-4776-A8F2-D2BFF4581623}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralCore", "NeuralNW\NeuralCore.csproj", "{568FFE07-F9C0-41CF-B453-EB11CF2447A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F280840A-BC7A-4776-A8F2-D2BFF4581623}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F280840A-BC7A-4776-A8F2-D2BFF4581623}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F280840A-BC7A-4776-A8F2-D2BFF4581623}.Release|Any CPU.Build.0 = Release|Any CPU
+		{568FFE07-F9C0-41CF-B453-EB11CF2447A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{568FFE07-F9C0-41CF-B453-EB11CF2447A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{568FFE07-F9C0-41CF-B453-EB11CF2447A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{568FFE07-F9C0-41CF-B453-EB11CF2447A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

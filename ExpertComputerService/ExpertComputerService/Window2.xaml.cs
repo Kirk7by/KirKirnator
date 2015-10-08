@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using NeuralCore;
+using ExpertCore;
 namespace ExpertComputerService
 {
     /// <summary>
@@ -22,6 +23,9 @@ namespace ExpertComputerService
         public Window2()
         {
             InitializeComponent();
+            new expertCore().PlaySerialize();
+            
+         //   MessageBox.Show(Convert.ToString(new expertCore().a));
         }
     }
 }

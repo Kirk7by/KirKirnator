@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace ExpertCore
 {
-    public class expertCore
+    class SeryalyzeClassElements
     {
-        public void PlaySerialize()
+        Answers Answer = new Answers();
+        Questions Qest = new Questions();
+        public void Seralyz()
         {
-            new Mechanism().GetDeserialyze();//добро победит зло
+            
         }
+
     }
 }

@@ -23,7 +23,7 @@ namespace ExpertComputerService
         public MainWindow()
         {
             InitializeComponent();
-            MessageBox.Show(Convert.ToString(new expertCore().a));
+            
         }
 
         private void diagnostyc_Click(object sender, RoutedEventArgs e)
