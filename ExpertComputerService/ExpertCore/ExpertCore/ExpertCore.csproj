@@ -71,6 +71,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SelectedHeroProbability.cs" />
     <Compile Include="Serialyze\Serialyzable.cs" />
     <Compile Include="Serialyze\SeryalyzeClassElements.cs" />
     <Compile Include="TestDATABASE.cs" />

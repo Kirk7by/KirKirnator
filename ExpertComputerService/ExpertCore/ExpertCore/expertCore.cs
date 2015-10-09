@@ -12,6 +12,11 @@ namespace ExpertCore
         public void PlaySerialize()
         {
             new Mechanism().GetDeserialyze();//добро победит зло
+
+        }
+        public string GetQuntit()
+        {
+            return new Mechanism().GetQuntity();
         }
     }
 }

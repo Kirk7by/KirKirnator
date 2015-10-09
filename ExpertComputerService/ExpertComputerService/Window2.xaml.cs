@@ -20,12 +20,34 @@ namespace ExpertComputerService
     /// </summary>
     public partial class Window2 : Window
     {
+        expertCore ExpIit = new expertCore();
         public Window2()
         {
             InitializeComponent();
-            new expertCore().PlaySerialize();
+         //   new expertCore().PlaySerialize();
             
          //   MessageBox.Show(Convert.ToString(new expertCore().a));
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            OutputsInputs(1);
+        }
+  
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            OutputsInputs(2);
+        }
+
+        private void button3_Click(object sender, RoutedEventArgs e)
+        {
+            OutputsInputs(3);
+        }
+
+        private void OutputsInputs(int Otv) 
+        {
+            ExpIit.PlaySerialize();
+            label.Content = ExpIit.GetQuntit();
         }
     }
 }
