@@ -55,6 +55,8 @@ namespace ExpertComputerService
             Domain.EntityStorage ent = new Domain.EntityStorage(hr,qe);
             ent = rep.GetEntityStorage();
 
+            foreach (var s in ent.Heroes)
+                MessageBox.Show(Convert.ToString(s.NameHeroes));
             ExpIit.PlaySerialize();
             label.Content = ExpIit.GetQuntit();
         }

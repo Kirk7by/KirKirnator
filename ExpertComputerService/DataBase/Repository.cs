@@ -21,9 +21,13 @@ namespace DataBase.Repository
 
 
 
-        //    List<Heroes> hr = null;
-       //     List<Questions> qe = null;
+            List<Heroes> hr = new List<Heroes>();
+            List<Questions> qe = new List<Questions>();
 
+            //локальная база EPTI BLYA
+            hr.Add(new Heroes { NameHeroes = "УБЛЮДОК!" });
+            hr.Add(new Heroes { NameHeroes = "ТОТ, ЧЬЯ СОВЕСТЬ НЕ ЧИСТА" });
+            hr.Add(new Heroes { NameHeroes = "ну и просто 3 персонаж в базе " });
 
 
             //   Heroes[] hero = null;
