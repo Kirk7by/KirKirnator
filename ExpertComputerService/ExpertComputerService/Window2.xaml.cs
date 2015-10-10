@@ -21,12 +21,13 @@ namespace ExpertComputerService
     public partial class Window2 : Window
     {
         expertCore ExpIit = new expertCore();
+        
+        event EventHandler Fin; //будет событием о завершении поиска
+        event EventHandler Start; //событие начать сначала
         public Window2()
         {
             InitializeComponent();
-         //   new expertCore().PlaySerialize();
-            
-         //   MessageBox.Show(Convert.ToString(new expertCore().a));
+            ExpIit.Fin += Fin;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -44,6 +45,8 @@ namespace ExpertComputerService
             OutputsInputs(3);
         }
 
+
+        //взаимодействие с ядром
         private void OutputsInputs(int Otv) 
         {
             ExpIit.PlaySerialize();

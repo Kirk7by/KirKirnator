@@ -9,6 +9,7 @@ namespace ExpertCore
 {
     public class expertCore
     {
+        public event EventHandler Fin;
         public void PlaySerialize()
         {
             new Mechanism().GetDeserialyze();//добро победит зло
@@ -17,6 +18,11 @@ namespace ExpertCore
         public string GetQuntit()
         {
             return new Mechanism().GetQuntity();
+        }
+
+        public void GetSetDateWindow(int Otv)
+        {
+
         }
     }
 }

@@ -41,7 +41,8 @@ namespace ExpertCore.elements
        //     set.WriteXml("test3.xml");
         }
 
-        public List<Answers> GetListAnswer()    //Получение отсортированного списка ответов с начальной вероятностью
+        //Первое действие
+        public List<Answers> GetListAnswer()    //Получение отсортированного списка ответов с априорной вероятностью
         {
             
         //    List<Answers> lstOut = new List<Answers>();
@@ -49,13 +50,47 @@ namespace ExpertCore.elements
             Lstat.Sort((x, y) => x.QantityAnswer.CompareTo(y.QantityAnswer));
             foreach (var l in Lstat)
             {
-                l.ProbabilityHero = l.QantityAnswer/ Lstat.Capacity;
+                l.ProbabilityAprioryHero = l.QantityAnswer/ Lstat.Capacity;
             }
             return Lstat;
         }
 
+        //Второе действие
+        public void GetListHeroProbability()    //Получение списка с ответов с расчитанной вероятностью
+        {
+            double SumProbabilityHero=0;
 
-        public string GetQuntity()
+            foreach(var l in Lstat )
+            {
+                SumProbabilityHero = SumProbabilityHero+l.ProbabilityProizvHero;
+            }                       
+            foreach(var l in Lstat)
+            {
+                l.ProbabilityHero = (l.ProbabilityAprioryHero * l.ProbabilityProizvHero) / SumProbabilityHero;
+                    
+                    //априоритиВероятность * произведение вероятности всех отвеченных вопросов по данному персонажу l / сумма всех произведений вероятностий всех вопросов
+                    //ходим по всем отвеченным вопросам и находим вероятность для каждого персонажа
+            }
+        }
+        
+        //Третье действие
+        public void GetListQuantityProbability()    //Получение упорядоченного списка всех вопросов по сортировке по полученной вероятности// или угадайка вопросов
+        {
+            //
+            //
+            //определение вероятности каждого варианта ответа по каждому вопросу :/ Создаем цикл Foreach по всем Ответам
+            //Foreach( var Ответ....){ (Берём "GetListHeroProbability()" - список расчитанных вероятностей по ответам для выбранного Hero. 
+            //делаем Foreach // (Хиро.ProbabilityHero /*/ перемножаем с  Ответ для данного хиро)) После всего суммируем все вероятности для этих хиро }
+            //
+            //делаем прогон по Вопросам
+            //Сравниваем/// смотрим у кого меньше условная энтропия, тот вопрос и победил
+            //
+            //Сохранив и отсортировав по минимальной энтропие все вопросы, отправляем этот список дальше лесом
+            //
+        }
+
+
+        public string GetQuntity()  //взаимодействие с формой // вывод текста вопроса
         {
             string StrQa;
             
