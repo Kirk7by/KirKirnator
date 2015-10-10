@@ -4,17 +4,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain;
-namespace DataBase
+using System.Data.Entity;
+//DataBase.Repository
+namespace DataBase.Repository
 {
-    public class Repository : IKirk7byRepository
+    public class Repository : DbContext, IKirk7byRepository
     {
+        public Repository():base("BaseHeroesAndQestions")
+        {
+
+        }
+        private DbSet<Heroes> hers { get; set; }
+        private DbSet<Questions> qest { get; set; }
         public EntityStorage GetEntityStorage()
         {
-            Heroes[] hero = null;
-            Questions[] Qest = null;
+
+
+
+        //    List<Heroes> hr = null;
+       //     List<Questions> qe = null;
+
+
+
+            //   Heroes[] hero = null;
+
+
+            //       hl = hers.ToList();
+            // hero = hers;
+            //   Questions[] Qest = null;
             // добавить обновление данных из бдююю
-            ERRORS_METKA
-            EntityStorage ent = new EntityStorage(hero, Qest);
+
+            EntityStorage ent = new EntityStorage(hr, qe);
             return ent;
         }
     }

@@ -9,7 +9,10 @@ namespace Domain
     public class Questions //таблица Вопросы
     {
         #region Поля полученные из базы данных
-        public virtual string NameQestion { get; set; } //название вопроса //                   PK
+        public virtual Heroes Heroes { get; set; }
+        public string NameHeroes { get; set; }
+
+        public string NameQestion { get; set; } //название вопроса //                   PK
         public string TextQustion { get; set; } //текст вопроса //                      
         public string OtvetQuest1 { get; set; }  //Вероятность 1 ответа //да                
         public double OtvetQuest2 { get; set; } //Вероятность 2 ответа  //нет

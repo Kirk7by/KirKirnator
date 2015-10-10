@@ -48,6 +48,13 @@ namespace ExpertComputerService
         //взаимодействие с ядром
         private void OutputsInputs(int Otv) 
         {
+            DataBase.Repository.Repository rep = new DataBase.Repository.Repository();
+            List<Domain.Heroes> hr = new List<Domain.Heroes>();
+            List<Domain.Questions> qe = new List<Domain.Questions>();
+            
+            Domain.EntityStorage ent = new Domain.EntityStorage(hr,qe);
+            ent = rep.GetEntityStorage();
+
             ExpIit.PlaySerialize();
             label.Content = ExpIit.GetQuntit();
         }
