@@ -9,7 +9,7 @@ namespace ExpertCore
 {
     class SeryalyzeClassElements
     {
-        Answers Answer = new Answers();
+        Heroes Answer = new Heroes();
         Questions Qest = new Questions();
         public void Seralyz()
         {

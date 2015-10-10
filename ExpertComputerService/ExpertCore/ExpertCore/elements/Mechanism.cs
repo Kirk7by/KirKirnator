@@ -11,24 +11,24 @@ namespace ExpertCore.elements
 {
     class Mechanism
     {
-        List<Answers> Lstat = new List<Answers>();
+        List<Heroes> Lstat = new List<Heroes>();
         private static int position = -1;
         public void GetDeserialyze()
         {
             Questions quest = new Questions();
-            Answers Answer = new Answers();
-            List<Answers> Lstr = new List<Answers>();
+            Heroes Answer = new Heroes();
+            List<Heroes> Lstr = new List<Heroes>();
             List<string> srrR = new List<string>();
             Answer.ParamQust = new List<string>();
             srrR.Add("pussy");
             srrR.Add("dick");
-            srrR.Add("cleetor");
+            srrR.Add("третий");
             List<Questions> que1 = new List<Questions>();
             que1.Add(new Questions { NameQestion = "ключ1", ProbabilityQustion = "вероятность1", TextQustion = "Whera a You" });
             que1.Add(new Questions { NameQestion = "ключ2", ProbabilityQustion = "вероятность2", TextQustion = "Whera a You" });
-            Lstr.Add(new Answers() {NameAnswer="больной ублюдок", WeigthAnswer="ублюдки", QantityAnswer=200, TextAnswer="ну да", ParamQust=srrR, ParamsQusttype=que1});
+            Lstr.Add(new Heroes() {NameAnswer="больной ублюдок", WeigthAnswer="ублюдки", QantityAnswer=200, TextAnswer="ну да", ParamQust=srrR, ParamsQusttype=que1});
 
-            List<Answers>  lstAn = new TestDATABASE().getAnswer();
+            List<Heroes>  lstAn = new TestDATABASE().getAnswer();
             lstAn.Sort((x, y) => y.QantityAnswer.CompareTo(x.QantityAnswer));
             new Serialyze.Serialyzable().SerializableCollections(GetListAnswer());
 
@@ -42,7 +42,7 @@ namespace ExpertCore.elements
         }
 
         //Первое действие
-        public List<Answers> GetListAnswer()    //Получение отсортированного списка ответов с априорной вероятностью
+        public List<Heroes> GetListAnswer()    //Получение отсортированного списка ответов с априорной вероятностью
         {
             
         //    List<Answers> lstOut = new List<Answers>();

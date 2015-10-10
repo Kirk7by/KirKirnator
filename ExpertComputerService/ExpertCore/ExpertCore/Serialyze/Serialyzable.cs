@@ -12,11 +12,11 @@ namespace ExpertCore.Serialyze
     class Serialyzable
     {
         //Реализует сериализацию отправленной коллекции в файл
-        public void SerializableCollections(List<Answers> cats)
+        public void SerializableCollections(List<Heroes> cats)
         {
             using (Stream fStream = new FileStream(@"./База данных.xml", FileMode.Create, FileAccess.Write, FileShare.None))
             {
-                XmlSerializer xmlFormat = new XmlSerializer(typeof(List<Answers>));
+                XmlSerializer xmlFormat = new XmlSerializer(typeof(List<Heroes>));
                 xmlFormat.Serialize(fStream, cats);
                 fStream.Close();
         

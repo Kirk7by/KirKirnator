@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ExpertCore.elements
 {
-    public class Answers  //ответы
+    public class Heroes  //ответы
     {
-        public Answers()
+        public Heroes()
         {
          //   Questions que = new Questions();
         }
