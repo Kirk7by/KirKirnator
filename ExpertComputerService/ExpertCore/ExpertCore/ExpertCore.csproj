@@ -59,11 +59,6 @@
     <Compile Include="elements\Mechanism.cs" />
     <Compile Include="elements\Questions.cs" />
     <Compile Include="expertCore.cs" />
-    <Compile Include="MyBaseSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyBaseSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="ProbabilityAnswer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -77,18 +72,7 @@
     <Compile Include="TestDATABASE.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="MyBaseSet.xsc">
-      <DependentUpon>MyBaseSet.xsd</DependentUpon>
-    </None>
-    <None Include="MyBaseSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>MyBaseSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="MyBaseSet.xss">
-      <DependentUpon>MyBaseSet.xsd</DependentUpon>
-    </None>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -105,15 +89,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ExpertSystemBase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ExpertSystemBase_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>ExpertSystemBase.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

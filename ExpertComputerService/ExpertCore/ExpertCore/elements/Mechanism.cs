@@ -94,8 +94,12 @@ namespace ExpertCore.elements
         {
             string StrQa;
             
+            
             position++;
-            StrQa=GetListAnswer()[1].ParamsQusttype[position].NameQestion;
+            if (GetListAnswer().Count > position)
+                StrQa = GetListAnswer()[1].ParamsQusttype[position].NameQestion;
+            else
+                StrQa = "The End List";
           //  Lstat.
 
             return StrQa;   

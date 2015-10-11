@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain
 {
-    public interface IKirk7byRepository
+    public interface IRepository
     {
         EntityStorage GetEntityStorage(); //метод реализующий вывод массива двух сущностей
-
   //      IEnumerable<HeroesAndQuestions> GetStudentsClasses(EntityStorage storage); //что-то, что нужно удалить
     }
 }

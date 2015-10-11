@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ExpertCore;
+using DataBase.Repository;
+using Domain;
+using DataBase;
+
 namespace ExpertComputerService
 {
     /// <summary>
@@ -48,17 +52,35 @@ namespace ExpertComputerService
         //взаимодействие с ядром
         private void OutputsInputs(int Otv) 
         {
-            DataBase.Repository.Repository rep = new DataBase.Repository.Repository();
-            List<Domain.Heroes> hr = new List<Domain.Heroes>();
-            List<Domain.Questions> qe = new List<Domain.Questions>();
-            
+            //   DataBase.Repository.Repository rep = new DataBase.Repository.Repository();
+            List<Heroes> hr = new List<Heroes>();
+            List<Questions> qe = new List<Questions>();
+
             Domain.EntityStorage ent = new Domain.EntityStorage(hr,qe);
-            ent = rep.GetEntityStorage();
+        //    ent = rep.GetEntityStorage();
 
             foreach (var s in ent.Heroes)
                 MessageBox.Show(Convert.ToString(s.NameHeroes));
             ExpIit.PlaySerialize();
             label.Content = ExpIit.GetQuntit();
+
+           
+
+            //локальная база EPTI BLYA
+            hr.Add(new Heroes { NameHeroes = "УБЛЮДОК!" });
+            hr.Add(new Heroes { NameHeroes = "ТОТ, ЧЬЯ СОВЕСТЬ НЕ ЧИСТА" });
+            hr.Add(new Heroes { NameHeroes = "ну и просто 3 персонаж в базе " });
+
+            Repository rp = new Repository();
+            rp.ExecuteListHero();
+            
+/*
+            using (Model1 rep = new Model1())
+            {
+                var hero = new Heroes { NameHeroes = "UBLUDICH" };
+                rep.heroes.Add(hero);
+                rep.SaveChanges();
+            }*/
         }
     }
 }
