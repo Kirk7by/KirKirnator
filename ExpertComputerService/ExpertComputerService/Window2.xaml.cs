@@ -52,35 +52,25 @@ namespace ExpertComputerService
         //взаимодействие с ядром
         private void OutputsInputs(int Otv) 
         {
-            //   DataBase.Repository.Repository rep = new DataBase.Repository.Repository();
+
             List<Heroes> hr = new List<Heroes>();
             List<Questions> qe = new List<Questions>();
 
-            Domain.EntityStorage ent = new Domain.EntityStorage(hr,qe);
-        //    ent = rep.GetEntityStorage();
+            EntityStorage ent = new EntityStorage(hr,qe);
+            
+      /*      foreach (var s in ent.Heroes)
+                MessageBox.Show(Convert.ToString(s.NameHeroes));*/
 
-            foreach (var s in ent.Heroes)
-                MessageBox.Show(Convert.ToString(s.NameHeroes));
+
             ExpIit.PlaySerialize();
             label.Content = ExpIit.GetQuntit();
 
-           
-
-            //локальная база EPTI BLYA
-            hr.Add(new Heroes { NameHeroes = "УБЛЮДОК!" });
-            hr.Add(new Heroes { NameHeroes = "ТОТ, ЧЬЯ СОВЕСТЬ НЕ ЧИСТА" });
-            hr.Add(new Heroes { NameHeroes = "ну и просто 3 персонаж в базе " });
 
             Repository rp = new Repository();
-            rp.ExecuteListHero();
-            
-/*
-            using (Model1 rep = new Model1())
-            {
-                var hero = new Heroes { NameHeroes = "UBLUDICH" };
-                rep.heroes.Add(hero);
-                rep.SaveChanges();
-            }*/
+            ent=rp.GetEntityStorage();
+            foreach (var s in ent.Heroes)
+                MessageBox.Show(Convert.ToString(s.NameHeroes));
+            //    rp.ExecuteListHero();
         }
     }
 }

@@ -5,7 +5,7 @@
     using System.Data.Entity;
     using System.Linq;
 
-    public class Model1 : DbContext
+    public class MyModelContext : DbContext
     {
         Type _Hack = typeof(System.Data.Entity.SqlServer.SqlProviderServices);
         
@@ -15,7 +15,7 @@
         // 
         // Если требуется выбрать другую базу данных или поставщик базы данных, измените строку подключения "Model1" 
         // в файле конфигурации приложения.
-        public Model1()
+        public MyModelContext()
             : base("name=Model1")
         {
          //   Database.SetInitializer<Model1>(null);

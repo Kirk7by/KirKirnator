@@ -25,17 +25,17 @@ namespace Domain
 
         public string TextQustion { get; set; } //текст вопроса //                      
         public string OtvetQuest1 { get; set; }  //Вероятность 1 ответа //да                
-        public double OtvetQuest2 { get; set; } //Вероятность 2 ответа  //нет
-        public double OtvetQuest3 { get; set; } //Вероятность 3 ответа  //скорее да
-        public double OtvetQuest4 { get; set; } //Вероятность 4 ответа  //скорее нет
-        public double OtvetQuest5 { get; set; } //Вероятность 5 ответа  //не знаю
+        public double? OtvetQuest2 { get; set; } //Вероятность 2 ответа  //нет
+        public double? OtvetQuest3 { get; set; } //Вероятность 3 ответа  //скорее да
+        public double? OtvetQuest4 { get; set; } //Вероятность 4 ответа  //скорее нет
+        public double? OtvetQuest5 { get; set; } //Вероятность 5 ответа  //не знаю
         #endregion
         //
         ///
         //
         #region Поля полученные через код
-        public bool QuestSelected { get; set; } //Индекс выбранного вопроса, {true or false}-выбран/нет/// надеюсь пригодится
-        public int OtvetSelected { get; set; } //Индекс выбранного ответа,/// надеюсь пригодится
+        public bool? QuestSelected { get; set; } //Индекс выбранного вопроса, {true or false}-выбран/нет/// надеюсь пригодится
+        public int? OtvetSelected { get; set; } //Индекс выбранного ответа,/// надеюсь пригодится
         public string ProbabilityQustion { get; set; }  //вероятность появления этого вопроса по Байесу() с минимальной условной энтропией
         //Расчитывается очень трудоёмким путём
         #endregion
