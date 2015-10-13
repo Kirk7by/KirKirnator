@@ -9,6 +9,12 @@ namespace ExpertCore
 {
     public class ExpertCore //обёртка над логикой
     {
+     
+
+
+        //
+        //
+        //
         public event EventHandler Fin;
         public void PlaySerialize()
         {

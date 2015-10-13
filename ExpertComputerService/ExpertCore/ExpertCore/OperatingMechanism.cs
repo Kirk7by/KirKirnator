@@ -11,7 +11,7 @@ namespace ExpertCore
     {
         public string GetQuest()
         {
-            string Quest;
+            string Quest="";
 
 
             return Quest;

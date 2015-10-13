@@ -21,13 +21,13 @@ namespace ExpertComputerService
     /// <summary>
     /// Логика взаимодействия для Window2.xaml
     /// </summary>
-    public partial class Window2 : Window
+    public partial class GeneralWork : Window
     {
         ExpertCore.ExpertCore ExpIit = new ExpertCore.ExpertCore();
         
         event EventHandler Fin; //будет событием о завершении поиска
         event EventHandler Start; //событие начать сначала
-        public Window2()
+        public GeneralWork()
         {
             InitializeComponent();
             ExpIit.Fin += Fin;
@@ -47,7 +47,6 @@ namespace ExpertComputerService
         {
             OutputsInputs(3);
         }
-
 
         //взаимодействие с ядром
         private void OutputsInputs(int Otv) 
@@ -73,6 +72,16 @@ namespace ExpertComputerService
             foreach (var s in ent.Heroes)
                 MessageBox.Show(Convert.ToString(s.NameHeroes));
             //    rp.ExecuteListHero();
+        }
+
+        private void button4_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

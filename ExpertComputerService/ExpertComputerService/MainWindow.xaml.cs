@@ -28,7 +28,7 @@ namespace ExpertComputerService
 
         private void diagnostyc_Click(object sender, RoutedEventArgs e)
         {
-            new Window2().Show();
+            new GeneralWork().Show();
             this.Close();
         }
     }
