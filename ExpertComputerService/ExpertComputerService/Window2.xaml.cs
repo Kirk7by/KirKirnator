@@ -67,6 +67,7 @@ namespace ExpertComputerService
 
 
             Repository rp = new Repository();
+            rp.FillBdData();
             ent=rp.GetEntityStorage();
             foreach (var s in ent.Heroes)
                 MessageBox.Show(Convert.ToString(s.NameHeroes));

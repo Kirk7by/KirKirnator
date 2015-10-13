@@ -15,13 +15,6 @@ namespace DataBase.Repository
 {
     public class Repository : IRepository
     {
-        
-        public Repository()
-        {
-
-        }
-
-
 
 
         public void ExecuteListHero()
@@ -56,7 +49,8 @@ namespace DataBase.Repository
         //      var Qests = dbContext.qestions.First(p => p.NameQestion != "");
         #endregion
 
-        public EntityStorage GetEntityStorage() //получение всех данных из бд
+        //получение всех данных из бд
+        public EntityStorage GetEntityStorage() 
         {
             List<Heroes> heL = new List<Heroes>();
             List<Questions> qeL = new List<Questions>();
@@ -73,6 +67,58 @@ namespace DataBase.Repository
             }
             EntityStorage ent = new EntityStorage(heL, qeL);
             return ent;
+        }
+
+        
+        #region Добавление данных
+        //Добавление нового героя
+        public void AddHeroes(Heroes hero)
+        {
+            using (var dbContext = new MyModelContext())
+            {
+                dbContext.heroes.Add(hero);
+                dbContext.SaveChanges();
+            }
+        }
+        //Добавление нового вопроса
+        public void AddQuestion(Questions que)
+        {
+            using (var dbContext = new MyModelContext())
+            {
+                dbContext.qestions.Add(que);
+                dbContext.SaveChanges();
+            }
+        }
+        #endregion
+
+
+        //Тестовый
+        //Заполнение бд целиком
+        public void FillBdData()
+        {
+    //      bdTestsClass bdSingleton = bdTestsClass.GetInstance();
+
+            EntityStorage MyDataBase = bdTestsClass.GetInstance().GetListsBDHeroesAndQuestions(); //использован в синглтуне
+
+    //      List<Heroes> heL = new List<Heroes>();
+    //      List<Questions> qeL = new List<Questions>();
+    //      heL = MyDataBase.Heroes;
+    //      qeL = MyDataBase.Qestion;
+
+            using (var dbContext = new MyModelContext())
+            {
+                foreach(var h in MyDataBase.Heroes)
+                {
+                    dbContext.heroes.Add(h);
+                }
+
+                foreach (var q in MyDataBase.Qestion)
+                {
+                    dbContext.qestions.Add(q);
+                }
+                dbContext.SaveChanges();
+            }
+            
         }
     }
 }
