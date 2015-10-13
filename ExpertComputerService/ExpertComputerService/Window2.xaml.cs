@@ -23,7 +23,7 @@ namespace ExpertComputerService
     /// </summary>
     public partial class Window2 : Window
     {
-        expertCore ExpIit = new expertCore();
+        ExpertCore.ExpertCore ExpIit = new ExpertCore.ExpertCore();
         
         event EventHandler Fin; //будет событием о завершении поиска
         event EventHandler Start; //событие начать сначала
@@ -67,6 +67,7 @@ namespace ExpertComputerService
 
 
             Repository rp = new Repository();
+            rp.ClearBdData();
             rp.FillBdData();
             ent=rp.GetEntityStorage();
             foreach (var s in ent.Heroes)

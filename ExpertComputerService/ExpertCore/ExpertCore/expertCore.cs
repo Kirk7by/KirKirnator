@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ExpertCore
 {
-    public class expertCore //обёртка над логикой
+    public class ExpertCore //обёртка над логикой
     {
         public event EventHandler Fin;
         public void PlaySerialize()

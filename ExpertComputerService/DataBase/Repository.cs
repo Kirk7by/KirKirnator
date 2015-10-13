@@ -15,42 +15,10 @@ namespace DataBase.Repository
 {
     public class Repository : IRepository
     {
-
-
-        public void ExecuteListHero()
-        {
-            Heroes h = new Heroes { NameHeroes = "Злыдень3" };
-            MyModelContext md = new MyModelContext();
-            md.heroes.Add(h);
-            md.SaveChanges();
-
-            //пример удаления всех данных
-            using (var ctx = new MyModelContext())
-            {
-                foreach (var u in ctx.heroes)
-                {
-                    ctx.heroes.Remove(u);
-                }
-               
-
-                //   md.heroes.Remove(new Heroes { NameHeroes = "Злыдень" });
-                ctx.SaveChanges();
-            }
-
-        }
-        #region others
-        public Heroes GetHero(string heroname)//получить героя по ID_Name
-        {
-            var dbContext = new MyModelContext();
-            var Heros = dbContext.heroes.First(p => p.NameHeroes == heroname);
-            return Heros;
-        }
-        //       var Heros = dbContext.heroes.First(p => p.NameHeroes !=""); //лямбда выражение всё что "" будет выходным условием
-        //      var Qests = dbContext.qestions.First(p => p.NameQestion != "");
-        #endregion
+        #region Выборка данных
 
         //получение всех данных из бд
-        public EntityStorage GetEntityStorage() 
+        public EntityStorage GetEntityStorage()
         {
             List<Heroes> heL = new List<Heroes>();
             List<Questions> qeL = new List<Questions>();
@@ -69,45 +37,30 @@ namespace DataBase.Repository
             return ent;
         }
 
-        
-        #region Добавление данных
-        //Добавление нового героя
-        public void AddHeroes(Heroes hero)
+        //получить героя по ID_Name
+        public Heroes GetHero(string heroname)
         {
-            using (var dbContext = new MyModelContext())
-            {
-                dbContext.heroes.Add(hero);
-                dbContext.SaveChanges();
-            }
+            var dbContext = new MyModelContext();
+            var Heros = dbContext.heroes.First(p => p.NameHeroes == heroname);
+            return Heros;
         }
-        //Добавление нового вопроса
-        public void AddQuestion(Questions que)
-        {
-            using (var dbContext = new MyModelContext())
-            {
-                dbContext.qestions.Add(que);
-                dbContext.SaveChanges();
-            }
-        }
+
         #endregion
+        #region Добавление данных
 
-
-        //Тестовый
         //Заполнение бд целиком
         public void FillBdData()
         {
-    //      bdTestsClass bdSingleton = bdTestsClass.GetInstance();
-
+            //      bdTestsClass bdSingleton = bdTestsClass.GetInstance();
             EntityStorage MyDataBase = bdTestsClass.GetInstance().GetListsBDHeroesAndQuestions(); //использован в синглтуне
-
-    //      List<Heroes> heL = new List<Heroes>();
-    //      List<Questions> qeL = new List<Questions>();
-    //      heL = MyDataBase.Heroes;
-    //      qeL = MyDataBase.Qestion;
+            //      List<Heroes> heL = new List<Heroes>();
+            //      List<Questions> qeL = new List<Questions>();
+            //      heL = MyDataBase.Heroes;
+            //      qeL = MyDataBase.Qestion;
 
             using (var dbContext = new MyModelContext())
             {
-                foreach(var h in MyDataBase.Heroes)
+                foreach (var h in MyDataBase.Heroes)
                 {
                     dbContext.heroes.Add(h);
                 }
@@ -118,7 +71,53 @@ namespace DataBase.Repository
                 }
                 dbContext.SaveChanges();
             }
-            
+
         }
+
+        //Добавление нового героя
+        public void AddHeroes(Heroes hero)
+        {
+            using (var dbContext = new MyModelContext())
+            {
+                dbContext.heroes.Add(hero);
+                dbContext.SaveChanges();
+            }
+        }
+
+        //Добавление нового вопроса
+        public void AddQuestion(Questions que)
+        {
+            using (var dbContext = new MyModelContext())
+            {
+                dbContext.qestions.Add(que);
+                dbContext.SaveChanges();
+            }
+        }
+
+        #endregion
+        #region Обновление данных
+        #endregion
+        #region Удаление данных
+
+        //Чистка всей базы
+        public void ClearBdData()
+        {
+
+            using (var ctx = new MyModelContext())
+            {
+                foreach (var u in ctx.qestions)
+                {
+                    ctx.qestions.Remove(u);
+                }
+                foreach (var u in ctx.heroes)
+                {
+                    ctx.heroes.Remove(u);
+                }
+                ctx.SaveChanges();
+            }
+
+        }
+
+        #endregion
     }
 }

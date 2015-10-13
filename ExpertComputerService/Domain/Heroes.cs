@@ -12,8 +12,6 @@ namespace Domain
     public class Heroes
     {
         #region Поля сохраняющиеся в бд
-  //      [ForeignKey("NameHeroes")]
-  //      [Column(Order = 1)]
         [Key]
         public string NameHeroes { get;  set; }  //название Hero, или по-простому "Условный идентификатор"
 
@@ -21,7 +19,6 @@ namespace Domain
         public double? WeigthHero { get;  set; }    //Количество угаданных раз этого Hero (вес)
         public virtual List<Questions> ParamsQusttype { get; set; }  //Привязанные вопросы к данному герою
 
-      //  public double QantityAnswer { get; private set; } //Количество полученных раз за этот вопрос
         #endregion
 
         #region Поля, появляющиеся программным путём

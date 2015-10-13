@@ -58,7 +58,8 @@
     <Compile Include="elements\Answers.cs" />
     <Compile Include="elements\Mechanism.cs" />
     <Compile Include="elements\Questions.cs" />
-    <Compile Include="expertCore.cs" />
+    <Compile Include="ExpertCore.cs" />
+    <Compile Include="OperatingMechanism.cs" />
     <Compile Include="ProbabilityAnswer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
