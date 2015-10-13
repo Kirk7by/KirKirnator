@@ -16,7 +16,7 @@ namespace Domain
         public string NameHeroes { get;  set; }  //название Hero, или по-простому "Условный идентификатор"
 
         public string TextHero { get;  set; }  //текст ответа, подробности о герое
-        public double? WeigthHero { get;  set; }    //Количество угаданных раз этого Hero (вес)
+        public int? WeigthHero { get;  set; }    //Количество угаданных раз этого Hero (вес)
         public virtual List<Questions> ParamsQusttype { get; set; }  //Привязанные вопросы к данному герою
 
         #endregion

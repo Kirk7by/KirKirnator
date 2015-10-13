@@ -24,7 +24,7 @@ namespace Domain
         public virtual Heroes Heroes { get; set; }
 
         public string TextQustion { get; set; } //текст вопроса //                      
-        public string OtvetQuest1 { get; set; }  //Вероятность 1 ответа //да                
+        public double? OtvetQuest1 { get; set; }  //Вероятность 1 ответа //да                
         public double? OtvetQuest2 { get; set; } //Вероятность 2 ответа  //нет
         public double? OtvetQuest3 { get; set; } //Вероятность 3 ответа  //скорее да
         public double? OtvetQuest4 { get; set; } //Вероятность 4 ответа  //скорее нет

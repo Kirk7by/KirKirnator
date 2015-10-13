@@ -58,7 +58,8 @@
     <Compile Include="elements\Answers.cs" />
     <Compile Include="elements\Mechanism.cs" />
     <Compile Include="elements\Questions.cs" />
-    <Compile Include="ExpertCore.cs" />
+    <Compile Include="Expertcore.cs" />
+    <Compile Include="IMechanism.cs" />
     <Compile Include="OperatingMechanism.cs" />
     <Compile Include="ProbabilityAnswer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +90,16 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DataBase\DataBase.csproj">
+      <Project>{542286d9-fc11-46e4-a596-3c047e048119}</Project>
+      <Name>DataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Domain\Domain.csproj">
+      <Project>{6a7f80f5-a070-4857-89bf-2ccd1150ce74}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -23,7 +23,7 @@ namespace ExpertComputerService
     /// </summary>
     public partial class GeneralWork : Window
     {
-        ExpertCore.ExpertCore ExpIit = new ExpertCore.ExpertCore();
+        ExpertCore.Expertcore ExpIit = new ExpertCore.Expertcore();
         
         event EventHandler Fin; //будет событием о завершении поиска
         event EventHandler Start; //событие начать сначала
@@ -76,12 +76,31 @@ namespace ExpertComputerService
 
         private void button4_Click(object sender, RoutedEventArgs e)
         {
-
+            CoreLink(4);
         }
 
         private void button5_Click(object sender, RoutedEventArgs e)
         {
+            CoreLink(5);
+        }
 
+
+        private void CoreLink(int otv)
+        {
+            Repository rp = new Repository();
+            rp.ClearBdData();
+            rp.FillBdData();
+            string TextQuestions="";
+
+            TextQuestions = new Expertcore().GetQuestion(otv);
+            if (TextQuestions=="The End") //сигнализирует о конце списка с вопросами и ожидание события приёма сообщения с ответом
+            {
+                LabelWrap.Text = "Конец, выводим предположительный ответ...";
+            }
+            else
+            {
+                LabelWrap.Text = TextQuestions;
+            }
         }
     }
 }

@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace ExpertCore
 {
-    public class ExpertCore //обёртка над логикой
+    public class Expertcore: IMechanism  //обёртка над логикой
     {
      
 
+        public Expertcore()
+        {
 
+        }
         //
         //
         //
@@ -26,9 +29,9 @@ namespace ExpertCore
             return new Mechanism().GetQuntity();
         }
 
-        public void GetSetDateWindow(int Otv)
+        public string GetQuestion(int otv)
         {
-
+            return new OperatingMechanism().GetQuestion(otv);
         }
     }
 }
