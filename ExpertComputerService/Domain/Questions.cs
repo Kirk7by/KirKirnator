@@ -30,6 +30,15 @@ namespace Domain
         public double? OtvetQuest4 { get; set; } //Вероятность 4 ответа  //скорее нет
         public double? OtvetQuest5 { get; set; } //Вероятность 5 ответа  //не знаю
         #endregion
+
+        /*перегрузка сравнения// сравнение по названию вопроса Only */
+        /*
+        public override bool Equals(object obj)
+        {
+            
+            return this.NameQestion.Equals(((Questions)obj).NameQestion);
+        }
+        */
         //
         ///
         //
