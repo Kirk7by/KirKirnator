@@ -40,9 +40,9 @@ namespace DataBase
         private List<Heroes> getHeroes()
         {
             List<Heroes> HeroeS = new List<Heroes>();
-            HeroeS.Add(new Heroes { NameHeroes = "Блок питания" , WeigthHero =1 });
-            HeroeS.Add(new Heroes { NameHeroes = "Монитор", WeigthHero = 1 });
-            HeroeS.Add(new Heroes { NameHeroes = "Видеокарта", WeigthHero = 1 });
+            HeroeS.Add(new Heroes { NameHeroes = "Блок питания" , WeigthHero =10 });
+            HeroeS.Add(new Heroes { NameHeroes = "Монитор", WeigthHero = 10 });
+            HeroeS.Add(new Heroes { NameHeroes = "Видеокарта", WeigthHero = 10 });
             //............
             //
             return HeroeS;
@@ -59,9 +59,15 @@ namespace DataBase
             QuestionS.Add(new Questions { NameQestion = "Не включается компьютер?", NameHeroes = "Блок питания" });
             QuestionS.Add(new Questions { NameQestion = "Не включается компьютер?", NameHeroes = "Монитор" });
             QuestionS.Add(new Questions { NameQestion = "Не включается компьютер?", NameHeroes = "Видеокарта" });
-
-
-            foreach(var qe in QuestionS)
+            QuestionS.Add(new Questions { NameQestion = "Есть черные точки на миниторе?", NameHeroes = "Блок питания" });
+            QuestionS.Add(new Questions { NameQestion = "Есть черные точки на миниторе?", NameHeroes = "Монитор" });
+            
+            QuestionS.Add(new Questions { NameQestion = "Горячий ли системник?", NameHeroes = "Блок питания" });
+            QuestionS.Add(new Questions { NameQestion = "Горячий ли системник?", NameHeroes = "Монитор" });
+            QuestionS.Add(new Questions { NameQestion = "Горячий ли системник?", NameHeroes = "Видеокарта" });
+            QuestionS.Add(new Questions { NameQestion = "Есть ли белые полосы на мониторе?", NameHeroes = "Блок питания" });
+            QuestionS.Add(new Questions { NameQestion = "Есть ли белые полосы на мониторе?", NameHeroes = "Монитор" });
+            foreach (var qe in QuestionS)
             {
                 qe.OtvetQuest1 = 0.2;
                 qe.OtvetQuest2 = 0.2;
@@ -69,6 +75,9 @@ namespace DataBase
                 qe.OtvetQuest4 = 0.2;
                 qe.OtvetQuest5 = 0.2;
             }
+            QuestionS.Add(new Questions { NameQestion = "Есть ли белые полосы на мониторе?", NameHeroes = "Видеокарта" ,OtvetQuest1=0.5, OtvetQuest2 =0.1, OtvetQuest3 = 0.1, OtvetQuest4 = 0.1, OtvetQuest5 = 0.1 });
+            QuestionS.Add(new Questions { NameQestion = "Есть черные точки на миниторе?", NameHeroes = "Видеокарта", OtvetQuest1 = 0.5, OtvetQuest2 = 0.1, OtvetQuest3 = 0.1, OtvetQuest4 = 0.1, OtvetQuest5 = 0.1 });
+
             //............
             //
             return QuestionS;

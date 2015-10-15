@@ -35,17 +35,17 @@ namespace ExpertComputerService
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            OutputsInputs(1);
+            CoreLink(1);
         }
   
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            OutputsInputs(2);
+            CoreLink(2);
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)
         {
-            OutputsInputs(3);
+            CoreLink(3);
         }
 
         //взаимодействие с ядром
