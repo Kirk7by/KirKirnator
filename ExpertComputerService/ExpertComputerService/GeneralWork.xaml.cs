@@ -27,10 +27,14 @@ namespace ExpertComputerService
         
         event EventHandler Fin; //будет событием о завершении поиска
         event EventHandler Start; //событие начать сначала
+        Repository rp = new Repository();
         public GeneralWork()
         {
             InitializeComponent();
             ExpIit.Fin += Fin;
+
+            rp.ClearBdData();
+            rp.FillBdData();
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -87,9 +91,8 @@ namespace ExpertComputerService
 
         private void CoreLink(int otv)
         {
-            Repository rp = new Repository();
-            rp.ClearBdData();
-            rp.FillBdData();
+            
+           
             string TextQuestions="";
 
             TextQuestions = new Expertcore().GetQuestion(otv);

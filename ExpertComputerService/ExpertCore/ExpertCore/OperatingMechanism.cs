@@ -12,14 +12,17 @@ namespace ExpertCore
     //Вся работа происходит ТУТ
     internal class OperatingMechanism : IMechanism
     {
-        static string sumHERO;
+        static string TESTg;
+
         static List<Heroes> lHeroes = new List<Heroes>();
         static List<Questions> lQuestions = new List<Questions>();
         static List<Questions> Quest1 = new List<Questions>();
         static List<Questions> Quest2 = new List<Questions>();
+
         static int indexQuest2;
         private static int position = -1;
         private static List<Questions> StQestions;
+
         internal OperatingMechanism()
         {
 
@@ -38,14 +41,9 @@ namespace ExpertCore
             if (position == 0)
             {
                 Quest2 = GetQuestionDistinctList(lQuestions);
-
                 Quest1.Add(Quest2[0]);
                 Quest1[0].OtvetSelected = otv;
-               
-
                 Quest2.RemoveAt(0);
-
-                //   return Convert.ToString(Quest2[0].NameQestion);
             }
             else
             {
@@ -64,76 +62,70 @@ namespace ExpertCore
                 Quest1.Add(Quest2[indexQuest2]);
                 Quest2.RemoveAt(indexQuest2);
             }
+
             //угадай героя
-            //   GetProbabilityProizvHero(Quest1);
             GetProbabilityProizvHero(Quest1);
-            Quest2 = GetСonditionalEntropy(Quest2);
 
-            //TODO: ТУТ ЗАСАДА
-            //    return Convert.ToString(lHeroes[0].NameHeroes)+ Convert.ToString(lHeroes[0].ProbabilityHero);
-            if (Quest2.Count == 0)
+
+
+            //поиск из оставшихся вопросов вопроса с минимальной энтропией, только если есть в хоть один вопрос в списке вопросов
+            double? MinEntropy = 0;
+            if (Quest2.Count != 0)
             {
-               // GetProbabilityProizvHero(Quest1);
 
-                string MaxHero1 = "ничего";
-                double? MaxheroProb1 = 0;
-                foreach (var hero in lHeroes)
+                List<Questions> qe3 = new List<Questions>();
+
+                foreach(var qq2 in Quest2)
                 {
-                    if (hero.ProbabilityHero > MaxheroProb1)
+                    qe3.Add(qq2);
+                }
+                qe3 = GetСonditionalEntropy(qe3);
+
+                MinEntropy = qe3[0].ProbabilityQustion;
+                int i = -1;
+                foreach (var q2 in qe3)
+                {
+                    i++;
+                    if (MinEntropy >= q2.ProbabilityQustion)
                     {
-                        MaxheroProb1 = hero.ProbabilityHero;
-                        MaxHero1 = hero.NameHeroes;
+                        indexQuest2 = i;
+                        Qestion = q2.NameQestion;
+                        MinEntropy = q2.ProbabilityQustion;
                     }
                 }
-
-                string str = "";
-                foreach (var s in lHeroes)
-                {
-                    str = str + ") " + s.NameHeroes + ": (" + s.ProbabilityHero + ": " + s.ProbabilityProizvHero + ": " + s.ProbabilityProizvHero;
-                }
-                return str;
             }
+            //
 
-            double? MinEntropy = Quest2[0].ProbabilityQustion;
-            string QuestNAME = "";
-            int i = -1;
-            foreach (var q2 in Quest2)
-            {
-                i++;
-                if (MinEntropy >= q2.ProbabilityQustion)
-                {
-                    indexQuest2 = i;
-                    QuestNAME = q2.NameQestion;
-                    MinEntropy = q2.ProbabilityQustion;
-                   // return QuestNAME + Convert.ToString(MinEntropy);
-                }
-            }
-            
-            Qestion = QuestNAME;
-            string MaxHero = "ничего";
+            //поиск наиболее вероятного героя
+            string MaxprobalityHero = "ничего";
             double? MaxheroProb = 0;
             foreach (var hero in lHeroes)
             {
-                if (hero.ProbabilityHero > MaxheroProb)
+                if (hero.ProbabilityHero >= MaxheroProb)
                 {
                     MaxheroProb = hero.ProbabilityHero;
-                    MaxHero = hero.NameHeroes;
+                    MaxprobalityHero = hero.NameHeroes;
                 }
             }
-            //     return Quest2[i].NameQestion;
-            //   return lHeroes[3].NameHeroes;
-            //TODO:ОСТАНОВ
-            //        if (Quest2[indexQuest2] == null)
-            //             return "Угадан:" + Convert.ToString(MaxheroProb) + Convert.ToString(MinEntropy);
+            //
 
-            string str1 = "";
+            string str1 = "",str2="";
+      /*      foreach(var qs in Quest2)
+            {
+                foreach (var qe in lQuestions)
+                {
+                    if (entr.NameQestion == entr.NameQestion)
+                    {
+                        str2 = str2 + " (" + lHeroes.Find(item => item.NameHeroes == qs.NameHeroes).ProbabilityHero + ") ";
+                    }
+                }
+            }*/
             foreach (var s in lHeroes)
             {
-                str1 = str1 + ") " + s.NameHeroes + ": (" + s.ProbabilityHero + ") Poizv: (" + s.ProbabilityProizvHero + ") P(A): " + s.ProbabilityAprioryHero+") sum: " + sumHERO;
+                str1 = str1+ s.NameHeroes + ": (" + s.ProbabilityHero + ") Poizv: (" + s.ProbabilityProizvHero + ") sum: " + TESTg + Convert.ToString(lHeroes[0].ProbabilityProizvHero) + "\n" + "\n";
+                
             }
-            return str1;
-
-            return Qestion + Convert.ToString(MaxheroProb)+"(" + MaxHero +")"+ Convert.ToString(MinEntropy);
+            return str1+ "\n"+ Qestion + Convert.ToString(MaxheroProb) + "(" + MaxprobalityHero + ")" + Convert.ToString(MinEntropy)+"\n"+str2;
         }
 
 
@@ -170,7 +162,7 @@ namespace ExpertCore
                         if ((qs.NameQestion == qall.NameQestion) && (qall.NameHeroes == lH.NameHeroes))
                         {
                             i++;
-                            sumHERO = Convert.ToString(lHeroes[0].ProbabilityProizvHero);
+                            TESTg = Convert.ToString(lHeroes[0].ProbabilityProizvHero);
                             if (qs.OtvetSelected==1)
                                 tmpProbabilityOtvetSelected = qall.OtvetQuest1;
                             if (qs.OtvetSelected == 2)
@@ -242,34 +234,35 @@ namespace ExpertCore
         public List<Questions> GetСonditionalEntropy(List<Questions> QuestionsNext) //Получение условной энтропии для каждого вопроса
         {
             double? tmpprobalityHero;
-            List<Questions> EntropQuestions = GetQuestionDistinctList(QuestionsNext);    //создаём список без повторяющихся вопросов
-            
-            foreach (var entr in EntropQuestions)
+            // List<Questions> EntropQuestions = GetQuestionDistinctList(QuestionsNext);    //создаём список без повторяющихся вопросов
+            List<Questions> qe2 = new List<Questions>();
+            qe2.AddRange(QuestionsNext.ToArray());
+            double? q1, q2, q3, q4, q5;
+            foreach (var entr in qe2)
             {
-                entr.OtvetQuest1 = 0;
-                entr.OtvetQuest2 = 0;
-                entr.OtvetQuest3 = 0;
-                entr.OtvetQuest4 = 0;
-                entr.OtvetQuest5 = 0;
-
+                q1 = 0;
+                q2 = 0;
+                q3 = 0;
+                q4 = 0;
+                q5 = 0;
                 foreach (var qe in lQuestions)
                 {
-                    if (entr.NameQestion == entr.NameQestion)
+                    if (entr.NameQestion == qe.NameQestion)
                     {
-                        tmpprobalityHero = lHeroes.Find(item => item.NameHeroes == entr.NameHeroes).ProbabilityHero;
+                        tmpprobalityHero = lHeroes.Find(item => (string)item.NameHeroes == (string)entr.NameHeroes).ProbabilityHero;
 
-                        entr.OtvetQuest1 += qe.OtvetQuest1 * tmpprobalityHero;
-                        entr.OtvetQuest2 += qe.OtvetQuest2 * tmpprobalityHero;
-                        entr.OtvetQuest3 += qe.OtvetQuest3 * tmpprobalityHero;
-                        entr.OtvetQuest4 += qe.OtvetQuest4 * tmpprobalityHero;
-                        entr.OtvetQuest5 += qe.OtvetQuest5 * tmpprobalityHero;
+                        q1 += qe.OtvetQuest1 * tmpprobalityHero;
+                        q2 += qe.OtvetQuest2 * tmpprobalityHero;
+                        q3 += qe.OtvetQuest3 * tmpprobalityHero;
+                        q4 += qe.OtvetQuest4 * tmpprobalityHero;
+                        q5 += qe.OtvetQuest5 * tmpprobalityHero;
                     }
                 }
                 //находим нашу условную энтропию
-                entr.ProbabilityQustion = Math.Abs(Math.Log(1 / (double)entr.OtvetQuest1) + Math.Log(1 / (double)entr.OtvetQuest2) + Math.Log(1 / (double)entr.OtvetQuest3) +
-                    Math.Log(1 / (double)entr.OtvetQuest4) + Math.Log(1 / (double)entr.OtvetQuest5));
+                entr.ProbabilityQustion = Math.Abs(Math.Log(1 / (double)q1) + Math.Log(1 / (double)q2) + Math.Log(1 / (double)q3) +
+                    Math.Log(1 / (double)q4) + Math.Log(1 / (double)q5));
             }
-            return EntropQuestions;
+            return qe2;
         }
 
 

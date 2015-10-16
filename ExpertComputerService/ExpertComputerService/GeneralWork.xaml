@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <Viewbox StretchDirection="UpOnly">
             <Grid Height="84" VerticalAlignment="Top" Width="359" Background="#FF91996D">
-                <Label x:Name="label"  FontSize="8" HorizontalContentAlignment="Center" Foreground="White" FontFamily="Sitka Small">
+                <Label x:Name="label"  FontSize="4" HorizontalContentAlignment="Center" Foreground="White" FontFamily="Sitka Small">
                     <Label.Content>
                         <TextBlock x:Name="LabelWrap" TextAlignment="Center" TextWrapping="Wrap" Height="74" Width="349" >Label Text And Wrap</TextBlock>
                     </Label.Content>
