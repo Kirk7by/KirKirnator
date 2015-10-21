@@ -23,18 +23,14 @@ namespace ExpertComputerService
     /// </summary>
     public partial class GeneralWork : Window
     {
-        ExpertCore.Expertcore ExpIit = new ExpertCore.Expertcore();
-        
-        event EventHandler Fin; //будет событием о завершении поиска
-        event EventHandler Start; //событие начать сначала
         Repository rp = new Repository();
         public GeneralWork()
         {
             InitializeComponent();
-            ExpIit.Fin += Fin;
 
             rp.ClearBdData();
             rp.FillBdData();
+            LabelWrap.Text = new Expertcore().GetQuestion(0);
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -52,32 +48,6 @@ namespace ExpertComputerService
             CoreLink(3);
         }
 
-        //взаимодействие с ядром
-        private void OutputsInputs(int Otv) 
-        {
-
-            List<Heroes> hr = new List<Heroes>();
-            List<Questions> qe = new List<Questions>();
-
-            EntityStorage ent = new EntityStorage(hr,qe);
-            
-      /*      foreach (var s in ent.Heroes)
-                MessageBox.Show(Convert.ToString(s.NameHeroes));*/
-
-
-            ExpIit.PlaySerialize();
-            label.Content = ExpIit.GetQuntit();
-
-
-            Repository rp = new Repository();
-            rp.ClearBdData();
-            rp.FillBdData();
-            ent=rp.GetEntityStorage();
-            foreach (var s in ent.Heroes)
-                MessageBox.Show(Convert.ToString(s.NameHeroes));
-            //    rp.ExecuteListHero();
-        }
-
         private void button4_Click(object sender, RoutedEventArgs e)
         {
             CoreLink(4);
@@ -90,9 +60,7 @@ namespace ExpertComputerService
 
 
         private void CoreLink(int otv)
-        {
-            
-           
+        {  
             string TextQuestions="";
 
             TextQuestions = new Expertcore().GetQuestion(otv);
