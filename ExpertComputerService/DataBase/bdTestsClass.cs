@@ -71,13 +71,17 @@ namespace DataBase
             QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с бумагой?", NameHeroes = "Монитор", OtvetQuest1 = 0.01, OtvetQuest2 = 0.9, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
 
             QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с компьютером?", NameHeroes = "Принтер", OtvetQuest1 = 0.9, OtvetQuest2 = 0.01, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с компьютером?", NameHeroes = "Монитор", OtvetQuest1 = 0.9, OtvetQuest2 = 0.9, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
+            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с компьютером?", NameHeroes = "Монитор", OtvetQuest1 = 0.9, OtvetQuest2 = 0.01, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
             
             QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с компьютером?", NameHeroes = "Видеокарта", OtvetQuest1 = 0.9, OtvetQuest2 = 0.01, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
 
+            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана со звуком?", NameHeroes = "Принтер", OtvetQuest1 = 0.01, OtvetQuest2 = 0.9, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
+            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана со звуком?", NameHeroes = "Монитор", OtvetQuest1 = 0.01, OtvetQuest2 = 0.9, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
+            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана со звуком?", NameHeroes = "Видеокарта", OtvetQuest1 = 0.01, OtvetQuest2 = 0.9, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
 
-           
-           
+
+
+
             /*        QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с компьютером?", NameHeroes = "Монитор" });
                     QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с компьютером?", NameHeroes = "Принтер" });
 

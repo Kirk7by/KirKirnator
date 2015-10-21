@@ -50,7 +50,8 @@ namespace ExpertCore
                 }
                  
             }
-
+           
+            
             if (Quest2.Count == 0)
             {
                 GetProbabilityProizvHero(Quest1);
@@ -59,7 +60,7 @@ namespace ExpertCore
                 {
                     str = str + ") " + s.NameHeroes + ": (" + s.ProbabilityHero + ": " + s.ProbabilityProizvHero + ": " + s.ProbabilityProizvHero;
                 }
-                return str;
+                return "Не угадал..Вот уж не задача. РЕЗУЛЬТАты: +\n"+str+"\n Событие добавить новый вопрос..";
             }
 
             Quest2[indexQuest2].OtvetSelected = otv;
@@ -109,14 +110,22 @@ namespace ExpertCore
             }
 
 
-            //
-            string str1 = "",str2="";       
+            // //временное условие
+            if(MaxheroProb>=0.9)
+            {
+                return "ПОЛУЧЕН ГЕРОЙ: " + MaxprobalityHero + "\n Вы можете продолжить играть ответив на вопрос: "+ Qestion; 
+            }
+
+            string str1 = "",str2="";
+            foreach(var qs in Quest2)
+            {
+                str2 = str2 + qs.NameQestion + " (" + qs.ProbabilityQustion + ")|";
+            }       
             foreach (var s in lHeroes)
             {
-                str1 = str1+ s.NameHeroes + ": (" + s.ProbabilityHero + ") Poizv: (" + s.ProbabilityProizvHero + ") test: "  + test + "\n" + "\n";
-                
+                str1 = str1+ s.NameHeroes + " Вероятность:(" + s.ProbabilityHero + ") Промежуточная вероятность:(" + s.ProbabilityProizvHero + ")  \n";              
             }
-            return str1+ "\n"+ Qestion + Convert.ToString(MaxheroProb) + "(" + MaxprobalityHero + ")" + Convert.ToString(MinEntropy)+"\n"+str2;
+            return str1+"Сумма промежуточных вероятностей: "+test+ "\n\n Вопрос: "+ Qestion + "\n Энтропия этого вопроса:(" + Convert.ToString(MinEntropy)+")\n"+ " Максимальная вероятность:(" + Convert.ToString(MaxheroProb) + ")(" + MaxprobalityHero +")\n\n"+ str2;
         }
 
 
@@ -194,7 +203,6 @@ namespace ExpertCore
             {
                 
                 l.ProbabilityHero = ( l.ProbabilityProizvHero) / SumProbabilityProizvHero;
-                test = " |" + Convert.ToString(l.ProbabilityHero) + test;
                 //априоритиВероятность * произведение вероятности всех отвеченных вопросов по данному персонажу l / сумма всех произведений вероятностий всех вопросов
                 //ходим по всем отвеченным вопросам и находим вероятность для каждого персонажа
 
