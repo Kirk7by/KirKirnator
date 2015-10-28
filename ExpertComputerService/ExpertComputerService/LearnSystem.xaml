@@ -1,0 +1,19 @@
+﻿<Window x:Class="ExpertComputerService.LearnSystem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExpertComputerService"
+        mc:Ignorable="d"
+        Title="LearnSystem" Height="432.421" Width="686.941">
+    <Grid Background="#FF9B9CA0">
+        <Grid RenderTransformOrigin="-0.53,-1.94" Background="#CC6C766A" Margin="0,28,0,0">
+            <Button x:Name="button" Content="Герои" HorizontalAlignment="Left" Margin="9,20,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White"/>
+            <DataGrid x:Name="dataGrid" Margin="177,20,10,10" Background="#CCF0F0F0"/>
+            <Button x:Name="button_Copy" Content="Вопросы" HorizontalAlignment="Left" Margin="9,84,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White"/>
+            <Button x:Name="button_Copy1" Content="Доминирование" HorizontalAlignment="Left" Margin="9,149,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White"/>
+        </Grid>
+        <Button x:Name="button1" Content="Вернуться" HorizontalAlignment="Left" Width="92" Style="{DynamicResource buttonSetupStyle}" Background="#FF698181" BorderBrush="{x:Null}" Foreground="White" Height="28" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

@@ -31,7 +31,14 @@ namespace ExpertCore
 
         public string GetQuestion(int otv)
         {
-            return new OperatingMechanism().GetQuestion(otv);
+            if (otv == -5)
+            {
+                return null;
+            }
+            else
+            {
+                return new OperatingMechanism().GetQuestion(otv);
+            }
         }
     }
 }

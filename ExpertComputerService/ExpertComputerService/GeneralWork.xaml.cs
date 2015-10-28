@@ -28,8 +28,8 @@ namespace ExpertComputerService
         {
             InitializeComponent();
 
-            rp.ClearBdData();
-            rp.FillBdData();
+       //     rp.ClearBdData();
+      //      rp.FillBdData();
             LabelWrap.Text = new Expertcore().GetQuestion(0);
         }
 

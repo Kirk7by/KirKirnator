@@ -31,5 +31,11 @@ namespace ExpertComputerService
             new GeneralWork().Show();
             this.Close();
         }
+
+        private void lern_Click(object sender, RoutedEventArgs e)
+        {
+            new LearnSystem().Show();
+          //  this.Close();
+        }
     }
 }
