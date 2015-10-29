@@ -9,7 +9,7 @@ namespace Domain
     public interface IRepository
     {
         EntityStorage GetEntityStorage(); //метод реализующий вывод массива двух сущностей
-        void AddHeroesAndQuestion(string nameHero, string nameQuestion, IEnumerable<Questions> QustSelected);   //Добавление героя и вопроса
+        Exception AddHeroesAndQuestion(string nameHero, string nameQuestion, List<Questions> QustSelected);   //Добавление героя и вопроса
         void AddQuestion(Questions que);
 
 

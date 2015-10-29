@@ -66,12 +66,18 @@ namespace ExpertComputerService
             TextQuestions = new Expertcore().GetQuestion(otv);
             if (TextQuestions=="The End") //сигнализирует о конце списка с вопросами и ожидание события приёма сообщения с ответом
             {
-                LabelWrap.Text = "Конец, выводим предположительный ответ...";
+                LabelWrap.Text = "Конец, выводим предположительный ответ... \n";
+                shippingHeroAndQuest();
             }
             else
             {
                 LabelWrap.Text = TextQuestions;
             }
+        }
+
+        void shippingHeroAndQuest()
+        {
+            MessageBox.Show(new Expertcore().GetQuestion(5, "Мышка", "С курсором ли оно?")+"good");
         }
     }
 }

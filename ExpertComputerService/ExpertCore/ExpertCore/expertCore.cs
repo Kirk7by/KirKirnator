@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ExpertCore
 {
-    public class Expertcore: IMechanism  //обёртка над логикой
+    public class Expertcore  //обёртка над логикой
     {
      
 
@@ -29,11 +29,12 @@ namespace ExpertCore
             return new Mechanism().GetQuntity();
         }
 
-        public string GetQuestion(int otv)
+        public string GetQuestion(int otv, string nameHero=null, string nameQuestion=null)
         {
-            if (otv == -5)
+            if (nameHero != null && nameQuestion != null)
             {
-                return null;
+
+                return new OperatingMechanism().shippingNewHeroAndQuestion(nameHero, nameQuestion);
             }
             else
             {

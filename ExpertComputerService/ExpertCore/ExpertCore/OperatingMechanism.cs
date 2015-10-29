@@ -60,6 +60,7 @@ namespace ExpertCore
                 {
                     str = str + ") " + s.NameHeroes + ": (" + s.ProbabilityHero + ": " + s.ProbabilityProizvHero + ": " + s.ProbabilityProizvHero;
                 }
+                return "The End";
                 return "Не угадал..Вот уж не задача. РЕЗУЛЬТАты: +\n"+str+"\n Событие добавить новый вопрос..";
             }
 
@@ -128,7 +129,19 @@ namespace ExpertCore
             return str1+"Сумма промежуточных вероятностей: "+test+ "\n\n Вопрос: "+ Qestion + "\n Энтропия этого вопроса:(" + Convert.ToString(MinEntropy)+")\n"+ " Максимальная вероятность:(" + Convert.ToString(MaxheroProb) + ")(" + MaxprobalityHero +")\n\n"+ str2;
         }
 
+        #region отправка нового героя и вопроса на сервер
+        public string shippingNewHeroAndQuestion(string nameHero, string nameQuestion)
+        {
+            string TextError=(new Repository().AddHeroesAndQuestion(nameHero, nameQuestion,Quest1))+"";
+            string str1 = "";
+            foreach(var st in Quest1)
+            { str1 = str1 + st.NameQestion; }
+            if (TextError == null)
+                TextError = "Операция завершена успешно!";
+            return TextError;
+        }
 
+        #endregion
         #region ВЫБОР ПЕРСОНАЖА ПО ЗАДАННЫМ ВОПРОСАМ
         //--------------------------input: NULL/Otput: ProbabilityAprioryHero
         private void GetSortListHero()    //Получение отсортированного списка Hero с априорной вероятностью

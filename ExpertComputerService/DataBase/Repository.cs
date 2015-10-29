@@ -75,109 +75,125 @@ namespace DataBase.Repository
         }
 
         //Добавление нового героя со своим вопросом // происходит, если мы не можем угадать героя
-        public void AddHeroesAndQuestion(string nameHero,string nameQuestion,IEnumerable<Questions> QustSelected)   //QustSelected c передачей параметра выбранного вопроса
+        public Exception AddHeroesAndQuestion(string nameHero,string nameQuestion,List<Questions> QustSelected)   //QustSelected c передачей параметра выбранного вопроса
         {
-            using (var dbContext = new MyModelContext())
+            Exception ex=null;
+            try
             {
-                List<Questions> QuestSELECTED = new List<Questions>();
-
-
-                foreach(var Q in QustSelected)  //иницилизируем список выбранных вопросов
+                using (var dbContext = new MyModelContext())
                 {
-                    QuestSELECTED.Add(Q);
-                }          
-
-                dbContext.heroes.Add(new Heroes { NameHeroes = nameHero, WeigthHero = 1 }); //добавляем героя
-                
+                    List<Questions> QuestSELECTED = new List<Questions>();
 
 
-
-                List<Questions> QuestionDistinct = new List<Questions>();  //получаем список неповторяющихся вопросов
-                foreach (var lq in dbContext.qestions)
-                {
-                    if (QuestionDistinct.Find(item => item.NameQestion == lq.NameQestion) == null)
-                        QuestionDistinct.Add(lq);
-                }
-
-
-                foreach (var Qdistinct in QuestionDistinct)     //проходим по всем вопросам добавляя вероятность по умолчанию и добавляя выбранным вопросам максимальную вероятность ответов
-                {
-                    double otv1 = 0.1, otv2 = 0.1, otv3 = 0.1, otv4 = 0.1, otv5 = 0.1;
-
-                    var result = dbContext.qestions.SingleOrDefault(b => b.NameQestion == Qdistinct.NameQestion);
-                    if (result != null)
+                    foreach (var Q in QustSelected)  //иницилизируем список выбранных вопросов
                     {
-                        switch(Qdistinct.OtvetSelected)
-                        {
-                            case 1:
-                                otv1 = 0.6;
-                                break;
-                            case 2:
-                                otv2 = 0.6;
-                                break;
-                            case 3:
-                                otv3 = 0.6;
-                                break;
-                            case 4:
-                                otv4 = 0.6;
-                                break;
-                            case 5:
-                                otv5 = 0.6;
-                                break;
-                        }
-                        dbContext.qestions.Add(new Questions
-                        {
-                            OtvetQuest1 = otv1,
-                            OtvetQuest2 = otv2,
-                            OtvetQuest3 = otv3,
-                            OtvetQuest4 = otv4,
-                            OtvetQuest5 = otv5
-                        });
+                        QuestSELECTED.Add(Q);
+                    }
+
+                    dbContext.heroes.Add(new Heroes { NameHeroes = nameHero, WeigthHero = 1 }); //добавляем героя
+                //    dbContext.SaveChanges();
+
+
+
+                    List<Questions> QuestionDistinct = new List<Questions>();  //получаем список неповторяющихся вопросов
+                    foreach (var lq in dbContext.qestions.ToList())
+                    {
+                        if (QuestionDistinct.Find(item => item.NameQestion == lq.NameQestion) == null)
+                            QuestionDistinct.Add(lq);
+                    }
+
+
+                    foreach (var Qdistinct in QuestionDistinct)     //проходим по всем вопросам добавляя вероятность по умолчанию и добавляя выбранным вопросам максимальную вероятность ответов
+                    {
                        
+                        double otv1 = 0.1, otv2 = 0.1, otv3 = 0.1, otv4 = 0.1, otv5 = 0.1;
+
+                        var result = QuestSELECTED.SingleOrDefault(item=>item.NameQestion==Qdistinct.NameQestion);   //TODO: ТУТУ ЧТО-ТО ЕСТЬ
+                        if (result != null)
+                        {
+                            switch (result.OtvetSelected)
+                            {
+                                case 1:
+                                    otv1 = 0.6;
+                                    break;
+                                case 2:
+                                    otv2 = 0.6;
+                                    break;
+                                case 3:
+                                    otv3 = 0.6;
+                                    break;
+                                case 4:
+                                    otv4 = 0.6;
+                                    break;
+                                case 5:
+                                    otv5 = 0.6;
+                                    break;
+                            }
+                            dbContext.qestions.Add(new Questions
+                            {
+                                NameQestion = Qdistinct.NameQestion,
+                                NameHeroes=nameHero,
+                                OtvetQuest1 = otv1,
+                                OtvetQuest2 = otv2,
+                                OtvetQuest3 = otv3,
+                                OtvetQuest4 = otv4,
+                                OtvetQuest5 = otv5
+                            });
+
+                        }
+                        else
+                        {
+                            dbContext.qestions.Add(new Questions
+                            {
+                                NameQestion = Qdistinct.NameQestion,
+                                NameHeroes = nameHero,
+                                OtvetQuest1 = 0.2,
+                                OtvetQuest2 = 0.2,
+                                OtvetQuest3 = 0.2,
+                                OtvetQuest4 = 0.2,
+                                OtvetQuest5 = 0.2
+                            });
+                        }
                     }
-                    else
+
+                    //            dbContext.SaveChanges();
+                    //          dbContext.Dispose();dbContext.SaveChanges();
+                    
+
+
+                    foreach (var HERO in dbContext.heroes.ToList())     //добавляем и иницилизируем вопрос для всех героев
                     {
                         dbContext.qestions.Add(new Questions
                         {
-                            OtvetQuest1 = 0.2,
-                            OtvetQuest2 = 0.2,
-                            OtvetQuest3 = 0.2,
-                            OtvetQuest4 = 0.2,
-                            OtvetQuest5 = 0.2
+                            NameQestion = nameQuestion,
+                            NameHeroes = HERO.NameHeroes,
+                            OtvetQuest1 = 0,
+                            OtvetQuest2 = 0.8,
+                            OtvetQuest3 = 0,
+                            OtvetQuest4 = 0.15,
+                            OtvetQuest5 = 0.05,
                         });
                     }
-                }
-
-
-                foreach (var HERO in dbContext.heroes.ToList())     //добавляем и иницилизируем вопрос для всех героев
-                {
-                    dbContext.qestions.Add(new Questions
+                    dbContext.qestions.Add(new Questions        //добавляем вопрос для нашего героя
                     {
                         NameQestion = nameQuestion,
-                        NameHeroes = HERO.NameHeroes,
-                        OtvetQuest1 = 0,
-                        OtvetQuest2 = 0.8,
-                        OtvetQuest3 = 0,
-                        OtvetQuest4 = 0.15,
+                        NameHeroes = nameHero,
+                        OtvetQuest1 = 0.8,
+                        OtvetQuest2 = 0,
+                        OtvetQuest3 = 0.15,
+                        OtvetQuest4 = 0,
                         OtvetQuest5 = 0.05,
                     });
+
+
+                    dbContext.SaveChanges();
                 }
-                dbContext.qestions.Add(new Questions        //добавляем вопрос для нашего героя
-                {
-                    NameQestion = nameQuestion,
-                    NameHeroes = nameHero,
-                    OtvetQuest1 = 0.8,
-                    OtvetQuest2 = 0,
-                    OtvetQuest3 = 0.15,
-                    OtvetQuest4 = 0,
-                    OtvetQuest5 = 0.05,
-                });
-
-
-                dbContext.SaveChanges();
             }
-
-            
+            catch(Exception EX)
+            {
+                ex = EX;
+            }
+            return ex;
         }
         
 
