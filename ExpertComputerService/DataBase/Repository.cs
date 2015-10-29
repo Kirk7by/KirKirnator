@@ -45,7 +45,28 @@ namespace DataBase.Repository
             return Heros;
         }
 
+        public IEnumerable<Heroes> GetHeroesSource()
+        {
+            List<Heroes> hs = new List<Heroes>();
+            using (MyModelContext _context = new MyModelContext())
+            {
+                hs.AddRange(_context.heroes.ToList());
+            }
+            return hs;
+        }
+
+        public IEnumerable<Questions> GetQuestionsSource()
+        {
+            List<Questions> qe = new List<Questions>();
+            using (MyModelContext _context = new MyModelContext())
+            {
+                qe.AddRange(_context.qestions.ToList());
+            }
+            return qe;
+        }
         #endregion
+
+
         #region Добавление данных
 
         //Заполнение бд целиком
@@ -195,7 +216,6 @@ namespace DataBase.Repository
             }
             return ex;
         }
-        
 
         //Добавление нового вопроса
         public void AddQuestion(Questions que)
@@ -208,29 +228,98 @@ namespace DataBase.Repository
         }
 
         #endregion
+
         #region Обновление данных
-        #endregion
-        #region Удаление данных
-
-        //Чистка всей базы
-        public void ClearBdData()
+        public Exception UpdateEndGamePobability()
         {
-
-            using (var ctx = new MyModelContext())
-            {
-                foreach (var u in ctx.qestions)
-                {
-                    ctx.qestions.Remove(u);
-                }
-                foreach (var u in ctx.heroes)
-                {
-                    ctx.heroes.Remove(u);
-                }
-                ctx.SaveChanges();
-            }
-
+            throw new NotImplementedException();
         }
-
+        public Exception UpdateHeroes()
+        {
+            throw new NotImplementedException();
+        }
+        public Exception UpdateQuestion()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
+
+
+        #region Удаление данных
+        public Exception ClearBdData()
+        {
+            Exception ex = null;
+            try
+            {
+                using (var ctx = new MyModelContext())
+                {
+                    foreach (var u in ctx.qestions)
+                    {
+                        ctx.qestions.Remove(u);
+                    }
+                    foreach (var u in ctx.heroes)
+                    {
+                        ctx.heroes.Remove(u);
+                    }
+                    ctx.SaveChanges();
+                }
+            }
+            catch (Exception ERROR)
+            {
+                ex = ERROR;
+            }
+            return ex;
+        }
+        public Exception RemoveHeroes(string NameHeroes)
+        {
+            Exception ex=null;
+
+            try
+            {
+                using (MyModelContext _context = new MyModelContext())
+                {
+                    var listRemoveQuest = from qe in _context.qestions
+                                          where qe.NameHeroes == NameHeroes
+                                          select qe;
+                    if(listRemoveQuest!=null)
+                        _context.qestions.RemoveRange(listRemoveQuest);
+                   
+                    var hero = _context.heroes.SingleOrDefault(item => item.NameHeroes == NameHeroes);
+                    if(hero!=null)
+                        _context.heroes.Remove(hero);
+                    _context.SaveChanges();  
+                }
+            }
+            catch(Exception ERROR)
+            {
+                ex = ERROR;
+            }
+            return ex;
+        }
+        public Exception RemoveQuestion(string NameQuestion)
+        {
+            Exception ex = null;
+
+            try
+            {
+                using (MyModelContext _context = new MyModelContext())
+                {
+                    var listRemoveQuest = from qe in _context.qestions
+                                          where qe.NameQestion == NameQuestion
+                                          select qe;
+                    if (listRemoveQuest != null)
+                        _context.qestions.RemoveRange(listRemoveQuest);
+
+                    _context.SaveChanges();
+                }
+            }
+            catch (Exception ERROR)
+            {
+                ex = ERROR;
+            }
+            return ex;
+        }
+        #endregion
+
     }
 }

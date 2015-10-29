@@ -27,9 +27,14 @@ namespace ExpertComputerService
         public GeneralWork()
         {
             InitializeComponent();
+            string errormessage = " ";
+            var b = (new Repository().RemoveHeroes("Жесткий диск"));
+            if (b!=null)
+                MessageBox.Show(b.Message);
+            //   errormessage = (new Repository().RemoveHeroes("Жесткий диск")).Message+" ";
 
-       //     rp.ClearBdData();
-      //      rp.FillBdData();
+            //     rp.ClearBdData();
+            //      rp.FillBdData();
             LabelWrap.Text = new Expertcore().GetQuestion(0);
         }
 

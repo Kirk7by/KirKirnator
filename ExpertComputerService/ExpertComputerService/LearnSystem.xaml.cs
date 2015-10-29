@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataBase.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,16 @@ namespace ExpertComputerService
         public LearnSystem()
         {
             InitializeComponent();
+        }
+
+        private void buttonHeroes_Click(object sender, RoutedEventArgs e)
+        {
+            dgrid.ItemsSource = (new Repository().GetHeroesSource()).ToList();
+        }
+
+        private void buttonQuestions_Click(object sender, RoutedEventArgs e)
+        {
+            dgrid.ItemsSource= (new Repository().GetQuestionsSource()).ToList();
         }
     }
 }
