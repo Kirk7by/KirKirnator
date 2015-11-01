@@ -23,19 +23,10 @@ namespace ExpertComputerService
     /// </summary>
     public partial class GeneralWork : Window
     {
-        Repository rp = new Repository();
         public GeneralWork()
         {
             InitializeComponent();
-            string errormessage = " ";
-            var b = (new Repository().RemoveHeroes("Жесткий диск"));
-            if (b!=null)
-                MessageBox.Show(b.Message);
-            //   errormessage = (new Repository().RemoveHeroes("Жесткий диск")).Message+" ";
-
-            //     rp.ClearBdData();
-            //      rp.FillBdData();
-            LabelWrap.Text = new Expertcore().GetQuestion(0);
+            LabelWrap.Text = new Expertcore().StartMechanism();
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)

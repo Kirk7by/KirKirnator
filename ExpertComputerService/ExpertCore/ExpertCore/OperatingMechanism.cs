@@ -19,27 +19,28 @@ namespace ExpertCore
         internal event EventHandler QuestionEnter;   //событие, максимальное количество попыток выбора исчерпано, необходимо добавить новый вопрос, *либо выбрать из списка подобный*
 
 
-        static List<Heroes> lHeroes = new List<Heroes>();   //список героев
-        static List<Questions> lQuestions = new List<Questions>();  //список вопросов
-        static List<Questions> Quest1 = new List<Questions>();  //добавляем
-        static List<Questions> Quest2 = new List<Questions>();  //убираем
+        static List<Heroes> lHeroes;   //список героев
+        static List<Questions> lQuestions;  //список вопросов
+        static List<Questions> Quest1;  //добавляем
+        static List<Questions> Quest2;  //убираем
 
-        string test="";
-        static int indexQuest2; 
+        string test=""; //TODO: ТЕСТИТЬ
+        static int indexQuest2; //индексатор выбранных вопросов
 
         internal OperatingMechanism()
         {
             QuestionStart += NewStarting;
         }
 
-        internal string NewStarting()
+        internal string NewStarting()   //начать заново
         {
             EntityStorage ent = new Repository().GetEntityStorage();
             lHeroes = ent.Heroes.ToList();
             lQuestions = ent.Qestion.ToList();
-            GetSortListHero();
+            GetSortListHero();  //сортируем список героев
 
-            Quest2 = GetQuestionDistinctList(lQuestions.ToList());
+            Quest2 = GetQuestionDistinctList(lQuestions.ToList()).ToList(); //возвращаем quest2 список без повторяющихся вопросов
+            Quest1 = new List<Questions>();
             indexQuest2 = -1;
 
             Random rd = new Random();
@@ -54,30 +55,11 @@ namespace ExpertCore
             indexQuest2=rd.Next(0, Quest2.Count);
             return Quest2[indexQuest2].NameQestion; //TODO: EARST
         }
-
-
         
         public string GetQuestion(int otv)
         {
             string Qestion = "";
-            
-            if (otv==0) //иницилизация самого первого вопроса
-            {
-                Quest2 = GetQuestionDistinctList(lQuestions);
-                indexQuest2 = -1;  
 
-                foreach(var t in Quest2)
-                {
-                    indexQuest2++;
-                    if (t.NameQestion == "Ваша поломка связана с компьютером?")
-                    {
-                        return Quest2[indexQuest2].NameQestion;
-                    }
-                }
-                 
-            }
-           
-            
             if (Quest2.Count == 0)
             {
                 GetProbabilityProizvHero(Quest1);
@@ -86,7 +68,7 @@ namespace ExpertCore
                 {
                     str = str + ") " + s.NameHeroes + ": (" + s.ProbabilityHero + ": " + s.ProbabilityProizvHero + ": " + s.ProbabilityProizvHero;
                 }
-                return "The End";
+         //       return "The End";
                 return "Не угадал..Вот уж не задача. РЕЗУЛЬТАты: +\n"+str+"\n Событие добавить новый вопрос..";
             }
 
@@ -95,23 +77,16 @@ namespace ExpertCore
             Quest2.RemoveAt(indexQuest2);
 
             //получение списка вероятностей для каждого героя
-            GetProbabilityProizvHero(Quest1);
+            GetProbabilityProizvHero(Quest1.ToList());
 
             //поиск из оставшихся вопросов вопроса с минимальной энтропией, только если есть в хоть один вопрос в списке вопросов
             double? MinEntropy = 0;
             if (Quest2.Count != 0)
             {
-                List<Questions> qe3 = new List<Questions>();
-
-                foreach (var qq2 in Quest2)
-                {
-                    qe3.Add(qq2);
-                }
-                qe3 = GetСonditionalEntropy(qe3);
-
-                MinEntropy = qe3[0].ProbabilityQustion;
+                Quest2 = GetСonditionalEntropy(Quest2.ToList()).ToList();
+                MinEntropy = Quest2[0].ProbabilityQustion;
                 int i = -1;
-                foreach (var q2 in qe3)
+                foreach (var q2 in Quest2)
                 {
                     i++;
                     if (MinEntropy >= q2.ProbabilityQustion)
@@ -184,7 +159,7 @@ namespace ExpertCore
         }
 
         //--------------------------input:OtvetSelected, List QuestionSelected /Otput: ProbabilityProizvHero
-        private void GetProbabilityProizvHero(List<Questions> QuestionSelected)  //Получение списка героев с расчитанным произведением вероятностей за сессию
+        private void GetProbabilityProizvHero(IEnumerable<Questions> QuestionSelected)  //Получение списка героев с расчитанным произведением вероятностей за сессию
         {                                               //Где List<Questions> QuestionSelected - Список выбранных вопросов
             double? tmpProbabilityOtvetSelected = 0;
             double tmp=1;
@@ -228,7 +203,7 @@ namespace ExpertCore
             //Логическое продолжение метода ниже
         }
         //--------------------------input: ProbabilityProizvHero/Otput: ProbabilityHero
-        public void GetListHeroProbability()    //Получение списка с ответов с расчитанной вероятностью
+        private void GetListHeroProbability()    //Получение списка с ответов с расчитанной вероятностью
         {
 
             double? SumProbabilityProizvHero = 0;
@@ -239,19 +214,17 @@ namespace ExpertCore
             }
             test = Convert.ToString(SumProbabilityProizvHero);
             foreach (var l in lHeroes)
-            {
-                
+            { 
                 l.ProbabilityHero = ( l.ProbabilityProizvHero) / SumProbabilityProizvHero;
                 //априоритиВероятность * произведение вероятности всех отвеченных вопросов по данному персонажу l / сумма всех произведений вероятностий всех вопросов
                 //ходим по всем отвеченным вопросам и находим вероятность для каждого персонажа
-
             }
         }
         #endregion
 
         #region Выбор вопроса
 
-        public List<Questions> GetСonditionalEntropy(List<Questions> QuestionsNext) //Получение условной энтропии для каждого вопроса
+        private IEnumerable<Questions> GetСonditionalEntropy(IEnumerable<Questions> QuestionsNext) //Получение условной энтропии для каждого вопроса
         {
             double? tmpprobalityHero;
             // List<Questions> EntropQuestions = GetQuestionDistinctList(QuestionsNext);    //создаём список без повторяющихся вопросов
@@ -281,12 +254,12 @@ namespace ExpertCore
                 entr.ProbabilityQustion = Math.Abs(Math.Log(1 / (double)q1) + Math.Log(1 / (double)q2) + Math.Log(1 / (double)q3) +
                     Math.Log(1 / (double)q4) + Math.Log(1 / (double)q5));
             }
-            return QuestionsNext;
+            return QuestionsNext.ToList();
         }
 
 
         //--------------------------input: NULL/Otput: NULL
-        private List<Questions> GetQuestionDistinctList(List<Questions> lQuestionsNext)   //Получение неповторяющегося списка вопросов
+        private IEnumerable<Questions> GetQuestionDistinctList(IEnumerable<Questions> lQuestionsNext)   //Получение неповторяющегося списка вопросов
         {
             List<Questions> l = new List<Questions>();
             foreach (var lq in lQuestionsNext)
@@ -294,7 +267,7 @@ namespace ExpertCore
                 if (l.Find(item => item.NameQestion == lq.NameQestion) == null)
                     l.Add(lq);
             }
-            return l;
+            return l.ToList();
         }
 
         #endregion
