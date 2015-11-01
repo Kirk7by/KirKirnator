@@ -6,14 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using DataBase.Repository;
 using System.Collections;
+using Configurate;
 
 namespace ExpertCore
 {
     //Вся работа происходит ТУТ
     internal class OperatingMechanism : IMechanism
     {
-        internal event EventHandler QuestionStart; //событие, Процесс запущен// предварительно сброшен
-        internal event EventHandler QuestionStop; //событие, Процесс остановлен//данные сброшены
+        internal event Func<string> QuestionStart; //событие, Процесс запущен// предварительно сброшен
+        internal event EventHandler QuestionStop; //событие, Процесс остановлен//данные сброшены // из-за ошибок, либо других причин
         internal event EventHandler QuestionReturnAnswer; //событие, Нужно вывести предположительный ответ
         internal event EventHandler QuestionEnter;   //событие, максимальное количество попыток выбора исчерпано, необходимо добавить новый вопрос, *либо выбрать из списка подобный*
 
@@ -28,13 +29,32 @@ namespace ExpertCore
 
         internal OperatingMechanism()
         {
-            EntityStorage ent = new Repository().GetEntityStorage();
-            if(lHeroes.Count==0)
-                lHeroes = ent.Heroes.ToList();
-            if (lQuestions.Count==0)
-                lQuestions = ent.Qestion.ToList();
-            GetSortListHero();
+            QuestionStart += NewStarting;
         }
+
+        internal string NewStarting()
+        {
+            EntityStorage ent = new Repository().GetEntityStorage();
+            lHeroes = ent.Heroes.ToList();
+            lQuestions = ent.Qestion.ToList();
+            GetSortListHero();
+
+            Quest2 = GetQuestionDistinctList(lQuestions.ToList());
+            indexQuest2 = -1;
+
+            Random rd = new Random();
+            foreach (var t in Quest2)
+            {
+                indexQuest2++;
+                if (t.NameQestion == ExpConfig.Default.PriorytyQuestions)
+                {
+                    return Quest2[indexQuest2].NameQestion;
+                }
+            }
+            indexQuest2=rd.Next(0, Quest2.Count);
+            return Quest2[indexQuest2].NameQestion; //TODO: EARST
+        }
+
 
         
         public string GetQuestion(int otv)

@@ -35,7 +35,6 @@ namespace DataBase.Repository
             return ent;
         }
 
-
         //получить героя по ID_Name
         public Heroes GetHero(string heroname)
         {

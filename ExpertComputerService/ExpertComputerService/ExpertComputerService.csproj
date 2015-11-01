@@ -56,9 +56,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ConfigurationSettings.xaml.cs">
+      <DependentUpon>ConfigurationSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GeneralWork.xaml.cs">
       <DependentUpon>GeneralWork.xaml</DependentUpon>
     </Compile>
+    <Page Include="ConfigurationSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LearnSystem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,6 +120,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Configurate\Configurate.csproj">
+      <Project>{6eafe5de-96c1-47f1-9c5c-739103c519c7}</Project>
+      <Name>Configurate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataBase\DataBase.csproj">
       <Project>{542286d9-fc11-46e4-a596-3c047e048119}</Project>
       <Name>DataBase</Name>

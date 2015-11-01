@@ -24,6 +24,7 @@ namespace ExpertComputerService
         {
             InitializeComponent();
             
+            
         }
 
         private void diagnostyc_Click(object sender, RoutedEventArgs e)
@@ -36,6 +37,11 @@ namespace ExpertComputerService
         {
             new LearnSystem().Show();
           //  this.Close();
+        }
+
+        private void configurations_Click(object sender, RoutedEventArgs e)
+        {
+            new ConfigurationSettings().Show();
         }
     }
 }
