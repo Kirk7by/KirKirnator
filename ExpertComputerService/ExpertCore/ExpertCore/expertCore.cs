@@ -1,5 +1,4 @@
-﻿using ExpertCore.elements;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,15 +18,6 @@ namespace ExpertCore
         //
         //
         public event EventHandler Fin;
-        public void PlaySerialize()
-        {
-            new Mechanism().GetDeserialyze();//добро победит зло
-
-        }
-        public string GetQuntit()
-        {
-            return new Mechanism().GetQuntity();
-        }
 
         public string GetQuestion(int otv, string nameHero=null, string nameQuestion=null)
         {

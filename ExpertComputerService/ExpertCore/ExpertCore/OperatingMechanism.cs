@@ -12,9 +12,14 @@ namespace ExpertCore
     //Вся работа происходит ТУТ
     internal class OperatingMechanism : IMechanism
     {
+        internal event EventHandler QuestionStart; //событие, Процесс запущен// предварительно сброшен
+        internal event EventHandler QuestionStop; //событие, Процесс остановлен//данные сброшены
+        internal event EventHandler QuestionReturnAnswer; //событие, Нужно вывести предположительный ответ
+        internal event EventHandler QuestionEnter;   //событие, максимальное количество попыток выбора исчерпано, необходимо добавить новый вопрос, *либо выбрать из списка подобный*
+
+
         static List<Heroes> lHeroes = new List<Heroes>();   //список героев
         static List<Questions> lQuestions = new List<Questions>();  //список вопросов
-
         static List<Questions> Quest1 = new List<Questions>();  //добавляем
         static List<Questions> Quest2 = new List<Questions>();  //убираем
 
@@ -25,12 +30,13 @@ namespace ExpertCore
         {
             EntityStorage ent = new Repository().GetEntityStorage();
             if(lHeroes.Count==0)
-                lHeroes = ent.Heroes;
+                lHeroes = ent.Heroes.ToList();
             if (lQuestions.Count==0)
-                lQuestions = ent.Qestion;
+                lQuestions = ent.Qestion.ToList();
             GetSortListHero();
         }
 
+        
         public string GetQuestion(int otv)
         {
             string Qestion = "";
@@ -128,7 +134,7 @@ namespace ExpertCore
             }
             return str1+"Сумма промежуточных вероятностей: "+test+ "\n\n Вопрос: "+ Qestion + "\n Энтропия этого вопроса:(" + Convert.ToString(MinEntropy)+")\n"+ " Максимальная вероятность:(" + Convert.ToString(MaxheroProb) + ")(" + MaxprobalityHero +")\n\n"+ str2;
         }
-
+        
         #region отправка нового героя и вопроса на сервер
         public string shippingNewHeroAndQuestion(string nameHero, string nameQuestion)
         {

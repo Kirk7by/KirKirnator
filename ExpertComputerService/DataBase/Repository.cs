@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain;
 using System.Data.Entity;
+using System.Collections;
 
 
 //DataBase.Repository//http://habrahabr.ru/post/203214/ 
@@ -20,22 +21,20 @@ namespace DataBase.Repository
         //получение всех данных из бд
         public EntityStorage GetEntityStorage()
         {
-            List<Heroes> heL = new List<Heroes>();
-            List<Questions> qeL = new List<Questions>();
-            using (var dbContext = new MyModelContext())
+            EntityStorage ent = null;
+            try
             {
-                foreach (var t in dbContext.heroes)
+                using (var dbContext = new MyModelContext())
                 {
-                    heL.Add(t);
-                }
-                foreach (var t in dbContext.qestions)
-                {
-                    qeL.Add(t);
+                    ent = new EntityStorage(dbContext.heroes.ToList(), dbContext.qestions.ToList());
                 }
             }
-            EntityStorage ent = new EntityStorage(heL, qeL);
+            catch
+            { return null; }
+            
             return ent;
         }
+
 
         //получить героя по ID_Name
         public Heroes GetHero(string heroname)
@@ -57,12 +56,10 @@ namespace DataBase.Repository
 
         public IEnumerable<Questions> GetQuestionsSource()
         {
-            List<Questions> qe = new List<Questions>();
             using (MyModelContext _context = new MyModelContext())
             {
-                qe.AddRange(_context.qestions.ToList());
+                return _context.qestions.ToList();
             }
-            return qe;
         }
         #endregion
 
