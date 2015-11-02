@@ -8,31 +8,39 @@ namespace ExpertCore
 {
     public class Expertcore  //обёртка над логикой
     {
-        
-        public event EventHandler QuestionReturnAnswer;
-        public event EventHandler Fin;
+        public Action<string,string> GetMessageHero;
+        public event EventHandler QuestionEnter;    //+
+        private OperatingMechanism Mech;
 
         public Expertcore()
         {
-
+            Mech = new OperatingMechanism();
+            Mech.QuestionEnter += QuestionEnterMethod;
+            Mech.GetMessageHero += GetMessageHeroMethod;
         }
 
         public string StartMechanism()
         {
-            return new OperatingMechanism().NewStarting();
-        }
-
-
-        public string GetQuestion(int otv, string nameHero=null, string nameQuestion=null)
+            return Mech.NewStarting();
+        } //ЗАПУСК МЕХАНИЗМА 
+        public string GetQuestion(int otv)  //получение вопроса
         {
-            if (nameHero != null && nameQuestion != null)
-            {
-                return new OperatingMechanism().shippingNewHeroAndQuestion(nameHero, nameQuestion);
-            }
-            else
-            {  
-                return new OperatingMechanism().GetQuestion(otv);
-            }
+            return Mech.GetQuestion(otv); 
         }
+        public Exception OutputNewHero(string heroName, string questName)
+        {
+            return Mech.shippingNewHeroAndQuestion(heroName, questName);
+        }   //отправка нового героя и вопроса
+
+
+
+        private void GetMessageHeroMethod(string Hero, string Quest)  //обработчик получения предположительного ответа
+        {
+            GetMessageHero(Hero, Quest);
+        }
+        private void QuestionEnterMethod(object sender, EventArgs e)
+        {
+            QuestionEnter(this, EventArgs.Empty);
+        }   //обработчик отправки нового вопроса
     }
 }

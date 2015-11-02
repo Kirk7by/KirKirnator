@@ -13,10 +13,14 @@ namespace ExpertCore
     //Вся работа происходит ТУТ
     internal class OperatingMechanism : IMechanism
     {
+        internal event EventHandler QuestionEnter;   //событие, максимальное количество попыток выбора исчерпано, необходимо добавить новый вопрос, *либо выбрать из списка подобный*
+        internal event Action<string,string> GetMessageHero; //событие, Нужно вывести предположительный ответ
+
+
         internal event Func<string> QuestionStart; //событие, Процесс запущен// предварительно сброшен
         internal event EventHandler QuestionStop; //событие, Процесс остановлен//данные сброшены // из-за ошибок, либо других причин
-        internal event EventHandler QuestionReturnAnswer; //событие, Нужно вывести предположительный ответ
-        internal event EventHandler QuestionEnter;   //событие, максимальное количество попыток выбора исчерпано, необходимо добавить новый вопрос, *либо выбрать из списка подобный*
+
+        static int testint1, testint2, testint3;
 
 
         static List<Heroes> lHeroes;   //список героев
@@ -24,7 +28,7 @@ namespace ExpertCore
         static List<Questions> Quest1;  //добавляем
         static List<Questions> Quest2;  //убираем
 
-        string test=""; //TODO: ТЕСТИТЬ
+        string test = ""; //TODO: ТЕСТИТЬ
         static int indexQuest2; //индексатор выбранных вопросов
 
         internal OperatingMechanism()
@@ -52,27 +56,27 @@ namespace ExpertCore
                     return Quest2[indexQuest2].NameQestion;
                 }
             }
-            indexQuest2=rd.Next(0, Quest2.Count);
+            indexQuest2 = rd.Next(0, Quest2.Count);
             return Quest2[indexQuest2].NameQestion; //TODO: EARST
         }
-        
         public string GetQuestion(int otv)
         {
             string Qestion = "";
-
+            
             if (Quest2.Count == 0)
             {
-                GetProbabilityProizvHero(Quest1);
+                GetProbabilityProizvHero(Quest1.ToList());
                 string str = "";
                 foreach (var s in lHeroes)
                 {
                     str = str + ") " + s.NameHeroes + ": (" + s.ProbabilityHero + ": " + s.ProbabilityProizvHero + ": " + s.ProbabilityProizvHero;
                 }
-         //       return "The End";
-                return "Не угадал..Вот уж не задача. РЕЗУЛЬТАты: +\n"+str+"\n Событие добавить новый вопрос..";
+                //       return "The End";
+                this.QuestionEnter(this, EventArgs.Empty);
+                return "Не угадал .Вот уж не задача. РЕЗУЛЬТАты: +\n" + str + "\n Событие добавить новый вопрос..";
             }
 
-            Quest2[indexQuest2].OtvetSelected = otv;
+            Quest2[indexQuest2].OtvetSelected = otv;    //TODO: НУЖНЫ ТЕСТЫ именно этой части кода
             Quest1.Add(Quest2[indexQuest2]);
             Quest2.RemoveAt(indexQuest2);
 
@@ -83,9 +87,12 @@ namespace ExpertCore
             double? MinEntropy = 0;
             if (Quest2.Count != 0)
             {
+                testint1 = Quest2.Count;
                 Quest2 = GetСonditionalEntropy(Quest2.ToList()).ToList();
                 MinEntropy = Quest2[0].ProbabilityQustion;
                 int i = -1;
+                indexQuest2 = 0;
+                testint2 = Quest2.Count;
                 foreach (var q2 in Quest2)
                 {
                     i++;
@@ -97,8 +104,8 @@ namespace ExpertCore
                     }
                 }
             }
-            
-           
+
+
             //получение героя с самой максимальной вероятностью
             string MaxprobalityHero = "ничего";
             double? MaxheroProb = 0;
@@ -113,33 +120,36 @@ namespace ExpertCore
 
 
             // //временное условие
-            if(MaxheroProb>=0.9)
+            if (MaxheroProb >= ExpConfig.Default.MinProbalityQuestion)
             {
-                return "ПОЛУЧЕН ГЕРОЙ: " + MaxprobalityHero + "\n Вы можете продолжить играть ответив на вопрос: "+ Qestion; 
+                if (Quest2.Count != 0)
+                {
+                    GetMessageHero(MaxprobalityHero, Qestion + " (" + Quest2.Count + ")");
+                    return null;
+                }
+                else
+                {
+                    GetProbabilityProizvHero(Quest1.ToList());
+                    this.QuestionEnter(this, EventArgs.Empty);
+                }
             }
 
-            string str1 = "",str2="";
-            foreach(var qs in Quest2)
+            string str1 = "", str2 = "";
+            foreach (var qs in Quest2)
             {
                 str2 = str2 + qs.NameQestion + " (" + qs.ProbabilityQustion + ")|";
-            }       
+            }
             foreach (var s in lHeroes)
             {
-                str1 = str1+ s.NameHeroes + " Вероятность:(" + s.ProbabilityHero + ") Промежуточная вероятность:(" + s.ProbabilityProizvHero + ")  \n";              
+                str1 = str1 + s.NameHeroes + " Вероятность:(" + s.ProbabilityHero + ") Промежуточная вероятность:(" + s.ProbabilityProizvHero + ")  \n";
             }
-            return str1+"Сумма промежуточных вероятностей: "+test+ "\n\n Вопрос: "+ Qestion + "\n Энтропия этого вопроса:(" + Convert.ToString(MinEntropy)+")\n"+ " Максимальная вероятность:(" + Convert.ToString(MaxheroProb) + ")(" + MaxprobalityHero +")\n\n"+ str2;
-        }
-        
+            return str1 + "Сумма промежуточных вероятностей: " + test + "\n\n Вопрос: " + Qestion + "\n Энтропия этого вопроса:(" + Convert.ToString(MinEntropy) + ")\n" + " Максимальная вероятность:(" + Convert.ToString(MaxheroProb) + ")(" + MaxprobalityHero + ")\n\n" + str2;
+        }   //получение вопроса
+
         #region отправка нового героя и вопроса на сервер
-        public string shippingNewHeroAndQuestion(string nameHero, string nameQuestion)
+        public Exception shippingNewHeroAndQuestion(string nameHero, string nameQuestion)
         {
-            string TextError=(new Repository().AddHeroesAndQuestion(nameHero, nameQuestion,Quest1))+"";
-            string str1 = "";
-            foreach(var st in Quest1)
-            { str1 = str1 + st.NameQestion; }
-            if (TextError == null)
-                TextError = "Операция завершена успешно!";
-            return TextError;
+            return new Repository().AddHeroesAndQuestion(nameHero, nameQuestion, Quest1);
         }
 
         #endregion
@@ -152,7 +162,7 @@ namespace ExpertCore
             {
                 l.ProbabilityAprioryHero = (double)l.WeigthHero / lHeroes.Select(p => p.WeigthHero).Sum();
             }
-            
+
             //   lHeroes[0].ProbabilityAprioryHero =(double?)lHeroes[0].WeigthHero / lHeroes.Select(p => p.WeigthHero).Sum();
             //ВАЖНОЕ УТОЧНЕНИЕ: деление осуществлять только с (double)
             //TODO: Не забыть стереть РЕТУРН после тестов
@@ -162,7 +172,7 @@ namespace ExpertCore
         private void GetProbabilityProizvHero(IEnumerable<Questions> QuestionSelected)  //Получение списка героев с расчитанным произведением вероятностей за сессию
         {                                               //Где List<Questions> QuestionSelected - Список выбранных вопросов
             double? tmpProbabilityOtvetSelected = 0;
-            double tmp=1;
+            double tmp = 1;
             foreach (var lH in lHeroes)
             {
                 tmpProbabilityOtvetSelected = 0;
@@ -173,7 +183,7 @@ namespace ExpertCore
                     foreach (var qall in lQuestions)
                     {
                         if ((qs.NameQestion == qall.NameQestion) && (qall.NameHeroes == lH.NameHeroes))
-                        {                           
+                        {
                             switch (qs.OtvetSelected)
                             {
                                 case 1:
@@ -191,14 +201,14 @@ namespace ExpertCore
                                 case 5:
                                     tmpProbabilityOtvetSelected = qall.OtvetQuest5;
                                     break;      //больше 5 невозможно
-                            }        
+                            }
                             tmp = tmp * (double)tmpProbabilityOtvetSelected;
                         }
                     }
                 }
                 lH.ProbabilityProizvHero = tmp * (double)lH.ProbabilityAprioryHero;
             }
-            
+
             GetListHeroProbability();
             //Логическое продолжение метода ниже
         }
@@ -214,8 +224,8 @@ namespace ExpertCore
             }
             test = Convert.ToString(SumProbabilityProizvHero);
             foreach (var l in lHeroes)
-            { 
-                l.ProbabilityHero = ( l.ProbabilityProizvHero) / SumProbabilityProizvHero;
+            {
+                l.ProbabilityHero = (l.ProbabilityProizvHero) / SumProbabilityProizvHero;
                 //априоритиВероятность * произведение вероятности всех отвеченных вопросов по данному персонажу l / сумма всех произведений вероятностий всех вопросов
                 //ходим по всем отвеченным вопросам и находим вероятность для каждого персонажа
             }
@@ -228,7 +238,7 @@ namespace ExpertCore
         {
             double? tmpprobalityHero;
             // List<Questions> EntropQuestions = GetQuestionDistinctList(QuestionsNext);    //создаём список без повторяющихся вопросов
-            
+
             double? q1, q2, q3, q4, q5;
             foreach (var entr in QuestionsNext)
             {

@@ -23,12 +23,23 @@ namespace ExpertComputerService
     /// </summary>
     public partial class GeneralWork : Window
     {
+        Expertcore ExpCore = new Expertcore();
         public GeneralWork()
         {
             InitializeComponent();
-            LabelWrap.Text = new Expertcore().StartMechanism();
-        }
+            ExpCore.QuestionEnter += openWindowAddHero;
+            ExpCore.GetMessageHero += outputHeroMessage;
+            LabelWrap.Text = ExpCore.StartMechanism();
 
+        }
+        private void outputHeroMessage(string Hero, string Question)
+        {
+            LabelWrap.Text = "Вы загадали : \n"+Hero+"\n Если желате продолжить, то ответте на вопрос: \n"+Question;
+        }
+        private void openWindowAddHero(object sender, EventArgs e)
+        {
+            new GenerateWork_AddHeroAndQuestion().Show();
+        }
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             CoreLink(1);
@@ -56,24 +67,10 @@ namespace ExpertComputerService
 
 
         private void CoreLink(int otv)
-        {  
-            string TextQuestions="";
-
-            TextQuestions = new Expertcore().GetQuestion(otv);
-            if (TextQuestions=="The End") //сигнализирует о конце списка с вопросами и ожидание события приёма сообщения с ответом
-            {
-                LabelWrap.Text = "Конец, выводим предположительный ответ... \n";
-                shippingHeroAndQuest();
-            }
-            else
-            {
-                LabelWrap.Text = TextQuestions;
-            }
-        }
-
-        void shippingHeroAndQuest()
         {
-            MessageBox.Show(new Expertcore().GetQuestion(5, "Мышка", "С курсором ли оно?")+"good");
+            string quest = ExpCore.GetQuestion(otv);
+            if(quest!=null)
+                LabelWrap.Text = quest;
         }
     }
 }
