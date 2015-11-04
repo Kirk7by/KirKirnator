@@ -50,7 +50,7 @@ namespace DataBase.Repository
             {
                 hs.AddRange(_context.heroes.ToList());
             }
-            return hs;
+            return hs.ToList();
         }
 
         public IEnumerable<Questions> GetQuestionsSource()
@@ -64,7 +64,6 @@ namespace DataBase.Repository
 
 
         #region Добавление данных
-
         //Заполнение бд целиком
         public void FillBdData()
         {
@@ -148,6 +147,7 @@ namespace DataBase.Repository
                             }
                             dbContext.qestions.Add(new Questions
                             {
+                                OtvetSelected = 1,
                                 NameQestion = Qdistinct.NameQestion,
                                 NameHeroes=nameHero,
                                 OtvetQuest1 = otv1,
@@ -162,6 +162,7 @@ namespace DataBase.Repository
                         {
                             dbContext.qestions.Add(new Questions
                             {
+                                OtvetSelected = 1,
                                 NameQestion = Qdistinct.NameQestion,
                                 NameHeroes = nameHero,
                                 OtvetQuest1 = 0.2,
@@ -182,6 +183,7 @@ namespace DataBase.Repository
                     {
                         dbContext.qestions.Add(new Questions
                         {
+                            OtvetSelected = 1,
                             NameQestion = nameQuestion,
                             NameHeroes = HERO.NameHeroes,
                             OtvetQuest1 = 0,
@@ -193,6 +195,7 @@ namespace DataBase.Repository
                     }
                     dbContext.qestions.Add(new Questions        //добавляем вопрос для нашего героя
                     {
+                        OtvetSelected = 1,
                         NameQestion = nameQuestion,
                         NameHeroes = nameHero,
                         OtvetQuest1 = 0.8,
@@ -226,9 +229,73 @@ namespace DataBase.Repository
         #endregion
 
         #region Обновление данных
-        public Exception UpdateEndGamePobability()
+        public Exception UpdateEndGamePobability(IEnumerable<Questions> ListQuestToHero, string HeroName)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (MyModelContext _context = new MyModelContext())
+                {
+
+                    var listQuest = (from que in _context.qestions.ToList()
+                                    where (que.NameHeroes == HeroName && ListQuestToHero.ToList().Find((items) => items.NameQestion == que.NameQestion) != null)
+                                    select que).ToList();
+
+                    var ListQuest = ListQuestToHero.ToList();
+                    foreach(var lstq in listQuest)
+                    {
+                        // находим условное количество по ответов по каждому варианту
+                        double? l1 = lstq.OtvetSelected * lstq.OtvetQuest1;
+                        double? l2 = lstq.OtvetSelected * lstq.OtvetQuest2;
+                        double? l3 = lstq.OtvetSelected * lstq.OtvetQuest3;
+                        double? l4 = lstq.OtvetSelected * lstq.OtvetQuest4;
+                        double? l5 = lstq.OtvetSelected * lstq.OtvetQuest5;
+                        //
+
+                        switch(ListQuestToHero.ToList().Find((item)=>item.NameQestion==lstq.NameQestion).OtvetSelected)
+                        {
+                            case 1:
+                                l1++;
+                                break;
+                            case 2:
+                                l1++;
+                                break;
+                            case 3:
+                                l1++;
+                                break;
+                            case 4:
+                                l1++;
+                                break;
+                            case 5:
+                                l1++;
+                                break;
+                        }
+                        lstq.OtvetSelected++;
+
+                        lstq.OtvetQuest1 = l1 / lstq.OtvetSelected;
+                        lstq.OtvetQuest2 = l2 / lstq.OtvetSelected;
+                        lstq.OtvetQuest3 = l3 / lstq.OtvetSelected;
+                        lstq.OtvetQuest4 = l4 / lstq.OtvetSelected;
+                        lstq.OtvetQuest5 = l5 / lstq.OtvetSelected;
+
+                        var result = _context.qestions.SingleOrDefault((item) => item.NameHeroes == HeroName && item.NameQestion == lstq.NameQestion);
+                        if(result!=null)
+                        {
+                            result.OtvetSelected = lstq.OtvetSelected;
+                            result.OtvetQuest1 = lstq.OtvetQuest1;
+                            result.OtvetQuest2 = lstq.OtvetQuest2;
+                            result.OtvetQuest3 = lstq.OtvetQuest3;
+                            result.OtvetQuest4 = lstq.OtvetQuest4;
+                            result.OtvetQuest5 = lstq.OtvetQuest5;
+                        }
+                    }
+                    _context.SaveChanges();    
+                }
+            }
+            catch(Exception ex)
+            {
+                return ex;
+            }
+            return null;
         }
         public Exception UpdateHeroes()
         {

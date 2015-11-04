@@ -21,8 +21,8 @@ namespace ExpertCore
         internal event EventHandler QuestionStop; //событие, Процесс остановлен//данные сброшены // из-за ошибок, либо других причин
 
         static int testint1, testint2, testint3;
-
-
+        static string heroName;
+        
         static List<Heroes> lHeroes;   //список героев
         static List<Questions> lQuestions;  //список вопросов
         static List<Questions> Quest1;  //добавляем
@@ -115,6 +115,7 @@ namespace ExpertCore
                 {
                     MaxheroProb = hero.ProbabilityHero;
                     MaxprobalityHero = hero.NameHeroes;
+                    heroName = MaxprobalityHero;
                 }
             }
 
@@ -146,6 +147,10 @@ namespace ExpertCore
             return str1 + "Сумма промежуточных вероятностей: " + test + "\n\n Вопрос: " + Qestion + "\n Энтропия этого вопроса:(" + Convert.ToString(MinEntropy) + ")\n" + " Максимальная вероятность:(" + Convert.ToString(MaxheroProb) + ")(" + MaxprobalityHero + ")\n\n" + str2;
         }   //получение вопроса
 
+        public Exception ShippingСonfirmQuestionProbability()
+        {
+            return new Repository().UpdateEndGamePobability(Quest1, heroName);
+        }
         #region отправка нового героя и вопроса на сервер
         public Exception shippingNewHeroAndQuestion(string nameHero, string nameQuestion)
         {

@@ -5,15 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExpertComputerService"
         mc:Ignorable="d"
-        Title="LearnSystem" Height="432.421" Width="686.941">
+        Title="LearnSystem" Height="432.421" Width="686.941" MouseMove="Window_MouseMove">
     <Grid Background="#FF9B9CA0">
         <Grid RenderTransformOrigin="-0.53,-1.94" Background="#CC6C766A" Margin="0,28,0,0">
             <Button x:Name="buttonHeroes" Content="Герои" HorizontalAlignment="Left" Margin="9,20,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonHeroes_Click"/>
             <DataGrid x:Name="dgrid" Margin="177,20,10,10" Background="#CCF0F0F0"/>
             <Button x:Name="buttonQuestions" Content="Вопросы" HorizontalAlignment="Left" Margin="9,84,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonQuestions_Click"/>
             <Button x:Name="button_Copy1" Content="Доминирование" HorizontalAlignment="Left" Margin="9,149,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White"/>
+            <Button x:Name="deletebut" Content="удалить" HorizontalAlignment="Left" Margin="9,268,0,0" VerticalAlignment="Top" Width="162" Height="38" Click="deletebut_Click"/>
+            <Button x:Name="button_Copy" Content="изменить" HorizontalAlignment="Left" Margin="9,311,0,0" VerticalAlignment="Top" Width="162" Height="38"/>
         </Grid>
         <Button x:Name="button1" Content="Вернуться" HorizontalAlignment="Left" Width="92" Style="{DynamicResource buttonSetupStyle}" Background="#FF698181" BorderBrush="{x:Null}" Foreground="White" Height="28" VerticalAlignment="Top"/>
+        <Label x:Name="ProgressSuccessLabel" Content="Успех операции" HorizontalAlignment="Left" Margin="10,245,0,0" VerticalAlignment="Top" Background="White" BorderBrush="#FF5DE61C" Foreground="#FF05B405" FontWeight="Bold" FontSize="18.667" Width="162"/>
 
     </Grid>
 </Window>

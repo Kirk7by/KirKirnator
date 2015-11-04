@@ -44,8 +44,8 @@ namespace Domain
         //
         #region Поля полученные через код
         public bool? QuestSelected { get; set; } //Индекс выбранного вопроса, {true or false}-выбран/нет/// надеюсь пригодится
-        public int? OtvetSelected { get; set; } //Индекс выбранного ответа,/// надеюсь пригодится
-        public double? ProbabilityQustion { get; set; }  //величина УСЛОВНОЙ ЭНТРОПИИ, усовершенствованный Байесовсий подход
+        public int? OtvetSelected { get; set; } //Индекс выбранного ответа,//  ТАКЖЕ ОДНОВРЕМЕННО ЯВЛЯЕТСЯ ВЕСОМ ВОПРОСА ДЛЯ КОНКРЕТНОГО ГЕРОЯ
+        public double? ProbabilityQustion { get; set; }  //величина УСЛОВНОЙ ЭНТРОПИИ, усовершенствованный Байесовсий подход//
         //Расчитывается очень трудоёмким путём
         #endregion
     }

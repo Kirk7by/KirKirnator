@@ -33,6 +33,10 @@ namespace ExpertCore
         }   //отправка нового героя и вопроса
 
 
+        public Exception ShippingСonfirmQuestionProbability()   //отправка подтверждения угадывания
+        {
+            return Mech.ShippingСonfirmQuestionProbability();
+        }
 
         private void GetMessageHeroMethod(string Hero, string Quest)  //обработчик получения предположительного ответа
         {

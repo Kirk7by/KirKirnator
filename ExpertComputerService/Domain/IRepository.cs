@@ -23,7 +23,7 @@ namespace Domain
 
         #region Обновление данных
         //Question:изменение вероятности и веса всех вопросов //Heroes:изменение увеличение количества игр на одну игру
-        Exception UpdateEndGamePobability();
+     //   Exception UpdateEndGamePobability();
         //измениение данных о героях, без изменений первичного ключа
         Exception UpdateHeroes();
         //изменение данных о вопросах, без изменений данных первичного ключа
