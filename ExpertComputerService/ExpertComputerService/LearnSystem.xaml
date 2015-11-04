@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExpertComputerService"
         mc:Ignorable="d"
-        Title="LearnSystem" Height="432.421" Width="686.941" MouseMove="Window_MouseMove">
+        Title="LearnSystem" Height="510.421" Width="706.941" MouseMove="Window_MouseMove">
     <Grid Background="#FF9B9CA0">
         <Grid RenderTransformOrigin="-0.53,-1.94" Background="#CC6C766A" Margin="0,28,0,0">
             <Button x:Name="buttonHeroes" Content="Герои" HorizontalAlignment="Left" Margin="9,20,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonHeroes_Click"/>

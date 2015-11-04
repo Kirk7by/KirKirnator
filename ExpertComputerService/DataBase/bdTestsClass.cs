@@ -41,9 +41,8 @@ namespace DataBase
         {
             List<Heroes> HeroeS = new List<Heroes>();
             
-            HeroeS.Add(new Heroes { NameHeroes = "Монитор", WeigthHero = 10 });
-            HeroeS.Add(new Heroes { NameHeroes = "Принтер", WeigthHero = 10 });
-            HeroeS.Add(new Heroes { NameHeroes = "Видеокарта", WeigthHero = 10 });
+            HeroeS.Add(new Heroes { NameHeroes = "СпанчБоб", WeigthHero = 1 });
+            HeroeS.Add(new Heroes { NameHeroes = "Робокоп", WeigthHero = 1 });
             //............
             //
             return HeroeS;
@@ -54,34 +53,18 @@ namespace DataBase
             
 
 
-            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с отображением информации на мониторе?", NameHeroes = "Монитор", OtvetQuest1 = 0.9, OtvetQuest2 = 0.01, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с отображением информации на мониторе?", NameHeroes = "Принтер", OtvetQuest1 = 0.01, OtvetQuest2 = 0.9, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с отображением информации на мониторе?", NameHeroes = "Видеокарта", OtvetQuest1 = 0.9, OtvetQuest2 = 0.01, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
+            QuestionS.Add(new Questions { NameQestion = "Ваш персонаж человек?", NameHeroes = "СпанчБоб", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
+            QuestionS.Add(new Questions { NameQestion = "Ваш живет на дне океана?", NameHeroes = "СпанчБоб", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected=1});
+            QuestionS.Add(new Questions { NameQestion = "Ваш персонаж губка?", NameHeroes = "СпанчБоб", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
+            QuestionS.Add(new Questions { NameQestion = "Ваш персонаж из фильма робокоп?", NameHeroes = "СпанчБоб", OtvetQuest1 = 0.1, OtvetQuest2 = 0.3, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
 
-            QuestionS.Add(new Questions { NameQestion = "У вас работает монитор со встроенной видеокартой?", NameHeroes = "Монитор", OtvetQuest1 = 0.01, OtvetQuest2 = 0.9, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-            QuestionS.Add(new Questions { NameQestion = "У вас работает монитор со встроенной видеокартой?", NameHeroes = "Принтер", OtvetQuest1 = 0.9, OtvetQuest2 = 0.01, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-            QuestionS.Add(new Questions { NameQestion = "У вас работает монитор со встроенной видеокартой?", NameHeroes = "Видеокарта", OtvetQuest1 = 0.9, OtvetQuest2 = 0.01, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
+            QuestionS.Add(new Questions { NameQestion = "Ваш персонаж человек?", NameHeroes = "Робокоп", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
+            QuestionS.Add(new Questions { NameQestion = "Ваш живет на дне океана?", NameHeroes = "Робокоп", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
+            QuestionS.Add(new Questions { NameQestion = "Ваш персонаж губка?", NameHeroes = "Робокоп", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
+            QuestionS.Add(new Questions { NameQestion = "Ваш персонаж из фильма робокоп?", NameHeroes = "Робокоп", OtvetQuest1 = 0.3, OtvetQuest2 = 0.1, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
 
-            QuestionS.Add(new Questions { NameQestion = "Работает ли ваш монитор в другом пк?", NameHeroes = "Монитор", OtvetQuest1 = 0.01, OtvetQuest2 = 0.9, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-            QuestionS.Add(new Questions { NameQestion = "Работает ли ваш монитор в другом пк?", NameHeroes = "Принтер", OtvetQuest1 = 0.01, OtvetQuest2 = 0.01, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-            QuestionS.Add(new Questions { NameQestion = "Работает ли ваш монитор в другом пк?", NameHeroes = "Видеокарта", OtvetQuest1 = 0.9, OtvetQuest2 = 0.01, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-
-            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с бумагой?", NameHeroes = "Принтер", OtvetQuest1 = 0.9, OtvetQuest2 = 0.01, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с бумагой?", NameHeroes = "Видеокарта", OtvetQuest1 = 0.01, OtvetQuest2 = 0.9, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с бумагой?", NameHeroes = "Монитор", OtvetQuest1 = 0.01, OtvetQuest2 = 0.9, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-
-            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с компьютером?", NameHeroes = "Принтер", OtvetQuest1 = 0.9, OtvetQuest2 = 0.01, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с компьютером?", NameHeroes = "Монитор", OtvetQuest1 = 0.9, OtvetQuest2 = 0.01, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-            
-            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с компьютером?", NameHeroes = "Видеокарта", OtvetQuest1 = 0.9, OtvetQuest2 = 0.01, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-
-            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана со звуком?", NameHeroes = "Принтер", OtvetQuest1 = 0.01, OtvetQuest2 = 0.9, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана со звуком?", NameHeroes = "Монитор", OtvetQuest1 = 0.01, OtvetQuest2 = 0.9, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-            QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана со звуком?", NameHeroes = "Видеокарта", OtvetQuest1 = 0.01, OtvetQuest2 = 0.9, OtvetQuest3 = 0.096, OtvetQuest4 = 0.01, OtvetQuest5 = 0.01 });
-
-
-
-
+            QuestionS.Add(new Questions { NameQestion = "Ваш персонаж ест крабсбугргеры?", NameHeroes = "СпанчБоб", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
+            QuestionS.Add(new Questions { NameQestion = "Ваш персонаж ест крабсбугргеры?", NameHeroes = "Робокоп", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
             /*        QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с компьютером?", NameHeroes = "Монитор" });
                     QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с компьютером?", NameHeroes = "Принтер" });
 

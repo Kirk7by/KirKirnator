@@ -257,16 +257,16 @@ namespace DataBase.Repository
                                 l1++;
                                 break;
                             case 2:
-                                l1++;
+                                l2++;
                                 break;
                             case 3:
-                                l1++;
+                                l3++;
                                 break;
                             case 4:
-                                l1++;
+                                l4++;
                                 break;
                             case 5:
-                                l1++;
+                                l5++;
                                 break;
                         }
                         lstq.OtvetSelected++;

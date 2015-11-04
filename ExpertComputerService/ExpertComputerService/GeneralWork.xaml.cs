@@ -31,10 +31,14 @@ namespace ExpertComputerService
             ExpCore.GetMessageHero += outputHeroMessage;
             LabelWrap.Text = ExpCore.StartMechanism();
 
+            DevainedGrid.Visibility = Visibility.Collapsed;
+
         }
         private void outputHeroMessage(string Hero, string Question)
         {
             LabelWrap.Text = "Вы загадали : \n"+Hero+"\n Если желате продолжить, то ответте на вопрос: \n"+Question;
+
+            DevainedGrid.Visibility = Visibility.Visible;
         }
         private void openWindowAddHero(object sender, EventArgs e)
         {
@@ -71,6 +75,15 @@ namespace ExpertComputerService
             string quest = ExpCore.GetQuestion(otv);
             if(quest!=null)
                 LabelWrap.Text = quest;
+        }
+
+        private void button_No_Click(object sender, RoutedEventArgs e)
+        {
+            Exception ex=ExpCore.ShippingСonfirmQuestionProbability();
+            if (ex != null)
+                MessageBox.Show(ex.Message);
+            else
+                MessageBox.Show("SUCCESS SHIPPING UPDATE HERO");
         }
     }
 }

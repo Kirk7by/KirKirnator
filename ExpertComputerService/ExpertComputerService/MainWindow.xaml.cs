@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ExpertCore;
+using DataBase.Repository;
 namespace ExpertComputerService
 {
     /// <summary>
@@ -23,8 +24,10 @@ namespace ExpertComputerService
         public MainWindow()
         {
             InitializeComponent();
-            
-            
+            /*
+            new Repository().ClearBdData();
+            new Repository().FillBdData();
+            //*/
         }
 
         private void diagnostyc_Click(object sender, RoutedEventArgs e)

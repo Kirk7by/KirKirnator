@@ -32,6 +32,11 @@
                 </StackPanel>
             </Grid>
         </Viewbox>
+        <Grid x:Name="DevainedGrid" HorizontalAlignment="Left" Height="143" Margin="135,92,0,0" VerticalAlignment="Top" Width="495" Grid.RowSpan="3" Background="#FF98E0A5">
+            <Button x:Name="buttonYes" Content="НЕТ" Margin="310,66,0,0" VerticalAlignment="Top" Height="62" HorizontalAlignment="Left" Width="134"/>
+            <Button x:Name="button_No" Content="Да" HorizontalAlignment="Left" Margin="39,66,0,0" VerticalAlignment="Top" Width="134" Height="62" Click="button_No_Click"/>
+            <Label x:Name="label1" Content="Угадал ли я?" HorizontalAlignment="Left" Margin="194,23,0,0" VerticalAlignment="Top"/>
+        </Grid>
 
     </Grid>
 </Window>
