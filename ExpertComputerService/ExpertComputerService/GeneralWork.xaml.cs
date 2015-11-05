@@ -79,7 +79,16 @@ namespace ExpertComputerService
 
         private void button_No_Click(object sender, RoutedEventArgs e)
         {
-            Exception ex=ExpCore.ShippingСonfirmQuestionProbability();
+            Exception ex = ExpCore.ShippingNoConfirmQuestionProbability();
+            if (ex != null)
+                MessageBox.Show(ex.Message);
+            else
+                MessageBox.Show("удалили");
+        }
+
+        private void buttonYes_Click(object sender, RoutedEventArgs e)
+        {
+            Exception ex = ExpCore.ShippingСonfirmQuestionProbability();
             if (ex != null)
                 MessageBox.Show(ex.Message);
             else

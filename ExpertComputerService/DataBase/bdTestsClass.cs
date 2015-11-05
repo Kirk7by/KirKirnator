@@ -43,6 +43,7 @@ namespace DataBase
             
             HeroeS.Add(new Heroes { NameHeroes = "СпанчБоб", WeigthHero = 1 });
             HeroeS.Add(new Heroes { NameHeroes = "Робокоп", WeigthHero = 1 });
+            HeroeS.Add(new Heroes { NameHeroes = "Чеберашка", WeigthHero = 1 });
             //............
             //
             return HeroeS;
@@ -63,8 +64,14 @@ namespace DataBase
             QuestionS.Add(new Questions { NameQestion = "Ваш персонаж губка?", NameHeroes = "Робокоп", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
             QuestionS.Add(new Questions { NameQestion = "Ваш персонаж из фильма робокоп?", NameHeroes = "Робокоп", OtvetQuest1 = 0.3, OtvetQuest2 = 0.1, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
 
+            QuestionS.Add(new Questions { NameQestion = "Ваш персонаж человек?", NameHeroes = "Чеберашка", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
+            QuestionS.Add(new Questions { NameQestion = "Ваш живет на дне океана?", NameHeroes = "Чеберашка", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
+            QuestionS.Add(new Questions { NameQestion = "Ваш персонаж губка?", NameHeroes = "Чеберашка", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
+            QuestionS.Add(new Questions { NameQestion = "Ваш персонаж из фильма робокоп?", NameHeroes = "Чеберашка", OtvetQuest1 = 0.3, OtvetQuest2 = 0.1, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
+
             QuestionS.Add(new Questions { NameQestion = "Ваш персонаж ест крабсбугргеры?", NameHeroes = "СпанчБоб", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
             QuestionS.Add(new Questions { NameQestion = "Ваш персонаж ест крабсбугргеры?", NameHeroes = "Робокоп", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
+            QuestionS.Add(new Questions { NameQestion = "Ваш персонаж ест крабсбугргеры?", NameHeroes = "Чеберашка", OtvetQuest1 = 0.2, OtvetQuest2 = 0.2, OtvetQuest3 = 0.2, OtvetQuest4 = 0.2, OtvetQuest5 = 0.2, OtvetSelected = 1 });
             /*        QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с компьютером?", NameHeroes = "Монитор" });
                     QuestionS.Add(new Questions { NameQestion = "Ваша поломка связана с компьютером?", NameHeroes = "Принтер" });
 

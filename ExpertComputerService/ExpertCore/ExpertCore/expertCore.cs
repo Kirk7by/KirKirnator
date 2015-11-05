@@ -37,6 +37,12 @@ namespace ExpertCore
         {
             return Mech.ShippingСonfirmQuestionProbability();
         }
+        public Exception ShippingNoConfirmQuestionProbability()
+        {
+            return Mech.ShippingNoConfirmQuestionProbability();
+        } //отправка неподтверждения угадывания
+
+
 
         private void GetMessageHeroMethod(string Hero, string Quest)  //обработчик получения предположительного ответа
         {

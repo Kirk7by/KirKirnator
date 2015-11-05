@@ -125,7 +125,12 @@ namespace ExpertCore
             {
                 if (Quest2.Count != 0)
                 {
-                    GetMessageHero(MaxprobalityHero, Qestion + " (" + Quest2.Count + ")");
+                    string str33 = "";
+                    foreach(var s in lHeroes)
+                    {
+                        str33 = s.NameHeroes + str33;
+                    }
+                    GetMessageHero(MaxprobalityHero+"(" +str33+")", Qestion + " (" + Quest2.Count + ")");   //TODO:ЧИСТИТЬ
                     return null;
                 }
                 else
@@ -150,12 +155,28 @@ namespace ExpertCore
         public Exception ShippingСonfirmQuestionProbability()
         {
             return new Repository().UpdateEndGamePobability(Quest1, heroName);
+        }//подтверждение на сервер
+        public Exception ShippingNoConfirmQuestionProbability()
+        {
+            try
+            {
+                lHeroes.RemoveAll((item) => item.NameHeroes == heroName);
+            }
+            catch(Exception ex)
+            {
+                return ex;
+            }
+            return null;
         }
+
+
         #region отправка нового героя и вопроса на сервер
         public Exception shippingNewHeroAndQuestion(string nameHero, string nameQuestion)
         {
             return new Repository().AddHeroesAndQuestion(nameHero, nameQuestion, Quest1);
         }
+
+        
 
         #endregion
         #region ВЫБОР ПЕРСОНАЖА ПО ЗАДАННЫМ ВОПРОСАМ
