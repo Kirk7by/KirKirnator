@@ -46,5 +46,17 @@ namespace Configurate {
                 this["MinProbalityQuestion"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int MinGetQuestionMaxProbality {
+            get {
+                return ((int)(this["MinGetQuestionMaxProbality"]));
+            }
+            set {
+                this["MinGetQuestionMaxProbality"] = value;
+            }
+        }
     }
 }

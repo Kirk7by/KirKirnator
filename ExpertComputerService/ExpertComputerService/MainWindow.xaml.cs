@@ -28,6 +28,7 @@ namespace ExpertComputerService
             new Repository().ClearBdData();
             new Repository().FillBdData();
             //*/
+         
         }
 
         private void diagnostyc_Click(object sender, RoutedEventArgs e)

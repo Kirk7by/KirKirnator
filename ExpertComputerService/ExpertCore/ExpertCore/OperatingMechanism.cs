@@ -154,10 +154,10 @@ namespace ExpertCore
 
         public Exception ShippingСonfirmQuestionProbability(string HName=null)
         {
-            if(HName==null)
+            if (HName == null)
                 return new Repository().UpdateEndGamePobability(Quest1, heroName);
             else
-                return new Repository().UpdateEndGamePobability(Quest1, HName)
+                return new Repository().UpdateEndGamePobability(Quest1, HName);
         }//подтверждение на сервер
         public Exception ShippingNoConfirmQuestionProbability()
         {
@@ -184,7 +184,7 @@ namespace ExpertCore
             {
                 i++;
                 heros.Add(lh);
-                if (i == 5)
+                if (i == ExpConfig.Default.MinGetQuestionMaxProbality)
                     break;
             }
             return heros.ToList();

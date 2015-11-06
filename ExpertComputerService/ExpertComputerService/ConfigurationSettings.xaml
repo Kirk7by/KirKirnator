@@ -22,7 +22,9 @@
                     <Label x:Name="label" Content="Приоритетный вопрос" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="136"/>
                     <ComboBox x:Name="tbQuestionPriority" Margin="10,26,10,0" VerticalAlignment="Top" Height="31"/>
                     <Label x:Name="label_Copy" Content="Минимальная &#xD;&#xA;вероятность вопроса" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top" Width="132"/>
-                    <Label x:Name="label1" Content="0," HorizontalAlignment="Left" Margin="133,81,0,0" VerticalAlignment="Top" Width="25" HorizontalContentAlignment="Right" FontSize="18.667" FontWeight="Bold"/>
+                    <Label x:Name="label1" Content="0," HorizontalAlignment="Left" Margin="148,81,0,0" VerticalAlignment="Top" Width="25" HorizontalContentAlignment="Right" FontSize="18.667" FontWeight="Bold"/>
+                    <Label x:Name="label_Copy1" Content="Воличество героев выводимых в конце игры, в случае, &#xD;&#xA;если не получились угадать" HorizontalAlignment="Left" Margin="10,121,0,0" VerticalAlignment="Top" Width="332" Height="44"/>
+                    <TextBox x:Name="TbListHeroMaxProbality" HorizontalAlignment="Left" Height="28" Margin="340,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" BorderThickness="1" FontSize="18.667" Background="{x:Null}" VerticalContentAlignment="Center" Foreground="#FF03530A"/>
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">
@@ -32,7 +34,7 @@
         <Button x:Name="btSave" Content="Сохранить" Margin="7,0,7,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Click="btSave_Click" Grid.Row="1" Grid.Column="1" Height="33" VerticalAlignment="Bottom"/>
         <Button x:Name="button_Copy" Content="Отмена" Margin="10,0,7,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Grid.Row="1" Height="33" VerticalAlignment="Bottom"/>
         <Button x:Name="btDefaultSettings" Content="По умолчанию" Margin="7,0,10,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Grid.Row="1" Grid.Column="2" Height="33" VerticalAlignment="Bottom" Click="btDefaultSettings_Click"/>
-        <TextBox x:Name="tbMinProbabilityQuestion" HorizontalAlignment="Left" Height="28" Margin="156,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" Grid.ColumnSpan="2" BorderThickness="1" FontSize="18.667" Background="{x:Null}" VerticalContentAlignment="Center" Foreground="#FF03530A"/>
+        <TextBox x:Name="tbMinProbabilityQuestion" HorizontalAlignment="Left" Height="28" Margin="171,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" Grid.ColumnSpan="2" BorderThickness="1" FontSize="18.667" Background="{x:Null}" VerticalContentAlignment="Center" Foreground="#FF03530A"/>
 
     </Grid>
 </Window>

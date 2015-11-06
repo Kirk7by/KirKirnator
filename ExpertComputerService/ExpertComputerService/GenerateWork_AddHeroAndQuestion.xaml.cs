@@ -31,10 +31,7 @@ namespace ExpertComputerService
             listBox.ItemsSource = HeroNamesList;
         }
 
-        private void Sumbit_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        
 
         private void buttonExist_Click(object sender, RoutedEventArgs e)
         {
@@ -42,6 +39,11 @@ namespace ExpertComputerService
             Exception ex = expCore.ShippingСonfirmQuestionProbability(comboBox.Text);
             if (ex != null)
                 MessageBox.Show(ex.Message);
+            else
+            {
+                MessageBox.Show("Success!!!");
+             //   this.Close();
+            }
         }
 
 
@@ -53,6 +55,31 @@ namespace ExpertComputerService
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             comboBox.Text = listBox.SelectedItem as string;
+        }
+
+        private void Sumbit_Click(object sender, RoutedEventArgs e)
+        {
+            if (tbHeroName.Text != "" && tbQuestName.Text != "")
+            {
+                Exception ex = expCore.OutputNewHero(tbHeroName.Text, tbQuestName.Text);
+                if (ex != null)
+                    MessageBox.Show(ex.Message);
+                else
+                    MessageBox.Show("successfully added question");
+
+                new SumbitCancelWindow("Success").Show();
+                this.Close();
+            }
+            else
+            {
+                TittleLabel2.Content = "Вводите только корректные значения!";
+                TittleLabel2.Background = Brushes.DarkRed;
+            }
+        }
+        private void Sumbit_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            new SumbitCancelWindow().Show();
+            this.Close();
         }
     }
 }

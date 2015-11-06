@@ -1,0 +1,16 @@
+﻿<Window x:Class="ExpertComputerService.SumbitCancelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExpertComputerService"
+        mc:Ignorable="d"
+        Title="SumbitCancelWindow" Height="594.326" Width="568.879" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Image x:Name="image" Margin="-1,38,0,151" Source="Media/GloomyDoc.jpg"/>
+        <Button x:Name="butRetryGame" Content="Играть снова" Margin="0,0,-1,72" VerticalAlignment="Bottom" Height="79" FontSize="26.667" Style="{DynamicResource buttonSetupStyle}" Background="#FF39871B" BorderThickness="5" BorderBrush="White" Foreground="White" Click="butRetryGame_Click"/>
+        <Button x:Name="butExitGame" Content="Выйти из программы" Margin="0,0,-1,5" FontSize="26.667" Style="{DynamicResource buttonSetupStyle}" Background="#FFC57C7C" BorderThickness="5" BorderBrush="White" Foreground="White" Height="72" VerticalAlignment="Bottom" Click="butExitGame_Click"/>
+        <Label x:Name="TittleLabel" Content="Мне очень жаль, что мы не угадали твоего героя" VerticalAlignment="Top" RenderTransformOrigin="0.526,0.577" Height="38" Foreground="White" Background="#FF5764A0" FontWeight="Bold" FontFamily="Comic Sans MS" FontSize="16" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+    </Grid>
+</Window>
