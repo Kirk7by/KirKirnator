@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ExpertCore;
 
 namespace ExpertComputerService
 {
@@ -19,14 +20,39 @@ namespace ExpertComputerService
     /// </summary>
     public partial class GenerateWork_AddHeroAndQuestion : Window
     {
+        Expertcore expCore;
         public GenerateWork_AddHeroAndQuestion()
         {
             InitializeComponent();
+            expCore = new Expertcore();
+            var HeroNamesList= from lh in expCore.GetPriorityListHero().ToList()
+                          select lh.NameHeroes;
+            comboBox.ItemsSource = HeroNamesList;
+            listBox.ItemsSource = HeroNamesList;
         }
 
         private void Sumbit_Click(object sender, RoutedEventArgs e)
         {
+            
+        }
 
+        private void buttonExist_Click(object sender, RoutedEventArgs e)
+        {
+            
+            Exception ex = expCore.ShippingСonfirmQuestionProbability(comboBox.Text);
+            if (ex != null)
+                MessageBox.Show(ex.Message);
+        }
+
+
+        private void buttonNoExist_Click(object sender, RoutedEventArgs e)
+        {
+            GridSelectedHero.Visibility = Visibility.Collapsed;
+        }
+
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            comboBox.Text = listBox.SelectedItem as string;
         }
     }
 }

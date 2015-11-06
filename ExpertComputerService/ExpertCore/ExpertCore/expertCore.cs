@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,9 +34,12 @@ namespace ExpertCore
         }   //отправка нового героя и вопроса
 
 
-        public Exception ShippingСonfirmQuestionProbability()   //отправка подтверждения угадывания
+        public Exception ShippingСonfirmQuestionProbability(string Hname=null)   //отправка подтверждения угадывания
         {
-            return Mech.ShippingСonfirmQuestionProbability();
+            if (Hname == null)
+                return Mech.ShippingСonfirmQuestionProbability();
+            else
+                return Mech.ShippingСonfirmQuestionProbability(Hname);
         }
         public Exception ShippingNoConfirmQuestionProbability()
         {
@@ -43,6 +47,10 @@ namespace ExpertCore
         } //отправка неподтверждения угадывания
 
 
+        public IEnumerable<Heroes> GetPriorityListHero()
+        {
+            return Mech.GetPriorityListHero();
+        }
 
         private void GetMessageHeroMethod(string Hero, string Quest)  //обработчик получения предположительного ответа
         {

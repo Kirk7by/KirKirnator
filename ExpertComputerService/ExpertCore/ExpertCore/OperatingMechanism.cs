@@ -152,9 +152,12 @@ namespace ExpertCore
             return str1 + "Сумма промежуточных вероятностей: " + test + "\n\n Вопрос: " + Qestion + "\n Энтропия этого вопроса:(" + Convert.ToString(MinEntropy) + ")\n" + " Максимальная вероятность:(" + Convert.ToString(MaxheroProb) + ")(" + MaxprobalityHero + ")\n\n" + str2;
         }   //получение вопроса
 
-        public Exception ShippingСonfirmQuestionProbability()
+        public Exception ShippingСonfirmQuestionProbability(string HName=null)
         {
-            return new Repository().UpdateEndGamePobability(Quest1, heroName);
+            if(HName==null)
+                return new Repository().UpdateEndGamePobability(Quest1, heroName);
+            else
+                return new Repository().UpdateEndGamePobability(Quest1, HName)
         }//подтверждение на сервер
         public Exception ShippingNoConfirmQuestionProbability()
         {
@@ -169,6 +172,23 @@ namespace ExpertCore
             return null;
         }
 
+
+
+        public IEnumerable<Heroes> GetPriorityListHero()
+        {
+            lHeroes.Sort((x, y) => ((double)x.ProbabilityHero).CompareTo(y.ProbabilityHero));   //сортируем по максимальной вероятности
+            List<Heroes> heros = new List<Heroes>();
+
+            int i = 0;
+            foreach(var lh in lHeroes)
+            {
+                i++;
+                heros.Add(lh);
+                if (i == 5)
+                    break;
+            }
+            return heros.ToList();
+        }
 
         #region отправка нового героя и вопроса на сервер
         public Exception shippingNewHeroAndQuestion(string nameHero, string nameQuestion)
