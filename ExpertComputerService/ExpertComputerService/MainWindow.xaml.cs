@@ -40,7 +40,7 @@ namespace ExpertComputerService
         private void lern_Click(object sender, RoutedEventArgs e)
         {
             new LearnSystem().Show();
-          //  this.Close();
+            this.Close();
         }
 
         private void configurations_Click(object sender, RoutedEventArgs e)

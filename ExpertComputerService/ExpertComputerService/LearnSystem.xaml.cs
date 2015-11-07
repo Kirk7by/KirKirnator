@@ -77,5 +77,11 @@ namespace ExpertComputerService
             if (ProgressSuccessLabel.IsVisible == true)
                 ProgressSuccessLabel.Visibility = Visibility.Collapsed;
         }
+
+        private void BackMenu_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
+        }
     }
 }

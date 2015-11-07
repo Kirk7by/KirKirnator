@@ -96,5 +96,11 @@ namespace ExpertComputerService
             new GenerateWork_AddHeroAndQuestion().Show();
             this.Close();
         }
+
+        private void btBackMenu_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
+        }
     }
 }

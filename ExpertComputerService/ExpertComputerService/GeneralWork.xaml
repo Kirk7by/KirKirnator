@@ -12,11 +12,11 @@
             <RowDefinition Height="25*"/>
             <RowDefinition Height="301*"/>
         </Grid.RowDefinitions>
-        <Viewbox StretchDirection="UpOnly">
+        <Viewbox StretchDirection="UpOnly" Margin="0,-1,0,30.541" Grid.RowSpan="2">
             <Grid x:Name="GridWrapAnswer" Height="84" VerticalAlignment="Top" Width="359" Background="#FF91996D">
-                <Label x:Name="label"  FontSize="5" HorizontalContentAlignment="Center" Foreground="White" FontFamily="Sitka Small">
+                <Label x:Name="label"  FontSize="16" HorizontalContentAlignment="Stretch" Foreground="White" FontFamily="Comic Sans MS" VerticalContentAlignment="Stretch">
                     <Label.Content>
-                        <TextBlock x:Name="LabelWrap" TextAlignment="Center" TextWrapping="Wrap" Height="74" Width="349" >Label Text And Wrap</TextBlock>
+                        <TextBlock x:Name="LabelWrap" TextAlignment="Center" TextWrapping="Wrap" Height="74" Width="349" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Consolas" >Label Text And Wrap</TextBlock>
                     </Label.Content>
                 </Label>
             </Grid>
@@ -33,18 +33,30 @@
             </Grid>
         </Viewbox>
         <Grid x:Name="DevainedGrid" Margin="127,10,134,9.541" Background="#FFF2F9D0" Grid.RowSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="141"/>
+                <RowDefinition Height="142*"/>
+                <RowDefinition Height="25*"/>
+                <RowDefinition Height="35*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="247*"/>
                 <ColumnDefinition Width="248*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="button_No" Content="НЕТ" Margin="12,472,10,10" Click="button_No_Click" Style="{DynamicResource buttonSetupStyle}" Background="#FFB8887E" Foreground="White" FontFamily="Comic Sans MS" Grid.Column="1"/>
-            <Button x:Name="button_Yes" Content="Да" Margin="10,472,13,10" Click="buttonYes_Click" Style="{DynamicResource buttonSetupStyle}" Background="#FF445D38" Foreground="White" FontFamily="Comic Sans MS" RenderTransformOrigin="0.537,0.032"/>
-            <Label x:Name="label1" Content="Угадал ли я?" Margin="10,415,10,0" VerticalAlignment="Top" FontSize="24" Grid.ColumnSpan="2" Foreground="#FF249C00" FontWeight="Bold" Background="#FFD3FFC3" Height="43"/>
-            <Label x:Name="label_Copy" HorizontalContentAlignment="Center" Foreground="White" FontFamily="Sitka Small" Margin="10,65,10,386.459" Grid.ColumnSpan="2" Background="#FF979576" FontSize="20">
+            <Button x:Name="button_No" Content="НЕТ" Margin="12,9,10,10" Click="button_No_Click" Style="{DynamicResource buttonSetupStyle}" Background="#FFB8887E" Foreground="White" FontFamily="Comic Sans MS" Grid.Column="1" Grid.Row="3" BorderThickness="7" BorderBrush="#FFB8887E"/>
+            <Button x:Name="button_Yes" Content="Да" Margin="10,9,13,10" Click="buttonYes_Click" Style="{DynamicResource buttonSetupStyle}" Background="#FF445D38" Foreground="White" FontFamily="Comic Sans MS" RenderTransformOrigin="0.537,0.032" Grid.Row="3" BorderThickness="7" BorderBrush="#FF445D38"/>
+            <Label x:Name="label1" Content="Угадал ли я?" Margin="10,0,10,4" VerticalAlignment="Bottom" FontSize="24" Grid.ColumnSpan="2" Foreground="#FF249C00" FontWeight="Bold" Background="#FFD3FFC3" Height="43" Grid.Row="2"/>
+            <Label x:Name="label_Copy" HorizontalContentAlignment="Center" Foreground="White" FontFamily="Sitka Small" Margin="10,65,10,9" Grid.ColumnSpan="2" Background="#FF979576" FontSize="20">
                 <TextBlock x:Name="thinkWrap" TextAlignment="Center" TextWrapping="Wrap" Height="74" Width="349" Text="Текст того, что он думает" />
             </Label>
             <Label x:Name="label1_Copy" Content="Я думаю это:" Margin="10,10,10,0" VerticalAlignment="Top" FontSize="24" Grid.ColumnSpan="2" Foreground="#FF050600" FontWeight="Bold" Background="#FFFFFBB2" Height="43"/>
+            <Image x:Name="image" Margin="10,10,10,2" Grid.Row="1" Grid.ColumnSpan="2" Source="Media/Unknown_Flag.png"/>
         </Grid>
+        <Button x:Name="btBackMenu" Content="Меню" HorizontalAlignment="Left" VerticalAlignment="Top" Width="122" BorderBrush="{x:Null}" Foreground="#FFFFEEEE" BorderThickness="0,0,3,3" Height="28" Margin="0,-1,0,0" Style="{DynamicResource buttonSetupStyle}" FontFamily="Consolas" FontStyle="Italic" FontSize="16" Click="btBackMenu_Click">
+            <Button.Background>
+                <SolidColorBrush Color="#99708977" Opacity="0.6"/>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>
