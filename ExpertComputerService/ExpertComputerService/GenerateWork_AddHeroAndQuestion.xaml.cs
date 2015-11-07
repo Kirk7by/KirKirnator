@@ -38,11 +38,14 @@ namespace ExpertComputerService
             
             Exception ex = expCore.ShippingСonfirmQuestionProbability(comboBox.Text);
             if (ex != null)
-                MessageBox.Show(ex.Message);
+            {
+                MessageBox.Show(ex.Message); 
+            }
             else
             {
                 MessageBox.Show("Success!!!");
-             //   this.Close();
+                new SumbitCancelWindow("Мне было очень приятно с вами играть, теперь "+comboBox.Text+" будет всё чаще угадываться!").Show();
+                this.Close();
             }
         }
 
@@ -67,7 +70,7 @@ namespace ExpertComputerService
                 else
                     MessageBox.Show("successfully added question");
 
-                new SumbitCancelWindow(tbHeroName.Text).Show();
+                new SumbitCancelWindow("Нам было приятно с вами играть, теперь ваш "+ tbHeroName.Text+" будет присутствовать в моей угадывательной памятиtb").Show();
                 this.Close();
             }
             else

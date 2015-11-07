@@ -21,11 +21,7 @@ namespace Domain
 
         #endregion
 
-        #region Поля, появляющиеся программным путём
-        public double? ProbabilityAprioryHero { get;  set; } //априорная вероятность, расчитывается программным путём      
-        public double? ProbabilityProizvHero { get; set; } //произведение вероятностей всех ответов, отвеченных за сессию //промежуточная величина
-        public double? ProbabilityHero { get; set; } //промежуточная вероятность //понадобиться в расчетах ответа на вопрос или вероятность, что это именно этот персонаж
         
-        #endregion
+       
     }
 }

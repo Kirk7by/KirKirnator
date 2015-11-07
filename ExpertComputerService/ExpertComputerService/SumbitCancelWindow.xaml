@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExpertComputerService"
         mc:Ignorable="d"
-        Title="SumbitCancelWindow" Height="620.326" Width="568.879" WindowStartupLocation="CenterScreen">
+        Title="SumbitCancelWindow" Height="624.326" Width="568.879" WindowStartupLocation="CenterScreen">
     <Grid Background="Black">
         <Image x:Name="image" Margin="-1,64,0,151" Source="Media/GloomyDoc.jpg"/>
-        <Button x:Name="butRetryGame" Content="Играть снова" Margin="0,0,-1,70" VerticalAlignment="Bottom" Height="79" FontSize="26.667" Style="{DynamicResource buttonSetupStyle}" Background="#FF39871B" BorderThickness="5" BorderBrush="Black" Foreground="White" Click="butRetryGame_Click"/>
+        <Button x:Name="butRetryGame" Content="Играть снова" Margin="0,0,-1,75" VerticalAlignment="Bottom" Height="74" FontSize="26.667" Style="{DynamicResource buttonSetupStyle}" Background="#FF39871B" BorderThickness="5" BorderBrush="Black" Foreground="White" Click="butRetryGame_Click"/>
         <Button x:Name="butExitGame" Content="Выйти из программы" Margin="0,0,-1,3" FontSize="26.667" Style="{DynamicResource buttonSetupStyle}" Background="#FF614640" BorderThickness="5" BorderBrush="Black" Foreground="White" Height="72" VerticalAlignment="Bottom" Click="butExitGame_Click"/>
 
         <Label x:Name="TittleLabel1"  VerticalAlignment="Top" RenderTransformOrigin="0.526,0.577" Height="59" Foreground="White" Background="#FF5764A0" FontWeight="Bold" FontFamily="Comic Sans MS" FontSize="16" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">

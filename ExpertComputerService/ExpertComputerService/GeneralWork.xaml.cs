@@ -47,6 +47,7 @@ namespace ExpertComputerService
         private void openWindowAddHero(object sender, EventArgs e)
         {
             new GenerateWork_AddHeroAndQuestion().Show();
+            this.Close();
         }
         private void button1_Click(object sender, RoutedEventArgs e)
         {
@@ -100,7 +101,7 @@ namespace ExpertComputerService
                 MessageBox.Show(ex.Message);
             else
                 MessageBox.Show("SUCCESS SHIPPING UPDATE HERO");
-            new SumbitCancelWindow("str").Show();
+            new SumbitCancelWindow("Мне было очень приятно играть с вами.").Show();
             this.Close();
         }
     }

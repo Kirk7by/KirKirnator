@@ -23,7 +23,7 @@ namespace ExpertCore
         static int testint1, testint2, testint3;
         static string heroName;
         
-        static List<Heroes> lHeroes;   //список героев
+        static List<HeroesProgramm> lHeroes;   //список героев
         static List<Questions> lQuestions;  //список вопросов
         static List<Questions> Quest1;  //добавляем
         static List<Questions> Quest2;  //убираем
@@ -39,7 +39,15 @@ namespace ExpertCore
         internal string NewStarting()   //начать заново
         {
             EntityStorage ent = new Repository().GetEntityStorage();
-            lHeroes = ent.Heroes.ToList();
+            //   lHeroes = ent.Heroes.ToList();
+
+             lHeroes = new List<HeroesProgramm>();
+          
+            lHeroes.Clear();
+            foreach (var prHero in ent.Heroes.ToList())
+            {
+                lHeroes.Add(new HeroesProgramm { NameHeroes = prHero.NameHeroes, TextHero = prHero.TextHero, WeigthHero = prHero.WeigthHero });
+            }
             lQuestions = ent.Qestion.ToList();
             GetSortListHero();  //сортируем список героев
 
@@ -181,6 +189,8 @@ namespace ExpertCore
                 {
                     lHeroes.RemoveAll((item) => item.NameHeroes == heroName);
                     Quest2.RemoveAll((item) => item.NameHeroes == heroName); //TODO: проводим чистку всех вопросов для этого героя
+                    Quest1.RemoveAll((item) => item.NameHeroes == heroName);
+                    lQuestions.RemoveAll((item) => item.NameHeroes == heroName);
                 }
             }
             catch(Exception ex)
@@ -201,7 +211,7 @@ namespace ExpertCore
             foreach(var lh in lHeroes)
             {
                 i++;
-                heros.Add(lh);
+                heros.Add(new Heroes { NameHeroes=lh.NameHeroes, TextHero=lh.TextHero, WeigthHero=lh.WeigthHero, ParamsQusttype=lh.ParamsQusttype }); //TODO: ParamsQusttype скорее можно убрать
                 if (i == ExpConfig.Default.MinGetQuestionMaxProbality)
                     break;
             }

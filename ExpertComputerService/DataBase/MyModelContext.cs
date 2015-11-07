@@ -16,7 +16,7 @@
         // Если требуется выбрать другую базу данных или поставщик базы данных, измените строку подключения "Model1" 
         // в файле конфигурации приложения.
         public MyModelContext()
-            : base("name=HeroAndQuestions")
+            : base("name=ExpertHeros")
         {
          //   Database.SetInitializer<Model1>(null);
         }

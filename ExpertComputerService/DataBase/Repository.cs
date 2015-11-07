@@ -318,6 +318,7 @@ namespace DataBase.Repository
             {
                 using (var ctx = new MyModelContext())
                 {
+                    
                     foreach (var u in ctx.qestions)
                     {
                         ctx.qestions.Remove(u);

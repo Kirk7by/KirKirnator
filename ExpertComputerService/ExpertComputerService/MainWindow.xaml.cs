@@ -24,8 +24,8 @@ namespace ExpertComputerService
         public MainWindow()
         {
             InitializeComponent();
-            /*
-            new Repository().ClearBdData();
+          /*  
+           new Repository().ClearBdData();
             new Repository().FillBdData();
             //*/
          

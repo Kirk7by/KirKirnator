@@ -22,7 +22,7 @@
                 <Label x:Name="label1_Copy" Content="Характерезующий вопрос:" Margin="10,139,10,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" FontFamily="Comic Sans MS" FontSize="18.667" Background="#FF16B3C3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
             </Grid>
         </Viewbox>
-        <Viewbox Stretch="Fill" d:IsHidden="True">
+        <Viewbox Stretch="Fill">
             <Grid x:Name="GridSelectedHero" Background="#FFD2EEDC" Height="309" Width="510">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="57*"/>

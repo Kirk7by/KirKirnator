@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="EntityStorage.cs" />
     <Compile Include="Heroes.cs" />
+    <Compile Include="HeroesProgramm.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Questions.cs" />

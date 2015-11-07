@@ -19,13 +19,13 @@ namespace ExpertComputerService
     /// </summary>
     public partial class SumbitCancelWindow : Window
     {
-        public SumbitCancelWindow(string d = null)
+        public SumbitCancelWindow(string TittleStr = null)
         {
             InitializeComponent();
-            if (d!=null)
+            if (TittleStr!=null)
             {
                 image.Source = new BitmapImage(new Uri("pack://application:,,,/Media/smileCat.jpg"));
-                TittleLabel.Text = "Нам было приятно с вами играть, теперь ваш "+d+"будет присутствовать в моей угадывательной памяти";
+                TittleLabel.Text = TittleStr;
                 TittleLabel.Background = Brushes.Green;
                 TittleLabel1.Background = Brushes.Green;
 
