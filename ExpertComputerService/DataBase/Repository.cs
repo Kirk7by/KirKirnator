@@ -288,6 +288,8 @@ namespace DataBase.Repository
                             result.OtvetQuest5 = lstq.OtvetQuest5;
                         }
                     }
+                    _context.heroes.SingleOrDefault((item) => item.NameHeroes == HeroName).WeigthHero++;
+
                     _context.SaveChanges();    
                 }
             }

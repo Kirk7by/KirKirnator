@@ -36,9 +36,13 @@ namespace ExpertComputerService
         }
         private void outputHeroMessage(string Hero, string Question)
         {
-            LabelWrap.Text = "Вы загадали : \n"+Hero+"\n Если желате продолжить, то ответте на вопрос: \n"+Question;
+            LabelWrap.Text = Question;
 
+            
+            thinkWrap.Text = Hero;
             DevainedGrid.Visibility = Visibility.Visible;
+            GridSelectedAnswers.Visibility = Visibility.Collapsed;
+            GridWrapAnswer.Visibility = Visibility.Collapsed;
         }
         private void openWindowAddHero(object sender, EventArgs e)
         {
@@ -84,6 +88,9 @@ namespace ExpertComputerService
                 MessageBox.Show(ex.Message);
             else
                 MessageBox.Show("удалили");
+            DevainedGrid.Visibility = Visibility.Collapsed;
+            GridSelectedAnswers.Visibility = Visibility.Visible;
+            GridWrapAnswer.Visibility = Visibility.Visible;
         }
 
         private void buttonYes_Click(object sender, RoutedEventArgs e)
@@ -93,6 +100,8 @@ namespace ExpertComputerService
                 MessageBox.Show(ex.Message);
             else
                 MessageBox.Show("SUCCESS SHIPPING UPDATE HERO");
+            new SumbitCancelWindow("str").Show();
+            this.Close();
         }
     }
 }

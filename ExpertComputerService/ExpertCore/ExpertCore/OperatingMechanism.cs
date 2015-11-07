@@ -30,7 +30,7 @@ namespace ExpertCore
 
         string test = ""; //TODO: ТЕСТИТЬ
         static int indexQuest2; //индексатор выбранных вопросов
-
+        static int IterAttempst;
         internal OperatingMechanism()
         {
             QuestionStart += NewStarting;
@@ -46,6 +46,7 @@ namespace ExpertCore
             Quest2 = GetQuestionDistinctList(lQuestions.ToList()).ToList(); //возвращаем quest2 список без повторяющихся вопросов
             Quest1 = new List<Questions>();
             indexQuest2 = -1;
+            IterAttempst = 0;
 
             Random rd = new Random();
             foreach (var t in Quest2)
@@ -130,17 +131,30 @@ namespace ExpertCore
                     {
                         str33 = s.NameHeroes + str33;
                     }
-                    GetMessageHero(MaxprobalityHero+"(" +str33+")", Qestion + " (" + Quest2.Count + ")");   //TODO:ЧИСТИТЬ
+                    if (IterAttempst <= ExpConfig.Default.QuantityAttempt)  //проверка условия количества предположительных ответов
+                    {
+                        GetMessageHero(MaxprobalityHero + "(" + str33 + ")", Qestion + " (" + Quest2.Count + ")");   //TODO:ЧИСТИТЬ
+                        IterAttempst++;
+                    }
+                    else
+                    {
+                        QuestionEnter(this, EventArgs.Empty);
+                    }
                     return null;
                 }
                 else
                 {
-                    GetProbabilityProizvHero(Quest1.ToList());
+               //     GetProbabilityProizvHero(Quest1.ToList());        //:TODO THIS COMMENTED SMUTED COD
                     this.QuestionEnter(this, EventArgs.Empty);
                 }
             }
 
-            string str1 = "", str2 = "";
+            if (Quest2.Count == 0)
+            {
+                QuestionEnter(this, EventArgs.Empty);
+            }
+
+                string str1 = "", str2 = "";
             foreach (var qs in Quest2)
             {
                 str2 = str2 + qs.NameQestion + " (" + qs.ProbabilityQustion + ")|";
@@ -159,11 +173,15 @@ namespace ExpertCore
             else
                 return new Repository().UpdateEndGamePobability(Quest1, HName);
         }//подтверждение на сервер
-        public Exception ShippingNoConfirmQuestionProbability()
+        public Exception ShippingNoConfirmQuestionProbability() //удаление героя который не прокатил
         {
             try
             {
-                lHeroes.RemoveAll((item) => item.NameHeroes == heroName);
+                if (lHeroes.Count >= 2)
+                {
+                    lHeroes.RemoveAll((item) => item.NameHeroes == heroName);
+                    Quest2.RemoveAll((item) => item.NameHeroes == heroName); //TODO: проводим чистку всех вопросов для этого героя
+                }
             }
             catch(Exception ex)
             {

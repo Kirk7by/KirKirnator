@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExpertComputerService"
         mc:Ignorable="d"
-        Title="Окно добавления нового героя" Height="340.195" Width="518.149" WindowStartupLocation="CenterScreen">
+        Title="Окно добавления нового героя" Height="454.195" Width="674.149" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Viewbox x:Name="vievbox2" Stretch="Fill">
-            <Grid Background="#FFDAF1B3" Height="309" Width="510">
+        <Viewbox x:Name="vievbox2" StretchDirection="UpOnly">
+            <Grid Background="#FFDAF1B3" Height="385" Width="604">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="251*"/>
                     <ColumnDefinition Width="259*"/>

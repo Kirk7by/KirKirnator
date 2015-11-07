@@ -22,11 +22,13 @@ namespace ExpertComputerService
         public SumbitCancelWindow(string d = null)
         {
             InitializeComponent();
-            if(d!=null)
+            if (d!=null)
             {
                 image.Source = new BitmapImage(new Uri("pack://application:,,,/Media/smileCat.jpg"));
-                TittleLabel.Content = "Нам было приятно с вами играть";
+                TittleLabel.Text = "Нам было приятно с вами играть, теперь ваш "+d+"будет присутствовать в моей угадывательной памяти";
                 TittleLabel.Background = Brushes.Green;
+                TittleLabel1.Background = Brushes.Green;
+
                 InitializeComponent();
             }
         }

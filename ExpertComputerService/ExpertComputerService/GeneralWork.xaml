@@ -13,7 +13,7 @@
             <RowDefinition Height="301*"/>
         </Grid.RowDefinitions>
         <Viewbox StretchDirection="UpOnly">
-            <Grid Height="84" VerticalAlignment="Top" Width="359" Background="#FF91996D">
+            <Grid x:Name="GridWrapAnswer" Height="84" VerticalAlignment="Top" Width="359" Background="#FF91996D">
                 <Label x:Name="label"  FontSize="5" HorizontalContentAlignment="Center" Foreground="White" FontFamily="Sitka Small">
                     <Label.Content>
                         <TextBlock x:Name="LabelWrap" TextAlignment="Center" TextWrapping="Wrap" Height="74" Width="349" >Label Text And Wrap</TextBlock>
@@ -22,7 +22,7 @@
             </Grid>
         </Viewbox>
         <Viewbox Grid.Row="2" StretchDirection="UpOnly" VerticalAlignment="Bottom">
-            <Grid Height="160" Width="426" VerticalAlignment="Bottom">
+            <Grid x:Name="GridSelectedAnswers" Height="160" Width="426" VerticalAlignment="Bottom" d:IsHidden="True">
                 <StackPanel Margin="0,0,2,2">
                     <Button x:Name="button1" Content="Да" VerticalAlignment="Bottom" Click="button1_Click" Height="32" Foreground="White" BorderBrush="White" Background="#FF445D38" Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="5,2" VerticalContentAlignment="Center"/>
                     <Button x:Name="button2" Content="Нет" VerticalAlignment="Bottom" Click="button2_Click" Height="32" Foreground="White" BorderBrush="White" Background="#FF614640" Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="5,2" VerticalContentAlignment="Center"/>
@@ -32,10 +32,18 @@
                 </StackPanel>
             </Grid>
         </Viewbox>
-        <Grid x:Name="DevainedGrid" HorizontalAlignment="Left" Height="143" Margin="135,92,0,0" VerticalAlignment="Top" Width="495" Grid.RowSpan="3" Background="#FF98E0A5">
-            <Button x:Name="buttonYes" Content="НЕТ" Margin="310,66,0,0" VerticalAlignment="Top" Height="62" HorizontalAlignment="Left" Width="134" Click="button_No_Click"/>
-            <Button x:Name="button_No" Content="Да" HorizontalAlignment="Left" Margin="39,66,0,0" VerticalAlignment="Top" Width="134" Height="62" Click="buttonYes_Click"/>
-            <Label x:Name="label1" Content="Угадал ли я?" HorizontalAlignment="Left" Margin="194,23,0,0" VerticalAlignment="Top"/>
+        <Grid x:Name="DevainedGrid" Margin="127,10,134,9.541" Background="#FFF2F9D0" Grid.RowSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="247*"/>
+                <ColumnDefinition Width="248*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="button_No" Content="НЕТ" Margin="12,472,10,10" Click="button_No_Click" Style="{DynamicResource buttonSetupStyle}" Background="#FFB8887E" Foreground="White" FontFamily="Comic Sans MS" Grid.Column="1"/>
+            <Button x:Name="button_Yes" Content="Да" Margin="10,472,13,10" Click="buttonYes_Click" Style="{DynamicResource buttonSetupStyle}" Background="#FF445D38" Foreground="White" FontFamily="Comic Sans MS" RenderTransformOrigin="0.537,0.032"/>
+            <Label x:Name="label1" Content="Угадал ли я?" Margin="10,415,10,0" VerticalAlignment="Top" FontSize="24" Grid.ColumnSpan="2" Foreground="#FF249C00" FontWeight="Bold" Background="#FFD3FFC3" Height="43"/>
+            <Label x:Name="label_Copy" HorizontalContentAlignment="Center" Foreground="White" FontFamily="Sitka Small" Margin="10,65,10,386.459" Grid.ColumnSpan="2" Background="#FF979576" FontSize="20">
+                <TextBlock x:Name="thinkWrap" TextAlignment="Center" TextWrapping="Wrap" Height="74" Width="349" Text="Текст того, что он думает" />
+            </Label>
+            <Label x:Name="label1_Copy" Content="Я думаю это:" Margin="10,10,10,0" VerticalAlignment="Top" FontSize="24" Grid.ColumnSpan="2" Foreground="#FF050600" FontWeight="Bold" Background="#FFFFFBB2" Height="43"/>
         </Grid>
 
     </Grid>

@@ -67,7 +67,7 @@ namespace ExpertComputerService
                 else
                     MessageBox.Show("successfully added question");
 
-                new SumbitCancelWindow("Success").Show();
+                new SumbitCancelWindow(tbHeroName.Text).Show();
                 this.Close();
             }
             else

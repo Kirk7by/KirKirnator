@@ -33,6 +33,7 @@ namespace ExpertComputerService
             tbQuestionPriority.Text = ExpConfig.Default.PriorytyQuestions;
             tbMinProbabilityQuestion.Text = Convert.ToString(ExpConfig.Default.MinProbalityQuestion).Remove(0,2);
             TbListHeroMaxProbality.Text = Convert.ToString(ExpConfig.Default.MinGetQuestionMaxProbality);
+            tbAttempts.Text = Convert.ToString(ExpConfig.Default.QuantityAttempt);
         }
 
         private void uloadingBd()
@@ -56,7 +57,8 @@ namespace ExpertComputerService
                 ExpConfig.Default.PriorytyQuestions = tbQuestionPriority.Text;
                 ExpConfig.Default.MinProbalityQuestion = Convert.ToDouble("0,"+tbMinProbabilityQuestion.Text);
                 ExpConfig.Default.MinGetQuestionMaxProbality = Convert.ToInt32(TbListHeroMaxProbality.Text);
-                 
+                ExpConfig.Default.QuantityAttempt = Convert.ToInt32(tbAttempts.Text);
+
                 ExpConfig.Default.Save();
             }
             catch(Exception ex)
@@ -67,7 +69,8 @@ namespace ExpertComputerService
         {
             tbQuestionPriority.Text = "Random";
             tbMinProbabilityQuestion.Text = "90";
-            TbListHeroMaxProbality.Text = "5";
+            TbListHeroMaxProbality.Text = "10";
+            tbAttempts.Text = "5";
         }
     }
 }
