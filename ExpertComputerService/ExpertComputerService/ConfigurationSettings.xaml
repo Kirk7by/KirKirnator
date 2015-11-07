@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExpertComputerService"
         mc:Ignorable="d"
-        Title="ConfigurationSettings" Height="447.237" Width="650.812">
+        Title="ConfigurationSettings" Height="541.904" Width="650.812">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="173*"/>
@@ -14,19 +14,19 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition Height="41"/>
+            <RowDefinition Height="48"/>
         </Grid.RowDefinitions>
         <TabControl x:Name="tabControl" Margin="0,0,0,2" Grid.ColumnSpan="3">
             <TabItem Header="Настройки&#xD;&#xA;базы данных">
-                <Grid Background="#FFE5E5E5" Margin="0,0,0,3">
-                    <Label x:Name="label" Content="Приоритетный вопрос" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="136"/>
-                    <ComboBox x:Name="tbQuestionPriority" Margin="10,26,10,0" VerticalAlignment="Top" Height="31"/>
-                    <Label x:Name="label_Copy" Content="Минимальная &#xD;&#xA;вероятность вопроса" HorizontalAlignment="Left" Margin="0,74,0,0" VerticalAlignment="Top" Width="132"/>
-                    <Label x:Name="label1" Content="0," HorizontalAlignment="Left" Margin="148,81,0,0" VerticalAlignment="Top" Width="25" HorizontalContentAlignment="Right" FontSize="18.667" FontWeight="Bold"/>
-                    <Label x:Name="label_Copy1" Content="Воличество героев выводимых в конце игры, в случае, &#xD;&#xA;если не получились угадать" HorizontalAlignment="Left" Margin="0,133,0,0" VerticalAlignment="Top" Width="332" Height="44"/>
-                    <TextBox x:Name="TbListHeroMaxProbality" HorizontalAlignment="Left" Height="28" Margin="326,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" BorderThickness="1" FontSize="18.667" Background="{x:Null}" VerticalContentAlignment="Center" Foreground="#FF03530A"/>
-                    <Label x:Name="label_Copy2" Content="Количество попыток угадывания:" HorizontalAlignment="Left" Margin="0,198,0,0" VerticalAlignment="Top" Width="209" Height="33"/>
-                    <TextBox x:Name="tbAttempts" HorizontalAlignment="Left" Height="28" Margin="209,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" BorderThickness="1" FontSize="18.667" Background="{x:Null}" VerticalContentAlignment="Center" Foreground="#FF03530A"/>
+                <Grid Background="#FF8D9B86" Margin="0,0,0,3">
+                    <Label x:Name="label" Content="Приоритетный вопрос:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" FontFamily="Consolas" FontWeight="Bold" FontSize="13.333" Margin="-1,0,0,0"/>
+                    <ComboBox x:Name="tbQuestionPriority" Margin="10,26,89,0" VerticalAlignment="Top" Height="31" PreviewMouseDown="tbQuestionPriority_PreviewMouseDown"/>
+                    <Label x:Name="label_Copy" Content="Минимальная вероятность вопроса:" HorizontalAlignment="Left" Margin="0,75,0,0" VerticalAlignment="Top" Width="251" FontFamily="Consolas" FontSize="13.333" FontWeight="Bold"/>
+                    <Label x:Name="label1" Content="0," HorizontalAlignment="Left" Margin="304,73,0,0" VerticalAlignment="Top" Width="25" HorizontalContentAlignment="Right" FontSize="18.667" FontWeight="Bold"/>
+                    <Label x:Name="label_Copy1" Content="Воличество героев выводимых в конце игры, &#xD;&#xA;в случае,если не получились угадать:" HorizontalAlignment="Left" Margin="0,123,0,0" VerticalAlignment="Top" Width="326" Height="44" FontFamily="Consolas" FontSize="13.333" FontWeight="Bold"/>
+                    <TextBox x:Name="TbListHeroMaxProbality" HorizontalAlignment="Left" Height="28" Margin="326,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" BorderThickness="1" FontSize="18.667" Background="White" VerticalContentAlignment="Center" Foreground="#FF9B0404" FontWeight="Bold" CaretBrush="#FF09FFE9" FontFamily="Consolas"/>
+                    <Label x:Name="label_Copy2" Content="Количество попыток угадывания:" HorizontalAlignment="Left" Margin="0,184,0,0" VerticalAlignment="Top" Width="227" Height="33" FontFamily="Consolas" FontSize="13.333" FontWeight="Bold"/>
+                    <TextBox x:Name="tbAttempts" HorizontalAlignment="Left" Height="28" Margin="326,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" BorderThickness="1" FontSize="18.667" Background="White" VerticalContentAlignment="Center" Foreground="#FF9B0404" FontWeight="Bold" CaretBrush="#FF09FFE9" FontFamily="Consolas"/>
                     <Border BorderThickness="1" Height="7" Margin="0,62,0,0" VerticalAlignment="Top">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -36,7 +36,7 @@
                             </LinearGradientBrush>
                         </Border.Background>
                     </Border>
-                    <Border BorderThickness="1" Height="7" Margin="0,121,0,0" VerticalAlignment="Top">
+                    <Border BorderThickness="1" Height="7" Margin="0,110,0,0" VerticalAlignment="Top">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FFBD9A9A" Offset="0"/>
@@ -45,7 +45,7 @@
                             </LinearGradientBrush>
                         </Border.Background>
                     </Border>
-                    <Border BorderThickness="1" Height="7" Margin="0,186,0,0" VerticalAlignment="Top">
+                    <Border BorderThickness="1" Height="7" Margin="0,172,0,0" VerticalAlignment="Top">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FFBD9A9A" Offset="0"/>
@@ -54,16 +54,29 @@
                             </LinearGradientBrush>
                         </Border.Background>
                     </Border>
+                    <Label x:Name="label_Copy3" Content="Строка подключения&#xD;&#xA;(для опытных)" HorizontalAlignment="Left" Margin="0,243,0,0" VerticalAlignment="Top" Width="146" Height="45" FontFamily="Consolas" FontSize="13.333" FontWeight="Bold"/>
+                    <Border BorderThickness="1" Height="7" Margin="0,222,0,0" VerticalAlignment="Top">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFBD9A9A" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                                <GradientStop Color="#7F424242" Offset="0.371"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <TextBox x:Name="tbDBConnectionString" Height="45" Margin="139,243,89,0" TextWrapping="Wrap" VerticalAlignment="Top" BorderThickness="1" Background="#FF1C2649" Foreground="White" FontFamily="Courier New" FontSize="13.333" FontWeight="Bold"/>
+                    <Button x:Name="SelectedBdFile" Content="Выбрать&#xD;&#xA;файл бд" HorizontalAlignment="Right" Margin="0,243,10,0" VerticalAlignment="Top" Width="74" Height="45" FontSize="10.667" Click="SelectedBdFile_Click" Foreground="#FF870000" FontWeight="Bold"/>
+                    <TextBox x:Name="tbMinProbabilityQuestion" HorizontalAlignment="Left" Height="28" Margin="326,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" BorderThickness="1" FontSize="18.667" Background="White" VerticalContentAlignment="Center" Foreground="#FF9B0404" FontWeight="Bold" CaretBrush="#FF09FFE9" FontFamily="Consolas"/>
+                    <Button x:Name="btRandomQuestion" Content="Случайный&#xD;&#xA;вопрос" HorizontalAlignment="Right" Margin="0,26,10,0" VerticalAlignment="Top" Width="74" Height="31" FontSize="10.667" Click="btRandomQuestion_Click" Foreground="Black" FontWeight="Bold" BorderBrush="{x:Null}" FontFamily="Consolas"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="TabItem">
+            <TabItem Header="Настройки&#xD;&#xA;окон">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
-        <Button x:Name="btSave" Content="Сохранить" Margin="7,0,7,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Click="btSave_Click" Grid.Row="1" Grid.Column="1" Height="33" VerticalAlignment="Bottom"/>
-        <Button x:Name="button_Copy" Content="Отмена" Margin="10,0,7,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Grid.Row="1" Height="33" VerticalAlignment="Bottom"/>
-        <Button x:Name="btDefaultSettings" Content="По умолчанию" Margin="7,0,10,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Grid.Row="1" Grid.Column="2" Height="33" VerticalAlignment="Bottom" Click="btDefaultSettings_Click"/>
-        <TextBox x:Name="tbMinProbabilityQuestion" HorizontalAlignment="Left" Height="28" Margin="171,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" Grid.ColumnSpan="2" BorderThickness="1" FontSize="18.667" Background="{x:Null}" VerticalContentAlignment="Center" Foreground="#FF03530A"/>
+        <Button x:Name="btSave" Content="Сохранить" Margin="7,0,7,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Click="btSave_Click" Grid.Row="1" Grid.Column="1" Height="38" VerticalAlignment="Bottom"/>
+        <Button x:Name="button_Copy" Content="Отмена" Margin="10,0,7,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Grid.Row="1" Height="38" VerticalAlignment="Bottom"/>
+        <Button x:Name="btDefaultSettings" Content="По умолчанию" Margin="7,0,10,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Grid.Row="1" Grid.Column="2" Height="38" VerticalAlignment="Bottom" Click="btDefaultSettings_Click"/>
 
     </Grid>
 </Window>

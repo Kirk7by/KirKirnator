@@ -70,5 +70,18 @@ namespace Configurate {
                 this["QuantityAttempt"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("(LocalDb)\\MSSQLLocalDB;initial catalog=ExpertHeros;integrated security=True;Multi" +
+            "pleActiveResultSets=True; Connect Timeout = 10; App=EntityFramework")]
+        public string ConnectionString {
+            get {
+                return ((string)(this["ConnectionString"]));
+            }
+            set {
+                this["ConnectionString"] = value;
+            }
+        }
     }
 }

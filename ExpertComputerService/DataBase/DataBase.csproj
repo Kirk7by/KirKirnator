@@ -57,6 +57,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Configurate\Configurate.csproj">
+      <Project>{6eafe5de-96c1-47f1-9c5c-739103c519c7}</Project>
+      <Name>Configurate</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{6a7f80f5-a070-4857-89bf-2ccd1150ce74}</Project>
       <Name>Domain</Name>

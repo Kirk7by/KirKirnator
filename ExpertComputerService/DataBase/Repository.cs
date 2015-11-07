@@ -45,14 +45,11 @@ namespace DataBase.Repository
 
         public IEnumerable<Heroes> GetHeroesSource()
         {
-            List<Heroes> hs = new List<Heroes>();
             using (MyModelContext _context = new MyModelContext())
             {
-                hs.AddRange(_context.heroes.ToList());
+                return _context.heroes.ToList();
             }
-            return hs.ToList();
         }
-
         public IEnumerable<Questions> GetQuestionsSource()
         {
             using (MyModelContext _context = new MyModelContext())

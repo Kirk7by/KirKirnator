@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Configurate;
 using DataBase.Repository;
+using Microsoft.Win32;
 
 namespace ExpertComputerService
 {
@@ -34,6 +35,10 @@ namespace ExpertComputerService
             tbMinProbabilityQuestion.Text = Convert.ToString(ExpConfig.Default.MinProbalityQuestion).Remove(0,2);
             TbListHeroMaxProbality.Text = Convert.ToString(ExpConfig.Default.MinGetQuestionMaxProbality);
             tbAttempts.Text = Convert.ToString(ExpConfig.Default.QuantityAttempt);
+            if ((tbDBConnectionString.Text = ExpConfig.Default.ConnectionString) == "")
+                btDefaultSettings.Background = Brushes.GreenYellow;
+
+
         }
 
         private void uloadingBd()
@@ -58,6 +63,7 @@ namespace ExpertComputerService
                 ExpConfig.Default.MinProbalityQuestion = Convert.ToDouble("0,"+tbMinProbabilityQuestion.Text);
                 ExpConfig.Default.MinGetQuestionMaxProbality = Convert.ToInt32(TbListHeroMaxProbality.Text);
                 ExpConfig.Default.QuantityAttempt = Convert.ToInt32(tbAttempts.Text);
+                ExpConfig.Default.ConnectionString = tbDBConnectionString.Text;
 
                 ExpConfig.Default.Save();
             }
@@ -71,6 +77,31 @@ namespace ExpertComputerService
             tbMinProbabilityQuestion.Text = "90";
             TbListHeroMaxProbality.Text = "10";
             tbAttempts.Text = "5";
+            tbDBConnectionString.Text = @"(LocalDb)\MSSQLLocalDB; initial catalog = ExpertHeros; integrated security = True; MultipleActiveResultSets = True; App = EntityFramework";
+        }
+        
+        private void SelectedBdFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "mdf File|*.mdf|ALL Files|*. ";
+            openFileDialog1.Title = "Select a Cursor File";
+
+
+
+            if (openFileDialog1.ShowDialog() == true)
+                tbDBConnectionString.Text = @"(LocalDB)\MSSQLLocalDB; AttachDbFilename =" + openFileDialog1.FileName+ ";Integrated Security = True; Connect Timeout = 30";
+        }
+
+        private void btRandomQuestion_Click(object sender, RoutedEventArgs e)
+        {
+            tbQuestionPriority.Text = "";
+            btRandomQuestion.Background = Brushes.GreenYellow;
+        }
+
+
+        private void tbQuestionPriority_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            btRandomQuestion.Background = Brushes.White;
         }
     }
 }
