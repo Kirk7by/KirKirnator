@@ -18,9 +18,6 @@ using DataBase;
 
 namespace ExpertComputerService
 {
-    /// <summary>
-    /// Логика взаимодействия для Window2.xaml
-    /// </summary>
     public partial class GeneralWork : Window
     {
         Expertcore ExpCore = new Expertcore();
@@ -32,48 +29,30 @@ namespace ExpertComputerService
             LabelWrap.Text = ExpCore.StartMechanism();
 
             DevainedGrid.Visibility = Visibility.Collapsed;
+        }
 
-        }
-        private void outputHeroMessage(string Hero, string Question)
-        {
-            LabelWrap.Text = Question;
-
-            
-            thinkWrap.Text = Hero;
-            DevainedGrid.Visibility = Visibility.Visible;
-            GridSelectedAnswers.Visibility = Visibility.Collapsed;
-            GridWrapAnswer.Visibility = Visibility.Collapsed;
-        }
-        private void openWindowAddHero(object sender, EventArgs e)
-        {
-            new GenerateWork_AddHeroAndQuestion().Show();
-            this.Close();
-        }
+        #region General buttons
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             CoreLink(1);
         }
-  
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             CoreLink(2);
         }
-
         private void button3_Click(object sender, RoutedEventArgs e)
         {
             CoreLink(3);
         }
-
         private void button4_Click(object sender, RoutedEventArgs e)
         {
             CoreLink(4);
         }
-
         private void button5_Click(object sender, RoutedEventArgs e)
         {
             CoreLink(5);
         }
-
+        #endregion
 
         private void CoreLink(int otv)
         {
@@ -82,6 +61,14 @@ namespace ExpertComputerService
                 LabelWrap.Text = quest;
         }
 
+        private void outputHeroMessage(string Hero, string Question)
+        {
+            LabelWrap.Text = Question;
+            thinkWrap.Text = Hero;
+            DevainedGrid.Visibility = Visibility.Visible;
+            GridSelectedAnswers.Visibility = Visibility.Collapsed;
+            GridWrapAnswer.Visibility = Visibility.Collapsed;
+        }
         private void button_No_Click(object sender, RoutedEventArgs e)
         {
             Exception ex = ExpCore.ShippingNoConfirmQuestionProbability();
@@ -93,7 +80,6 @@ namespace ExpertComputerService
             GridSelectedAnswers.Visibility = Visibility.Visible;
             GridWrapAnswer.Visibility = Visibility.Visible;
         }
-
         private void buttonYes_Click(object sender, RoutedEventArgs e)
         {
             Exception ex = ExpCore.ShippingСonfirmQuestionProbability();
@@ -102,6 +88,12 @@ namespace ExpertComputerService
             else
                 MessageBox.Show("SUCCESS SHIPPING UPDATE HERO");
             new SumbitCancelWindow("Мне было очень приятно играть с вами.").Show();
+            this.Close();
+        }
+
+        private void openWindowAddHero(object sender, EventArgs e)
+        {
+            new GenerateWork_AddHeroAndQuestion().Show();
             this.Close();
         }
     }

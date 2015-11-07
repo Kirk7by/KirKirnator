@@ -70,7 +70,7 @@ namespace ExpertComputerService
                 else
                     MessageBox.Show("successfully added question");
 
-                new SumbitCancelWindow("Нам было приятно с вами играть, теперь ваш "+ tbHeroName.Text+" будет присутствовать в моей угадывательной памятиtb").Show();
+                new SumbitCancelWindow("Нам было приятно с вами играть, теперь ваш "+ tbHeroName.Text+" будет присутствовать в моей угадывательной памяти!").Show();
                 this.Close();
             }
             else

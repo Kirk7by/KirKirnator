@@ -16,27 +16,22 @@ namespace ExpertCore
         internal event EventHandler QuestionEnter;   //событие, максимальное количество попыток выбора исчерпано, необходимо добавить новый вопрос, *либо выбрать из списка подобный*
         internal event Action<string,string> GetMessageHero; //событие, Нужно вывести предположительный ответ
 
+        static string heroName; //последний вероятный герой
 
-        internal event Func<string> QuestionStart; //событие, Процесс запущен// предварительно сброшен
-        internal event EventHandler QuestionStop; //событие, Процесс остановлен//данные сброшены // из-за ошибок, либо других причин
-
-        static int testint1, testint2, testint3;
-        static string heroName;
-        
         static List<HeroesProgramm> lHeroes;   //список героев
         static List<Questions> lQuestions;  //список вопросов
         static List<Questions> Quest1;  //добавляем
         static List<Questions> Quest2;  //убираем
 
-        string test = ""; //TODO: ТЕСТИТЬ
         static int indexQuest2; //индексатор выбранных вопросов
-        static int IterAttempst;
+        static int IterAttempst; //Итератор вывода предположительного героя
         internal OperatingMechanism()
         {
-            QuestionStart += NewStarting;
         }
 
-        internal string NewStarting()   //начать заново
+
+        #region Основные методы
+        public string NewStarting()   //начать заново, или первый старт 
         {
             EntityStorage ent = new Repository().GetEntityStorage();
             //   lHeroes = ent.Heroes.ToList();
@@ -75,14 +70,8 @@ namespace ExpertCore
             if (Quest2.Count == 0)
             {
                 GetProbabilityProizvHero(Quest1.ToList());
-                string str = "";
-                foreach (var s in lHeroes)
-                {
-                    str = str + ") " + s.NameHeroes + ": (" + s.ProbabilityHero + ": " + s.ProbabilityProizvHero + ": " + s.ProbabilityProizvHero;
-                }
-                //       return "The End";
                 this.QuestionEnter(this, EventArgs.Empty);
-                return "Не угадал .Вот уж не задача. РЕЗУЛЬТАты: +\n" + str + "\n Событие добавить новый вопрос..";
+                return null;
             }
 
             Quest2[indexQuest2].OtvetSelected = otv;    //TODO: НУЖНЫ ТЕСТЫ именно этой части кода
@@ -96,12 +85,10 @@ namespace ExpertCore
             double? MinEntropy = 0;
             if (Quest2.Count != 0)
             {
-                testint1 = Quest2.Count;
                 Quest2 = GetСonditionalEntropy(Quest2.ToList()).ToList();
                 MinEntropy = Quest2[0].ProbabilityQustion;
                 int i = -1;
                 indexQuest2 = 0;
-                testint2 = Quest2.Count;
                 foreach (var q2 in Quest2)
                 {
                     i++;
@@ -113,7 +100,6 @@ namespace ExpertCore
                     }
                 }
             }
-
 
             //получение героя с самой максимальной вероятностью
             string MaxprobalityHero = "ничего";
@@ -128,33 +114,19 @@ namespace ExpertCore
                 }
             }
 
-
-            // //временное условие
-            if (MaxheroProb >= ExpConfig.Default.MinProbalityQuestion)
+            //проверка на попадание героя под выбранную максимальную вероятность и количество предположительных ответов
+            if (MaxheroProb >= ExpConfig.Default.MinProbalityQuestion && Quest2.Count != 0)
             {
-                if (Quest2.Count != 0)
+                if (IterAttempst <= ExpConfig.Default.QuantityAttempt)
                 {
-                    string str33 = "";
-                    foreach(var s in lHeroes)
-                    {
-                        str33 = s.NameHeroes + str33;
-                    }
-                    if (IterAttempst <= ExpConfig.Default.QuantityAttempt)  //проверка условия количества предположительных ответов
-                    {
-                        GetMessageHero(MaxprobalityHero + "(" + str33 + ")", Qestion + " (" + Quest2.Count + ")");   //TODO:ЧИСТИТЬ
-                        IterAttempst++;
-                    }
-                    else
-                    {
-                        QuestionEnter(this, EventArgs.Empty);
-                    }
-                    return null;
+                    GetMessageHero(MaxprobalityHero, Qestion);
+                    IterAttempst++;
                 }
                 else
                 {
-               //     GetProbabilityProizvHero(Quest1.ToList());        //:TODO THIS COMMENTED SMUTED COD
-                    this.QuestionEnter(this, EventArgs.Empty);
+                    QuestionEnter(this, EventArgs.Empty);
                 }
+                return null;
             }
 
             if (Quest2.Count == 0)
@@ -162,26 +134,20 @@ namespace ExpertCore
                 QuestionEnter(this, EventArgs.Empty);
             }
 
-                string str1 = "", str2 = "";
-            foreach (var qs in Quest2)
-            {
-                str2 = str2 + qs.NameQestion + " (" + qs.ProbabilityQustion + ")|";
-            }
-            foreach (var s in lHeroes)
-            {
-                str1 = str1 + s.NameHeroes + " Вероятность:(" + s.ProbabilityHero + ") Промежуточная вероятность:(" + s.ProbabilityProizvHero + ")  \n";
-            }
-            return str1 + "Сумма промежуточных вероятностей: " + test + "\n\n Вопрос: " + Qestion + "\n Энтропия этого вопроса:(" + Convert.ToString(MinEntropy) + ")\n" + " Максимальная вероятность:(" + Convert.ToString(MaxheroProb) + ")(" + MaxprobalityHero + ")\n\n" + str2;
+            return Qestion;
         }   //получение вопроса
+        #endregion
 
+
+        #region Событийные методы
         public Exception ShippingСonfirmQuestionProbability(string HName=null)
         {
             if (HName == null)
                 return new Repository().UpdateEndGamePobability(Quest1, heroName);
             else
                 return new Repository().UpdateEndGamePobability(Quest1, HName);
-        }//подтверждение на сервер
-        public Exception ShippingNoConfirmQuestionProbability() //удаление героя который не прокатил
+        } //Отправка изменений вероятностей для всех героев
+        public Exception ShippingNoConfirmQuestionProbability() 
         {
             try
             {
@@ -198,10 +164,7 @@ namespace ExpertCore
                 return ex;
             }
             return null;
-        }
-
-
-
+        } //удаление героя который не прокатил
         public IEnumerable<Heroes> GetPriorityListHero()
         {
             lHeroes.Sort((x, y) => ((double)x.ProbabilityHero).CompareTo(y.ProbabilityHero));   //сортируем по максимальной вероятности
@@ -216,17 +179,14 @@ namespace ExpertCore
                     break;
             }
             return heros.ToList();
-        }
-
-        #region отправка нового героя и вопроса на сервер
+        }   //Получение списка наиболее вероятных героев
         public Exception shippingNewHeroAndQuestion(string nameHero, string nameQuestion)
         {
             return new Repository().AddHeroesAndQuestion(nameHero, nameQuestion, Quest1);
-        }
-
-        
-
+        } //Отправка нового героя и вопроса на сервер
         #endregion
+
+
         #region ВЫБОР ПЕРСОНАЖА ПО ЗАДАННЫМ ВОПРОСАМ
         //--------------------------input: NULL/Otput: ProbabilityAprioryHero
         private void GetSortListHero()    //Получение отсортированного списка Hero с априорной вероятностью
@@ -236,10 +196,6 @@ namespace ExpertCore
             {
                 l.ProbabilityAprioryHero = (double)l.WeigthHero / lHeroes.Select(p => p.WeigthHero).Sum();
             }
-
-            //   lHeroes[0].ProbabilityAprioryHero =(double?)lHeroes[0].WeigthHero / lHeroes.Select(p => p.WeigthHero).Sum();
-            //ВАЖНОЕ УТОЧНЕНИЕ: деление осуществлять только с (double)
-            //TODO: Не забыть стереть РЕТУРН после тестов
         }
 
         //--------------------------input:OtvetSelected, List QuestionSelected /Otput: ProbabilityProizvHero
@@ -296,7 +252,6 @@ namespace ExpertCore
             {
                 SumProbabilityProizvHero = SumProbabilityProizvHero + l.ProbabilityProizvHero;
             }
-            test = Convert.ToString(SumProbabilityProizvHero);
             foreach (var l in lHeroes)
             {
                 l.ProbabilityHero = (l.ProbabilityProizvHero) / SumProbabilityProizvHero;
@@ -305,7 +260,6 @@ namespace ExpertCore
             }
         }
         #endregion
-
         #region Выбор вопроса
 
         private IEnumerable<Questions> GetСonditionalEntropy(IEnumerable<Questions> QuestionsNext) //Получение условной энтропии для каждого вопроса
