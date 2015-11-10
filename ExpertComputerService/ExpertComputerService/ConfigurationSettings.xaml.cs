@@ -58,7 +58,7 @@ namespace ExpertComputerService
         }
         private void uploadingThemes()
         {
-            comboBoxThema.ItemsSource = new string[] { "Dictionary1.xaml", "Dictionary2DarkViolet.xaml", "Dictionary3Blue.xaml", "Страшная" };
+            comboBoxThema.ItemsSource = new string[] { "Dictionary1.xaml", "Dictionary2DarkViolet.xaml", "Dictionary3Blue.xaml", "Light.xaml" };
         }
 
 

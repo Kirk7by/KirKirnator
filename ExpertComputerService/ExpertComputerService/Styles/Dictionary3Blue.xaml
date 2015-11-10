@@ -119,6 +119,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="1" />
+        <Setter Property="Background" Value="#33104B0D"></Setter>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -142,12 +143,12 @@
                             <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <!--  <Setter TargetName="border" Property="Background" Value="{DynamicResource Button.MouseOver.Background}" />  Меняет кнопку при снятии курсора-->
+                            <!--  <Setter TargetName="border" Property="Background" Value="{DynamicResource Button.MouseOver.Background}" ></Setter>-->
                             <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.MouseOver.Border}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Pressed.Background}" />
-                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Pressed.Border}" />
+
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Disabled.Background}" />
@@ -158,9 +159,10 @@
                         <EventTrigger RoutedEvent="MouseEnter">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ColorAnimation Storyboard.TargetName="border" Duration="0:0:0:0.8"
-                                Storyboard.TargetProperty="BorderBrush.Color" AutoReverse="True" RepeatBehavior="0:0:05" From="Gold" To="Gold">
+                                    <ColorAnimation Storyboard.TargetName="border" Duration="0:0:0:0.3"
+                                        Storyboard.TargetProperty="BorderBrush.Color" AutoReverse="False"  From="WhiteSmoke" To="Gold">
                                     </ColorAnimation>
+                                    <ColorAnimation Duration="00:00:0.3" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" To="Gold" AutoReverse="False" ></ColorAnimation>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -168,8 +170,9 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="border" Duration="0:0:0:0.3"
-                                Storyboard.TargetProperty="Background.Color">
+                                         Storyboard.TargetProperty="Background.Color">
                                     </ColorAnimation>
+                                    <ColorAnimation Duration="00:00:0.3" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"  ></ColorAnimation>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -179,4 +182,30 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
+
+    <Style x:Key="GridStyle1" TargetType="Grid">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF363BA2" Offset="0"/>
+                    <GradientStop Color="#FF1C4285" Offset="0.502"/>
+                    <GradientStop Color="#FF2A3E85" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="GridStyle2Phone" TargetType="Grid">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF1C586E" Offset="0.904"/>
+                    <GradientStop Color="#FF4B485D" Offset="0.615"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
 </ResourceDictionary>

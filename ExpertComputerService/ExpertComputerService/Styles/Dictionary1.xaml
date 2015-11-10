@@ -150,12 +150,12 @@
                             <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <!--  <Setter TargetName="border" Property="Background" Value="{DynamicResource Button.MouseOver.Background}" />  Меняет кнопку при снятии курсора-->
+                            <!--  <Setter TargetName="border" Property="Background" Value="{DynamicResource Button.MouseOver.Background}" ></Setter>-->
                             <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.MouseOver.Border}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Pressed.Background}" />
-                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Pressed.Border}" />
+                            
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Disabled.Background}" />
@@ -199,7 +199,7 @@
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF1B191D" Offset="0"/>
                     <GradientStop Color="#FF472A57" Offset="0.52"/>
-                    <GradientStop Color="#FF100615" Offset="0.96"/>
+                    <GradientStop Color="#FF24102E" Offset="0.96"/>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>

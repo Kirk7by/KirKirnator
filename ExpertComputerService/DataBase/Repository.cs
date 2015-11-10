@@ -214,11 +214,24 @@ namespace DataBase.Repository
         }
 
         //Добавление нового вопроса
-        public void AddQuestion(Questions que)
+        public void AddQuestion(string que)
         {
             using (var dbContext = new MyModelContext())
             {
-                dbContext.qestions.Add(que);
+                foreach(var hero in dbContext.heroes)
+                {
+                    dbContext.qestions.Add(new Questions
+                    {
+                        NameQestion = que,
+                        NameHeroes = hero.NameHeroes,
+                        OtvetSelected = 1,
+                        OtvetQuest1 = 0.2,
+                        OtvetQuest2 = 0.2,
+                        OtvetQuest3 = 0.2,
+                        OtvetQuest4 = 0.2,
+                        OtvetQuest5 = 0.2
+                    });
+                }
                 dbContext.SaveChanges();
             }
         }

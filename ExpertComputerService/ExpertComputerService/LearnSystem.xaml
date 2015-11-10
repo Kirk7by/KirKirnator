@@ -38,9 +38,9 @@
                         <GradientStop Color="#7F2D5116" Offset="0.974"/>
                     </LinearGradientBrush>
                 </Grid.Background>
-                <Button x:Name="button" Content="Добавить" HorizontalAlignment="Right" Margin="0,24,10,0" VerticalAlignment="Top" Width="75" Background="#E5DDDDDD"/>
+                <Button x:Name="buttonAddQuest" Content="Добавить" HorizontalAlignment="Right" Margin="0,24,10,0" VerticalAlignment="Top" Width="75" Background="#E5DDDDDD" Click="buttonAddQuest_Click"/>
                 <Label x:Name="label" Content="Добавление вопроса" Margin="0,0,307,0" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Consolas" Foreground="White"/>
-                <TextBox x:Name="textBox" Height="23" Margin="10,24,90,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#E5FFFFFF"/>
+                <TextBox x:Name="textBoxAddQuestion" Height="23" Margin="10,24,90,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#E5FFFFFF"/>
             </Grid>
             <Grid HorizontalAlignment="Left" Width="177" Grid.RowSpan="2">
                 <Button x:Name="buttonQuestions" HorizontalAlignment="Left" Content="Вопросы" Margin="9,83,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonQuestions_Click">

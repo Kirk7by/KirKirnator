@@ -15,11 +15,10 @@
     </Style>
 
     <SolidColorBrush x:Key="Button.Static.Background" />
-    <SolidColorBrush x:Key="Button.Static.Border" Color="Green" />
-    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FF046A12" />
-
-    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3B7676" />
-    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FF014A55" Opacity="0.6"/>
+    <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070" />
+    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFF7DCFA" />
+    <SolidColorBrush x:Key="Button.MouseOver.Border" />
+    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FF6D4D9C" Opacity="0.6"/>
 
     <SolidColorBrush x:Key="Button.Pressed.Border" />
     <SolidColorBrush x:Key="Button.Disabled.Background"/>
@@ -30,14 +29,12 @@
 
     <Style x:Key="DefaultButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}" />
-        <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
+        <Setter Property="Background" Value="#FF472A57" />
         <!--   <Setter Property="Button.FontFamily" Value="./fonts/#05_ZZ Death Note 1.0 RUS" />  -->
         <Setter Property="Button.FontSize" Value="17" />
         <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-
-        <Setter Property="Background" Value="#FF543E61" />
-        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="1" />
@@ -113,14 +110,21 @@
         <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
         <Setter Property="Button.FontFamily" Value="./fonts/#05_ZZ Death Note 1.0 RUS" />
         <Setter Property="Button.FontSize" Value="17" />
-        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
+        <Setter Property="BorderBrush" >
+            <Setter.Value>
+                <RadialGradientBrush SpreadMethod="Reflect" RadiusY="3">
+                    <GradientStop Color="#CCFFFFFF" Offset="0.54"/>
+                    <GradientStop Color="#19FFFFFF"/>
+                    <GradientStop Color="#19FFFFFF" Offset="0.988"/>
+                </RadialGradientBrush>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-        <Setter Property="BorderBrush" Value="#FF100615"></Setter>
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="1" />
-
+        <Setter Property="Background" Value="#FF5D6C55"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -143,13 +147,12 @@
                             <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource Button.MouseOver.Background}" />
-                            <!--RepeatBehavior="0:0:01" -время анимашек  Меняет кнопку при снятии курсора-->
+                            <!--  <Setter TargetName="border" Property="Background" Value="{DynamicResource Button.MouseOver.Background}" ></Setter>-->
                             <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.MouseOver.Border}" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Pressed.Background}" />
 
-                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource Button.Pressed.Border}" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter TargetName="border" Property="Background" Value="{StaticResource Button.Disabled.Background}" />
@@ -160,26 +163,20 @@
                         <EventTrigger RoutedEvent="MouseEnter">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ColorAnimation Storyboard.TargetName="border" Duration="0:0:0:0.2"
-                                        Storyboard.TargetProperty="BorderBrush.Color" AutoReverse="False"  From="#FF100615" To="#FF046A12">
+                                    <ColorAnimation Storyboard.TargetName="border" Duration="0:0:0:0.3"
+                                        Storyboard.TargetProperty="BorderBrush.Color" AutoReverse="False"  From="Gold" To="Gold">
                                     </ColorAnimation>
-
-                                    <ColorAnimation Storyboard.TargetName="border" Duration="0:0:0:0.8"
-                                            Storyboard.TargetProperty="Background.Color"
-                                            From="#FF0D2F47" To="#FF014A55" >
-                                    </ColorAnimation>
+                                    <ColorAnimation Duration="00:00:0.1" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" From="Gold" To="Gold" AutoReverse="False" ></ColorAnimation>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
                         <EventTrigger RoutedEvent="MouseLeave">
                             <BeginStoryboard>
                                 <Storyboard>
-                                    <ColorAnimation Storyboard.TargetName="border" Duration="0:0:0:0.3"
-                                        Storyboard.TargetProperty="Background.Color">
+                                    <ColorAnimation Storyboard.TargetName="border" Duration="0:0:0:0.1"
+                                         Storyboard.TargetProperty="Background.Color">
                                     </ColorAnimation>
-                                    <ColorAnimation Storyboard.TargetName="border" Duration="0:0:0:0.5"
-                                            Storyboard.TargetProperty="Background.Color">
-                                    </ColorAnimation>
+                                    <ColorAnimation Duration="00:00:0.3" Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)"  ></ColorAnimation>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -189,19 +186,14 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-
     <Style x:Key="GridStyleMainWindow" TargetType="Grid">
-        <Setter Property="Background" Value="#FF6CE682">
+        <Setter Property="Background" Value="#FF678762">
         </Setter>
     </Style>
-
     <Style x:Key="GridStyle1" TargetType="Grid">
-        <Setter Property="Background" Value="#FF2D4F4C"/>
+        <Setter Property="Background" Value="#FF63745B"/>
     </Style>
     <Style x:Key="GridStyle2Phone" TargetType="Grid">
-        <Setter Property="Background" Value="#FF5D9C7D"/>
+        <Setter Property="Background" Value="White"/>
     </Style>
-
-
 </ResourceDictionary>

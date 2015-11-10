@@ -15,6 +15,7 @@ using ExpertCore;
 using DataBase.Repository;
 using Domain;
 using DataBase;
+using System.Windows.Media.Animation;
 
 namespace ExpertComputerService
 {
@@ -71,7 +72,20 @@ namespace ExpertComputerService
         {
             LabelWrap.Text = Question;
             thinkWrap.Text = Hero;
+            
+            //Тест анимации в коде
+            DoubleAnimation db = new DoubleAnimation();
+            db.From = 0;
+            db.To = 1.0;
+            db.Duration = new Duration(TimeSpan.FromSeconds(1));
+            db.AutoReverse = false;
+            db.RepeatBehavior = RepeatBehavior.Forever;
+
+            db.RepeatBehavior=new RepeatBehavior(1);
+            DevainedGrid.BeginAnimation(OpacityProperty, db);
             DevainedGrid.Visibility = Visibility.Visible;
+
+            //
             GridSelectedAnswers.Visibility = Visibility.Collapsed;
             GridWrapAnswer.Visibility = Visibility.Collapsed;
         }

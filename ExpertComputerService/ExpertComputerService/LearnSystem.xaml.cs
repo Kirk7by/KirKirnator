@@ -25,14 +25,8 @@ namespace ExpertComputerService
         {
             InitializeComponent();
         }
-        List<Heroes> Hero= new List<Heroes>();
-        List<Questions> Quest = new List<Questions>();
-
-        
         private void buttonHeroes_Click(object sender, RoutedEventArgs e)
         {
-           
-            
             dgrid.ItemsSource = (new Repository().GetHeroesSource()).Select(d => new { d.NameHeroes, d.TextHero, d.WeigthHero }).ToList(); 
         }
         private void buttonQuestions_Click(object sender, RoutedEventArgs e)
@@ -100,6 +94,11 @@ namespace ExpertComputerService
             this.Close();
         }
 
-        
+        private void buttonAddQuest_Click(object sender, RoutedEventArgs e)
+        {
+            if(textBoxAddQuestion.Text!="")
+                try {  new Repository().AddQuestion(textBoxAddQuestion.Text); ProgressSuccessLabel.Visibility = Visibility.Visible;  }
+                catch(Exception ex) { MessageBox.Show(ex.Message); }
+        }
     }
 }
