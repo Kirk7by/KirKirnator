@@ -17,5 +17,8 @@
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">(LocalDb)\MSSQLLocalDB;initial catalog=ExpertHeros;integrated security=True;MultipleActiveResultSets=True; Connect Timeout = 10; App=EntityFramework</Value>
     </Setting>
+    <Setting Name="Thema" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Dictionary1.xaml</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

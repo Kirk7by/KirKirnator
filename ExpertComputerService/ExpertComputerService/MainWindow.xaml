@@ -5,13 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExpertComputerService"
         mc:Ignorable="d"
-        Title="Экспертная система &quot;Диагностика электронных устройств&quot;" Height="360" Width="535" WindowStartupLocation="CenterScreen" MinWidth="535" MinHeight="360" MaxHeight="360" MaxWidth="535" WindowStyle="ThreeDBorderWindow">
-    <Grid Background="White">
-        <Button x:Name="lern" Content="Обучение" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="497" RenderTransformOrigin="0.256,-6.533" Height="78" BorderBrush="{x:Null}" Foreground="White" Style="{DynamicResource DefaultButtonStyle}" Background="#FF79777A" FontFamily="Segoe UI" FontSize="26.667" BorderThickness="1" Click="lern_Click"/>
-        <Label x:Name="label" Content="Добро пожаловать в обучаемую экспертную систему. Выберите режим работы." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,0,0,0"/>
-        <Button x:Name="diagnostyc" Content="Диагностика" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" Width="497" RenderTransformOrigin="0.256,-6.533" Height="76" IsDefault="True" Click="diagnostyc_Click" BorderBrush="{x:Null}" Foreground="White" Style="{DynamicResource DefaultButtonStyle}" Background="#FF79777A" FontFamily="Segoe UI" FontSize="26.667" BorderThickness="1"/>
-        <Button x:Name="configurations" Content="Конфигурирование" HorizontalAlignment="Left" Margin="10,209,0,0" VerticalAlignment="Top" Width="497" RenderTransformOrigin="0.256,-6.533" Height="81" BorderBrush="{x:Null}" Foreground="White" Style="{DynamicResource DefaultButtonStyle}" Background="#FF79777A" FontFamily="Segoe UI" FontSize="26.667" BorderThickness="1" Click="configurations_Click"/>
-        <CheckBox x:Name="checkBox" Content="Больше не показывать" HorizontalAlignment="Right" Margin="0,0,5,4" VerticalAlignment="Bottom"/>
+        Title="Экспертная система &quot;Диагностика электронных устройств&quot;" Height="360" Width="535" WindowStartupLocation="CenterScreen" MinWidth="535" MinHeight="360" MaxHeight="360" MaxWidth="535" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Dictionary2DarkViolet.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Style="{DynamicResource GridStyleMainWindow}">
+        <Button x:Name="lern" Content="Обучение" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="497" RenderTransformOrigin="0.256,-6.533" Height="78" BorderBrush="{x:Null}" Foreground="White" Style="{DynamicResource DefaultButtonStyle}"  FontFamily="Segoe UI" FontSize="26.667" Click="lern_Click"/>
+        <Label x:Name="label" Content="Добро пожаловать в обучаемую экспертную систему. Выберите режим работы." VerticalAlignment="Top" Background="#B2000000" FontSize="13.333" Foreground="White"/>
+        <Button x:Name="diagnostyc" Content="Диагностика" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" Width="497" RenderTransformOrigin="0.256,-6.533" Height="76" IsDefault="True" Click="diagnostyc_Click" BorderBrush="{x:Null}" Foreground="White" Style="{DynamicResource DefaultButtonStyle}"  FontFamily="Segoe UI" FontSize="26.667" />
+        <Button x:Name="configurations" Content="Конфигурирование" HorizontalAlignment="Left" Margin="10,209,0,0" VerticalAlignment="Top" Width="497" RenderTransformOrigin="0.256,-6.533" Height="81" BorderBrush="{x:Null}" Foreground="White" Style="{DynamicResource DefaultButtonStyle}" FontFamily="Segoe UI" FontSize="26.667"  Click="configurations_Click"/>
+        <CheckBox x:Name="checkBox" Content="Больше не показывать" HorizontalAlignment="Right" Margin="0,0,8,4" VerticalAlignment="Bottom" Background="White" BorderBrush="#FF955151" Foreground="Black" FontWeight="Bold"/>
 
     </Grid>
 </Window>

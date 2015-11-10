@@ -24,11 +24,17 @@ namespace ExpertComputerService
         public GeneralWork()
         {
             InitializeComponent();
+            InitializeThemes();
             ExpCore.QuestionEnter += openWindowAddHero;
             ExpCore.GetMessageHero += outputHeroMessage;
             LabelWrap.Text = ExpCore.StartMechanism();
 
             DevainedGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void InitializeThemes()
+        {
+            this.Resources.MergedDictionaries[0] = Application.Current.Resources.MergedDictionaries[0];
         }
 
         #region General buttons
@@ -74,8 +80,7 @@ namespace ExpertComputerService
             Exception ex = ExpCore.ShippingNoConfirmQuestionProbability();
             if (ex != null)
                 MessageBox.Show(ex.Message);
-            else
-                MessageBox.Show("удалили");
+            
             DevainedGrid.Visibility = Visibility.Collapsed;
             GridSelectedAnswers.Visibility = Visibility.Visible;
             GridWrapAnswer.Visibility = Visibility.Visible;

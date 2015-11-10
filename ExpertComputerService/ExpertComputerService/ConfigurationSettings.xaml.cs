@@ -26,11 +26,13 @@ namespace ExpertComputerService
         {
             InitializeComponent();
             uloadingBd();
+            uploadingThemes();
             InitializeElementsInConfig();
         }
 
         private void InitializeElementsInConfig()
         {
+            //база данных
             tbQuestionPriority.Text = ExpConfig.Default.PriorytyQuestions;
             tbMinProbabilityQuestion.Text = Convert.ToString(ExpConfig.Default.MinProbalityQuestion).Remove(0,2);
             TbListHeroMaxProbality.Text = Convert.ToString(ExpConfig.Default.MinGetQuestionMaxProbality);
@@ -38,7 +40,8 @@ namespace ExpertComputerService
             if ((tbDBConnectionString.Text = ExpConfig.Default.ConnectionString) == "")
                 btDefaultSettings.Background = Brushes.GreenYellow;
 
-
+            //формы
+            comboBoxThema.Text = ExpConfig.Default.Thema;
         }
 
         private void uloadingBd()
@@ -53,24 +56,29 @@ namespace ExpertComputerService
                 MessageBox.Show(ex.Message);
             }
         }
-
+        private void uploadingThemes()
+        {
+            comboBoxThema.ItemsSource = new string[] { "Dictionary1.xaml", "Dictionary2DarkViolet.xaml", "Dictionary3Blue.xaml", "Страшная" };
+        }
 
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
             try {
+                //база данных
                 ExpConfig.Default.PriorytyQuestions = tbQuestionPriority.Text;
                 ExpConfig.Default.MinProbalityQuestion = Convert.ToDouble("0,"+tbMinProbabilityQuestion.Text);
                 ExpConfig.Default.MinGetQuestionMaxProbality = Convert.ToInt32(TbListHeroMaxProbality.Text);
                 ExpConfig.Default.QuantityAttempt = Convert.ToInt32(tbAttempts.Text);
                 ExpConfig.Default.ConnectionString = tbDBConnectionString.Text;
+                //темы
+                ExpConfig.Default.Thema = comboBoxThema.Text;
 
                 ExpConfig.Default.Save();
             }
             catch(Exception ex)
             { MessageBox.Show(ex.Message); }
         }
-
         private void btDefaultSettings_Click(object sender, RoutedEventArgs e)
         {
             tbQuestionPriority.Text = "Random";
@@ -79,7 +87,6 @@ namespace ExpertComputerService
             tbAttempts.Text = "5";
             tbDBConnectionString.Text = @"(LocalDb)\MSSQLLocalDB; initial catalog = ExpertHeros; integrated security = True; MultipleActiveResultSets = True; App = EntityFramework";
         }
-        
         private void SelectedBdFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -91,17 +98,29 @@ namespace ExpertComputerService
             if (openFileDialog1.ShowDialog() == true)
                 tbDBConnectionString.Text = @"(LocalDB)\MSSQLLocalDB; AttachDbFilename =" + openFileDialog1.FileName+ ";Integrated Security = True; Connect Timeout = 30";
         }
-
         private void btRandomQuestion_Click(object sender, RoutedEventArgs e)
         {
             tbQuestionPriority.Text = "";
             btRandomQuestion.Background = Brushes.GreenYellow;
         }
-
-
         private void tbQuestionPriority_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             btRandomQuestion.Background = Brushes.White;
+        }
+
+        private void btThema_Click(object sender, RoutedEventArgs e)
+        {
+            switch(comboBoxThema.Text)
+            {
+                case "Стандартная(светлая)": MessageBox.Show("пока тут ничего не происходит");
+                    break;
+            }
+        }
+
+        private void button_back_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
         }
     }
 }

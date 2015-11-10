@@ -5,30 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExpertComputerService"
         mc:Ignorable="d"
-        Title="Режим поиска вероятного ответа" Height="594.965" Width="763.939" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="Режим поиска вероятного ответа" Height="649.965" Width="846.439" WindowStartupLocation="CenterScreen">
+
+
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Dictionary2DarkViolet.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Button.Click">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation
+                        Storyboard.TargetName="LabelWrap" 
+                        Storyboard.TargetProperty="Opacity"
+                        From="0.0" To="1.0" Duration="0:0:0.2"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid Style="{DynamicResource GridStyle2Phone}">
         <Grid.RowDefinitions>
             <RowDefinition Height="151*"/>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="301*"/>
         </Grid.RowDefinitions>
-        <Viewbox StretchDirection="UpOnly" Margin="0,-1,0,30.541" Grid.RowSpan="2">
-            <Grid x:Name="GridWrapAnswer" Height="84" VerticalAlignment="Top" Width="359" Background="#FF91996D">
-                <Label x:Name="label"  FontSize="16" HorizontalContentAlignment="Stretch" Foreground="White" FontFamily="Comic Sans MS" VerticalContentAlignment="Stretch">
+        <Viewbox StretchDirection="UpOnly" Margin="0,-1,0,30.541" Grid.RowSpan="2" >
+            <Grid x:Name="GridWrapAnswer" Height="84" VerticalAlignment="Top" Width="359" Style="{DynamicResource GridStyle1}" d:IsHidden="True">
+
+                <Label x:Name="label"  FontSize="16" HorizontalContentAlignment="Stretch" Foreground="White" FontFamily="Comic Sans MS" VerticalContentAlignment="Center">
                     <Label.Content>
-                        <TextBlock x:Name="LabelWrap" TextAlignment="Center" TextWrapping="Wrap" Height="74" Width="349" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontFamily="Consolas" >Label Text And Wrap</TextBlock>
+                        <TextBlock x:Name="LabelWrap" TextAlignment="Center" TextWrapping="WrapWithOverflow" Foreground="White" FontFamily="Consolas" RenderTransformOrigin="0.495,0.523" HorizontalAlignment="Center" VerticalAlignment="Center" >Label Text And Wrap</TextBlock>
                     </Label.Content>
                 </Label>
             </Grid>
         </Viewbox>
-        <Viewbox Grid.Row="2" StretchDirection="UpOnly" VerticalAlignment="Bottom">
-            <Grid x:Name="GridSelectedAnswers" Height="160" Width="426" VerticalAlignment="Bottom" d:IsHidden="True">
-                <StackPanel Margin="0,0,2,2">
-                    <Button x:Name="button1" Content="Да" VerticalAlignment="Bottom" Click="button1_Click" Height="32" Foreground="White" BorderBrush="White" Background="#FF445D38" Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="5,2" VerticalContentAlignment="Center"/>
-                    <Button x:Name="button2" Content="Нет" VerticalAlignment="Bottom" Click="button2_Click" Height="32" Foreground="White" BorderBrush="White" Background="#FF614640" Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="5,2" VerticalContentAlignment="Center"/>
-                    <Button x:Name="button3" Content="Возможно да" VerticalAlignment="Bottom" Click="button3_Click" Height="31" Foreground="White" BorderBrush="White" Background="#FF58684F" Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="5,2" VerticalContentAlignment="Center"/>
-                    <Button x:Name="button4" Content="Возможно нет" VerticalAlignment="Bottom" Height="32" Foreground="White" BorderBrush="White" Background="#FF58684F" Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="5,2" VerticalContentAlignment="Center" Click="button4_Click"/>
-                    <Button x:Name="button5" Content="Не знаю" VerticalAlignment="Bottom" Height="32" Foreground="White" BorderBrush="White" Background="#FF666560" Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="5,2" VerticalContentAlignment="Center" Click="button5_Click"/>
+        <Viewbox Grid.Row="2" StretchDirection="UpOnly" Margin="0,76,0,0" d:IsHidden="True">
+            <Grid x:Name="GridSelectedAnswers" Height="160" Width="426" VerticalAlignment="Bottom">
+                <StackPanel Margin="10,0">
+                    <Button x:Name="button1" Content="Да" VerticalAlignment="Bottom" Click="button1_Click" Height="32" Foreground="White"   Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="0,3" VerticalContentAlignment="Center">
+
+                    </Button>
+                    <Button x:Name="button2" Content="Нет" VerticalAlignment="Bottom" Click="button2_Click" Height="32" Foreground="White"   Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="0,3" VerticalContentAlignment="Center"/>
+                    <Button x:Name="button3" Content="Возможно да" VerticalAlignment="Bottom" Click="button3_Click" Height="31" Foreground="White"   Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="0,3" VerticalContentAlignment="Center"/>
+                    <Button x:Name="button4" Content="Возможно нет" VerticalAlignment="Bottom" Height="32" Foreground="White"  Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="0,3" VerticalContentAlignment="Center" Click="button4_Click"/>
+                    <Button x:Name="button5" Content="Не знаю" VerticalAlignment="Bottom" Height="32" Foreground="White"   Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="0,3" VerticalContentAlignment="Center" Click="button5_Click"/>
                 </StackPanel>
             </Grid>
         </Viewbox>

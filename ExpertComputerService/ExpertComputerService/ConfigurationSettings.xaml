@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExpertComputerService"
         mc:Ignorable="d"
-        Title="ConfigurationSettings" Height="541.904" Width="650.812">
+        Title="ConfigurationSettings" Height="541.904" Width="650.812" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="173*"/>
@@ -17,7 +17,7 @@
             <RowDefinition Height="48"/>
         </Grid.RowDefinitions>
         <TabControl x:Name="tabControl" Margin="0,0,0,2" Grid.ColumnSpan="3">
-            <TabItem Header="Настройки&#xD;&#xA;базы данных">
+            <TabItem Header="Настройки&#xD;&#xA;базы данных" Margin="-1,0,1,0">
                 <Grid Background="#FF8D9B86" Margin="0,0,0,3">
                     <Label x:Name="label" Content="Приоритетный вопрос:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" FontFamily="Consolas" FontWeight="Bold" FontSize="13.333" Margin="-1,0,0,0"/>
                     <ComboBox x:Name="tbQuestionPriority" Margin="10,26,89,0" VerticalAlignment="Top" Height="31" PreviewMouseDown="tbQuestionPriority_PreviewMouseDown"/>
@@ -70,12 +70,17 @@
                     <Button x:Name="btRandomQuestion" Content="Случайный&#xD;&#xA;вопрос" HorizontalAlignment="Right" Margin="0,26,10,0" VerticalAlignment="Top" Width="74" Height="31" FontSize="10.667" Click="btRandomQuestion_Click" Foreground="Black" FontWeight="Bold" BorderBrush="{x:Null}" FontFamily="Consolas"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Настройки&#xD;&#xA;окон">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="Визуальные&#xD;&#xA;Настройки" Margin="-3,-2,-1,0">
+                <Grid Background="#FFE5E5E5">
+                    <Button x:Name="btThema" Content="Выбрать внешнюю тему" HorizontalAlignment="Left" Margin="231,32,0,0" VerticalAlignment="Top" Width="149" Height="30" Click="btThema_Click"/>
+                    <ComboBox x:Name="comboBoxThema" Margin="10,32,424,0" VerticalAlignment="Top" Height="30"/>
+                    <CheckBox x:Name="checkBox" Content="Полноэкранный режим" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Height="18" Width="154"/>
+                    <Label x:Name="label2" Content="Тема оформления" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
+                </Grid>
             </TabItem>
         </TabControl>
         <Button x:Name="btSave" Content="Сохранить" Margin="7,0,7,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Click="btSave_Click" Grid.Row="1" Grid.Column="1" Height="38" VerticalAlignment="Bottom"/>
-        <Button x:Name="button_Copy" Content="Отмена" Margin="10,0,7,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Grid.Row="1" Height="38" VerticalAlignment="Bottom"/>
+        <Button x:Name="button_back" Content="Отмена" Margin="10,0,7,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Grid.Row="1" Height="38" VerticalAlignment="Bottom" Click="button_back_Click"/>
         <Button x:Name="btDefaultSettings" Content="По умолчанию" Margin="7,0,10,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Grid.Row="1" Grid.Column="2" Height="38" VerticalAlignment="Bottom" Click="btDefaultSettings_Click"/>
 
     </Grid>

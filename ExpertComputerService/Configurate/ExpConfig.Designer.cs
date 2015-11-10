@@ -83,5 +83,17 @@ namespace Configurate {
                 this["ConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Dictionary1.xaml")]
+        public string Thema {
+            get {
+                return ((string)(this["Thema"]));
+            }
+            set {
+                this["Thema"] = value;
+            }
+        }
     }
 }

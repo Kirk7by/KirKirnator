@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ExpertCore;
 using DataBase.Repository;
+using Configurate;
 namespace ExpertComputerService
 {
     /// <summary>
@@ -24,11 +25,15 @@ namespace ExpertComputerService
         public MainWindow()
         {
             InitializeComponent();
-          /*  
-           new Repository().ClearBdData();
-            new Repository().FillBdData();
-            //*/
-         
+            /*  
+             new Repository().ClearBdData();
+              new Repository().FillBdData();
+              //*/
+            ResourceDictionary newDictionary = new ResourceDictionary();
+            newDictionary.Source = new Uri("Styles/"+ExpConfig.Default.Thema, UriKind.Relative);
+            this.Resources.MergedDictionaries[0] = newDictionary;
+            Application.Current.Resources.MergedDictionaries[0] = newDictionary;
+
         }
 
         private void diagnostyc_Click(object sender, RoutedEventArgs e)
@@ -46,6 +51,7 @@ namespace ExpertComputerService
         private void configurations_Click(object sender, RoutedEventArgs e)
         {
             new ConfigurationSettings().Show();
+            this.Close();
         }
     }
 }
