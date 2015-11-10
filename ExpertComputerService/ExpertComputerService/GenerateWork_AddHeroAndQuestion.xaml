@@ -5,35 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExpertComputerService"
         mc:Ignorable="d"
-        Title="Окно добавления нового героя" Height="454.195" Width="674.149" WindowStartupLocation="CenterScreen">
+        Title="Окно добавления нового героя" Height="583.195" Width="1001.149" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Viewbox x:Name="vievbox2" StretchDirection="UpOnly">
-            <Grid Background="#FFDAF1B3" Height="385" Width="604">
+        <Viewbox x:Name="vievbox2">
+            <Grid Background="#FFDAF1B3" Height="548" Width="989">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="251*"/>
                     <ColumnDefinition Width="259*"/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="TittleLabel2" Content="Введите название нового героя и вопрос, который &#xD;&#xA;будет с наибольшей степенью его характеризовать." Margin="0,1,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.526,0.577" Height="57" Foreground="White" Background="#FF99CF8D" FontWeight="Bold" FontFamily="Comic Sans MS" FontSize="16" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2"/>
                 <Button x:Name="Sumbit" Content="Отправить" Margin="10,0,0,0" VerticalAlignment="Bottom" Height="52" Click="Sumbit_Click" Style="{DynamicResource buttonSetupStyle}" Background="#FF445D38" Foreground="White" BorderThickness="5" BorderBrush="{x:Null}"/>
-                <TextBox x:Name="tbQuestName" Height="64" Margin="10,175,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14.667" Grid.ColumnSpan="2"/>
-                <TextBox x:Name="tbHeroName" Height="30" Margin="10,98,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14.667" Grid.ColumnSpan="2"/>
-                <Label x:Name="label1" Content="Название героя:" Margin="10,62,10,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" FontFamily="Comic Sans MS" FontSize="18.667" Background="#FF16B3C3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="tbQuestName" Height="64" Margin="10,382,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14.667" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="tbHeroName" Height="45" Margin="10,114,294,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14.667" Grid.ColumnSpan="2"/>
+                <Label x:Name="label1" Content="Название героя:" Margin="10,61,294,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" FontFamily="Comic Sans MS" FontSize="18.667" Background="#FF70A6AC" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Height="53"/>
                 <Button x:Name="Sumbit_Cancel" Content="Отмена" Margin="0,0,10,0" Click="Sumbit_Cancel_Click" Height="52" VerticalAlignment="Bottom" Style="{DynamicResource buttonSetupStyle}" Background="#FF614640" Foreground="White" BorderThickness="5" BorderBrush="{x:Null}" Grid.Column="1"/>
-                <Label x:Name="label1_Copy" Content="Характерезующий вопрос:" Margin="10,139,10,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" FontFamily="Comic Sans MS" FontSize="18.667" Background="#FF16B3C3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+                <Label x:Name="label1_Copy" Content="Характерезующий вопрос:" Margin="10,315,10,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" FontFamily="Comic Sans MS" FontSize="18.667" Background="#FF5B7E63" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Height="62"/>
+                <TextBox x:Name="tbHeroName_Detayl" Height="45" Margin="10,233,294,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Comic Sans MS" FontSize="14.667" Grid.ColumnSpan="2"/>
+                <Label x:Name="label1_Copy1" Content="Описание героя:" Margin="10,179,294,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" FontFamily="Comic Sans MS" FontSize="18.667" Background="#FF70A6AC" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.ColumnSpan="2" Height="54" RenderTransformOrigin="0.499,0.207"/>
+                <Label x:Name="label1_Copy2" Content="Картирнка героя" Margin="213,61,5,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White" FontFamily="Comic Sans MS" FontSize="18.667" Background="#FFB0B057" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Grid.Column="1"/>
+                <Border BorderBrush="#FFB0B057" BorderThickness="4" HorizontalAlignment="Left" Height="190" Margin="213,102,0,0" VerticalAlignment="Top" Width="279" RenderTransformOrigin="-0.903,0.169" Background="#FF9AE297" Grid.Column="1">
+                    <Image x:Name="image" Margin="9,9,9,6" RenderTransformOrigin="0.079,0.129" Source="Media/Unknown_Flag.png"/>
+                </Border>
+                <Button x:Name="button" Content="Выбрать" HorizontalAlignment="Left" Margin="306,102,0,0" VerticalAlignment="Top" Width="98" Grid.Column="1" Height="25" Background="#E5B0B057" BorderBrush="{x:Null}" Foreground="White"/>
             </Grid>
         </Viewbox>
-        <Viewbox Stretch="Fill">
-            <Grid x:Name="GridSelectedHero" Background="#FFD2EEDC" Height="309" Width="510">
+        <Viewbox x:Name="vievbox1">
+            <Grid x:Name="GridSelectedHero" Background="#FFDAF1B3" Height="541" Width="972">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="57*"/>
                     <ColumnDefinition Width="28*"/>
                     <ColumnDefinition Width="0"/>
                 </Grid.ColumnDefinitions>
-                <ListBox x:Name="listBox" Margin="10,115,1,55" Background="#FFEEF8FF" BorderBrush="{x:Null}" SelectionChanged="listBox_SelectionChanged" FontFamily="Comic Sans MS" FontSize="14.667" Grid.ColumnSpan="2"/>
+                <ListBox x:Name="listBox" Margin="4,115,7,55" Background="#FFEEF8FF" BorderBrush="{x:Null}" SelectionChanged="listBox_SelectionChanged" FontFamily="Comic Sans MS" FontSize="14.667" Grid.ColumnSpan="2"/>
                 <Label x:Name="label2" Content="Есть ли загаданный герой в этом списке? &#xD;&#xA;- Если есть, выбери его!" Margin="0,1,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.526,0.577" Height="57" Foreground="White" Background="#FF99CF8D" FontWeight="Bold" FontFamily="Comic Sans MS" FontSize="16" Grid.ColumnSpan="2" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Button x:Name="buttonExist" Content="Да это он" Margin="2,63,5,0" VerticalAlignment="Top" Height="41" Foreground="White" FontWeight="Bold" FontSize="20" BorderBrush="{x:Null}" Click="buttonExist_Click" Style="{DynamicResource buttonSetupStyle}" Background="#FF445D38" BorderThickness="4" Grid.Column="1"/>
-                <Button x:Name="buttonNoExist" Content="Такого в списке нет" Margin="10,0,0,0" VerticalAlignment="Bottom" Height="50" Foreground="White" FontWeight="Bold" FontSize="20" BorderBrush="{x:Null}" Click="buttonNoExist_Click" Style="{DynamicResource buttonSetupStyle}" Background="#FFB8887E" BorderThickness="4" Grid.ColumnSpan="2"/>
-                <ComboBox x:Name="comboBox" Margin="10,65,3,0" VerticalAlignment="Top" Height="39" BorderBrush="{x:Null}" FontFamily="Comic Sans MS" FontSize="18.667"/>
+                <Button x:Name="buttonExist" Content="Да это он" Margin="648,63,11,0" VerticalAlignment="Top" Height="41" Foreground="White" FontWeight="Bold" FontSize="20" BorderBrush="{x:Null}" Click="buttonExist_Click" Style="{DynamicResource buttonSetupStyle}" Background="#FF445D38" BorderThickness="4" Grid.ColumnSpan="2"/>
+                <Button x:Name="buttonNoExist" Content="Такого в списке нет" Margin="4,0,6,0" VerticalAlignment="Bottom" Height="50" Foreground="White" FontWeight="Bold" FontSize="20" BorderBrush="{x:Null}" Click="buttonNoExist_Click" Style="{DynamicResource buttonSetupStyle}" Background="#FF614640" BorderThickness="5" Grid.ColumnSpan="2"/>
+                <ComboBox x:Name="comboBox" Margin="4,65,9,0" VerticalAlignment="Top" Height="39" BorderBrush="{x:Null}" FontFamily="Comic Sans MS" FontSize="18.667"/>
             </Grid>
         </Viewbox>
 

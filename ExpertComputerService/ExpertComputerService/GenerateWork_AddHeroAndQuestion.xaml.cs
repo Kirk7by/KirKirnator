@@ -53,6 +53,7 @@ namespace ExpertComputerService
         private void buttonNoExist_Click(object sender, RoutedEventArgs e)
         {
             GridSelectedHero.Visibility = Visibility.Collapsed;
+            vievbox2.Visibility = Visibility.Visible;
         }
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

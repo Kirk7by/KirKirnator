@@ -27,17 +27,33 @@ namespace ExpertComputerService
         }
         List<Heroes> Hero= new List<Heroes>();
         List<Questions> Quest = new List<Questions>();
+
+        
         private void buttonHeroes_Click(object sender, RoutedEventArgs e)
         {
-            Hero= (new Repository().GetHeroesSource()).ToList();
-            dgrid.ItemsSource = Hero.ToList();
+           
+            
+            dgrid.ItemsSource = (new Repository().GetHeroesSource()).Select(d => new { d.NameHeroes, d.TextHero, d.WeigthHero }).ToList(); 
         }
-
         private void buttonQuestions_Click(object sender, RoutedEventArgs e)
         {
-            Quest= (new Repository().GetQuestionsSource()).ToList();
-            dgrid.ItemsSource = Quest;
+            dgrid.ItemsSource=(new Repository().GetQuestionsSource()).Select(d => new{ d.NameQestion } ).Distinct().ToList();
         }
+        private void buttonDominations_Click(object sender, RoutedEventArgs e)
+        {
+            dgrid.ItemsSource = (new Repository().GetQuestionsSource()).Select(d => new
+            {
+                d.NameQestion,
+                d.NameHeroes,
+                d.OtvetQuest1,
+                d.OtvetQuest2,
+                d.OtvetQuest3,
+                d.OtvetQuest4,
+                d.OtvetQuest5,
+                d.OtvetSelected
+            }).ToList();
+        }
+        
 
         private void deletebut_Click(object sender, RoutedEventArgs e)
         {
@@ -83,5 +99,7 @@ namespace ExpertComputerService
             new MainWindow().Show();
             this.Close();
         }
+
+        
     }
 }
