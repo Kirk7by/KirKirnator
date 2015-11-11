@@ -29,6 +29,10 @@ namespace ExpertCore
         {
             return Mech.GetQuestion(otv);
         }  //получение вопроса //NEXT Question
+        public string GetQuestion()
+        {
+            return Mech.GetQuestion();
+        }
 
         public Exception OutputNewHero(string heroName, string questName)
         {

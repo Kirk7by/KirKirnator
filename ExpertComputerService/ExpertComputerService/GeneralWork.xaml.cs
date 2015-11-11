@@ -89,12 +89,17 @@ namespace ExpertComputerService
             GridSelectedAnswers.Visibility = Visibility.Collapsed;
             GridWrapAnswer.Visibility = Visibility.Collapsed;
         }
+
+
         private void button_No_Click(object sender, RoutedEventArgs e)
         {
             Exception ex = ExpCore.ShippingNoConfirmQuestionProbability();
             if (ex != null)
                 MessageBox.Show(ex.Message);
-            
+            string quest = ExpCore.GetQuestion();
+            if (quest != null)
+                LabelWrap.Text = quest;
+
             DevainedGrid.Visibility = Visibility.Collapsed;
             GridSelectedAnswers.Visibility = Visibility.Visible;
             GridWrapAnswer.Visibility = Visibility.Visible;

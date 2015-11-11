@@ -65,13 +65,13 @@ namespace ExpertCore
         }
         public string GetQuestion(int otv)
         {
-            string Qestion = "";
-            
+
+
             if (Quest2.Count == 0)
             {
                 GetProbabilityProizvHero(Quest1.ToList());
                 this.QuestionEnter(this, EventArgs.Empty);
-                return null;
+                return "Количество вопросов исчерпано";
             }
 
             Quest2[indexQuest2].OtvetSelected = otv;    //TODO: НУЖНЫ ТЕСТЫ именно этой части кода
@@ -82,37 +82,11 @@ namespace ExpertCore
             GetProbabilityProizvHero(Quest1.ToList());
 
             //поиск из оставшихся вопросов вопроса с минимальной энтропией, только если есть в хоть один вопрос в списке вопросов
-            double? MinEntropy = 0;
-            if (Quest2.Count != 0)
-            {
-                Quest2 = GetСonditionalEntropy(Quest2.ToList()).ToList();
-                MinEntropy = Quest2[0].ProbabilityQustion;
-                int i = -1;
-                indexQuest2 = 0;
-                foreach (var q2 in Quest2)
-                {
-                    i++;
-                    if (MinEntropy >= q2.ProbabilityQustion)
-                    {
-                        indexQuest2 = i;
-                        Qestion = q2.NameQestion;
-                        MinEntropy = q2.ProbabilityQustion;
-                    }
-                }
-            }
 
-            //получение героя с самой максимальной вероятностью
-            string MaxprobalityHero = "ничего";
-            double? MaxheroProb = 0;
-            foreach (var hero in lHeroes)
-            {
-                if (hero.ProbabilityHero >= MaxheroProb)
-                {
-                    MaxheroProb = hero.ProbabilityHero;
-                    MaxprobalityHero = hero.NameHeroes;
-                    heroName = MaxprobalityHero;
-                }
-            }
+            string Qestion = "не прошел";
+            string MaxprobalityHero;
+            double? MaxheroProb;
+            Qestion = GetMixEntropyGetMaxProbalityHero(Qestion, out MaxprobalityHero, out MaxheroProb);
 
             //проверка на попадание героя под выбранную максимальную вероятность и количество предположительных ответов
             if (MaxheroProb >= ExpConfig.Default.MinProbalityQuestion && Quest2.Count != 0)
@@ -126,16 +100,74 @@ namespace ExpertCore
                 {
                     QuestionEnter(this, EventArgs.Empty);
                 }
-                return null;
+                return null; // TODO:ОСТАНОВИСЬ
             }
 
             if (Quest2.Count == 0)
             {
                 QuestionEnter(this, EventArgs.Empty);
+                return "Questions null";
             }
 
             return Qestion;
         }   //получение вопроса
+
+        private string GetMixEntropyGetMaxProbalityHero(string Qestion, out string MaxprobalityHero, out double? MaxheroProb)
+        {
+            double MinEntropy = 0;
+            if (Quest2.Count != 0)
+            {
+                Quest2 = GetСonditionalEntropy(Quest2.ToList()).ToList();
+                MinEntropy = (double)Quest2[0].ProbabilityQustion;
+                int i = -1;
+                indexQuest2 = 0;
+                foreach (var q2 in Quest2)
+                {
+                    i++;
+                    if (MinEntropy >= (double)q2.ProbabilityQustion)
+                    {
+                        indexQuest2 = i;
+                        Qestion = q2.NameQestion;
+                        MinEntropy = (double)q2.ProbabilityQustion;
+                    }
+                }
+            }
+
+            //получение героя с самой максимальной вероятностью
+            MaxprobalityHero = "ничего";
+            MaxheroProb = 0;
+            foreach (var hero in lHeroes)
+            {
+                if (hero.ProbabilityHero >= MaxheroProb)
+                {
+                    MaxheroProb = hero.ProbabilityHero;
+                    MaxprobalityHero = hero.NameHeroes;
+                    heroName = MaxprobalityHero;
+
+                }
+            }
+
+            return Qestion;
+        }
+
+        public string GetQuestion()  // Микширует все вопросы по вероятностям, при этом не проводит отбора// Безболезненный метод
+        {
+           
+            GetProbabilityProizvHero(Quest1.ToList());
+            if (Quest2.Count == 0)
+            {
+                GetProbabilityProizvHero(Quest1.ToList());
+                this.QuestionEnter(this, EventArgs.Empty);
+                return null;
+            }
+            Quest2 = GetСonditionalEntropy(Quest2.ToList()).ToList();
+
+            string Qestion = "не прошел";
+            string MaxprobalityHero;
+            double? MaxheroProb;
+            Qestion = GetMixEntropyGetMaxProbalityHero(Qestion, out MaxprobalityHero, out MaxheroProb);
+            return Qestion;
+        }
         #endregion
 
 
@@ -154,9 +186,10 @@ namespace ExpertCore
                 if (lHeroes.Count >= 2)
                 {
                     lHeroes.RemoveAll((item) => item.NameHeroes == heroName);
-                    Quest2.RemoveAll((item) => item.NameHeroes == heroName); //TODO: проводим чистку всех вопросов для этого героя
-                    Quest1.RemoveAll((item) => item.NameHeroes == heroName);
+            //        Quest2.RemoveAll((item) => item.NameHeroes == heroName); //TODO: проводим чистку всех вопросов для этого героя
+           //         Quest1.RemoveAll((item) => item.NameHeroes == heroName);
                     lQuestions.RemoveAll((item) => item.NameHeroes == heroName);
+                    GetProbabilityProizvHero(Quest1.ToList());//
                 }
             }
             catch(Exception ex)
@@ -184,6 +217,9 @@ namespace ExpertCore
         {
             return new Repository().AddHeroesAndQuestion(nameHero, nameQuestion, Quest1);
         } //Отправка нового героя и вопроса на сервер
+
+
+        
         #endregion
 
 
@@ -277,9 +313,9 @@ namespace ExpertCore
                 q5 = 0;
                 foreach (var qe in lQuestions)
                 {
-                    if (entr.NameQestion == qe.NameQestion)
+                    if (entr.NameQestion == qe.NameQestion)     //  if (entr.NameQestion == qe.NameQestion) //TODO:SWAP
                     {
-                        tmpprobalityHero = lHeroes.Find(item => (string)item.NameHeroes == (string)entr.NameHeroes).ProbabilityHero;
+                        tmpprobalityHero = lHeroes.Find(item => (string)item.NameHeroes == (string)qe.NameHeroes).ProbabilityHero;        //  tmpprobalityHero = lHeroes.Find(item => (string)item.NameHeroes == (string)entr.NameHeroes).ProbabilityHero; 
 
                         q1 += qe.OtvetQuest1 * tmpprobalityHero;
                         q2 += qe.OtvetQuest2 * tmpprobalityHero;
