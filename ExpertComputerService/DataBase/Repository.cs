@@ -183,11 +183,11 @@ namespace DataBase.Repository
                             OtvetSelected = 1,
                             NameQestion = nameQuestion,
                             NameHeroes = HERO.NameHeroes,
-                            OtvetQuest1 = 0,
+                            OtvetQuest1 = 0.01,
                             OtvetQuest2 = 0.8,
-                            OtvetQuest3 = 0,
+                            OtvetQuest3 = 0.01,
                             OtvetQuest4 = 0.15,
-                            OtvetQuest5 = 0.05,
+                            OtvetQuest5 = 0.03,
                         });
                     }
                     dbContext.qestions.Add(new Questions        //добавляем вопрос для нашего героя
@@ -196,10 +196,10 @@ namespace DataBase.Repository
                         NameQestion = nameQuestion,
                         NameHeroes = nameHero,
                         OtvetQuest1 = 0.8,
-                        OtvetQuest2 = 0,
+                        OtvetQuest2 = 0.01,
                         OtvetQuest3 = 0.15,
-                        OtvetQuest4 = 0,
-                        OtvetQuest5 = 0.05,
+                        OtvetQuest4 = 0.01,
+                        OtvetQuest5 = 0.03,
                     });
 
 

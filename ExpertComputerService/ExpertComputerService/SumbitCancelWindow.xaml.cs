@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Configurate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,20 @@ namespace ExpertComputerService
         public SumbitCancelWindow(string TittleStr = null)
         {
             InitializeComponent();
+            switch (ExpConfig.Default.FullscreanWinow)
+            {
+                case 1:
+                    this.WindowState = WindowState.Normal;
+                    break;
+                case 2:
+                    this.WindowState = WindowState.Maximized;
+                    break;
+                case 3:
+                    this.WindowStyle = WindowStyle.None;
+                    this.WindowState = WindowState.Maximized;
+                    break;
+            }
+
             if (TittleStr!=null)
             {
                 image.Source = new BitmapImage(new Uri("pack://application:,,,/Media/smileCat.jpg"));

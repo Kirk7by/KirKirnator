@@ -74,8 +74,9 @@
                 <Grid Background="#FFE5E5E5">
                     <Button x:Name="btThema" Content="Выбрать внешнюю тему" HorizontalAlignment="Left" Margin="231,32,0,0" VerticalAlignment="Top" Width="149" Height="30" Click="btThema_Click"/>
                     <ComboBox x:Name="comboBoxThema" Margin="10,32,424,0" VerticalAlignment="Top" Height="30"/>
-                    <CheckBox x:Name="checkBox" Content="Полноэкранный режим" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top" Height="18" Width="154"/>
-                    <Label x:Name="label2" Content="Тема оформления" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label2" Content="Тема оформления:" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="comboBoxWindowMode" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="203" Height="29"/>
+                    <Label x:Name="label2_Copy" Content="Режим окон:" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>

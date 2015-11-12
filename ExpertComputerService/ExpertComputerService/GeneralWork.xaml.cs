@@ -16,6 +16,7 @@ using DataBase.Repository;
 using Domain;
 using DataBase;
 using System.Windows.Media.Animation;
+using Configurate;
 
 namespace ExpertComputerService
 {
@@ -25,6 +26,20 @@ namespace ExpertComputerService
         public GeneralWork()
         {
             InitializeComponent();
+            switch (ExpConfig.Default.FullscreanWinow)
+            {
+                case 1:
+                    this.WindowState = WindowState.Normal;
+                    break;
+                case 2:
+                    this.WindowState = WindowState.Maximized;
+                    break;
+                case 3:
+                    this.WindowStyle = WindowStyle.None;
+                    this.WindowState = WindowState.Maximized;
+                    break;
+            }
+
             InitializeThemes();
             ExpCore.QuestionEnter += openWindowAddHero;
             ExpCore.GetMessageHero += outputHeroMessage;

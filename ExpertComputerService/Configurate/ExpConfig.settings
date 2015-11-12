@@ -20,5 +20,8 @@
     <Setting Name="Thema" Type="System.String" Scope="User">
       <Value Profile="(Default)">Dictionary1.xaml</Value>
     </Setting>
+    <Setting Name="FullscreanWinow" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

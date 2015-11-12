@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ExpertCore;
+using Configurate;
 
 namespace ExpertComputerService
 {
@@ -23,6 +24,19 @@ namespace ExpertComputerService
         Expertcore expCore;
         public GenerateWork_AddHeroAndQuestion()
         {
+            switch (ExpConfig.Default.FullscreanWinow)
+            {
+                case 1:
+                    this.WindowState = WindowState.Normal;
+                    break;
+                case 2:
+                    this.WindowState = WindowState.Maximized;
+                    break;
+                case 3:
+                    this.WindowStyle = WindowStyle.None;
+                    this.WindowState = WindowState.Maximized;
+                    break;
+            }
             InitializeComponent();
             expCore = new Expertcore();
             var HeroNamesList= from lh in expCore.GetPriorityListHero().ToList()

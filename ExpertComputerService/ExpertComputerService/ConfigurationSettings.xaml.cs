@@ -25,8 +25,10 @@ namespace ExpertComputerService
         public ConfigurationSettings()
         {
             InitializeComponent();
+            InitializeFullscreanMode();
             uloadingBd();
             uploadingThemes();
+            uploadingWindowMode();
             InitializeElementsInConfig();
         }
 
@@ -42,6 +44,23 @@ namespace ExpertComputerService
 
             //формы
             comboBoxThema.Text = ExpConfig.Default.Thema;
+            comboBoxWindowMode.Text = Convert.ToString(ExpConfig.Default.FullscreanWinow);
+        }
+        private void InitializeFullscreanMode()
+        {
+            switch (ExpConfig.Default.FullscreanWinow)
+            {
+                case 1:
+                    this.WindowState = WindowState.Normal;
+                    break;
+                case 2:
+                    this.WindowState = WindowState.Maximized;
+                    break;
+                case 3:
+                    this.WindowStyle = WindowStyle.None;
+                    this.WindowState = WindowState.Maximized;
+                    break;
+            }   //TODO: BUG STUDIA NO WORKING REFACTORING CRITICALL ERROR
         }
 
         private void uloadingBd()
@@ -60,7 +79,10 @@ namespace ExpertComputerService
         {
             comboBoxThema.ItemsSource = new string[] { "Dictionary1.xaml", "Dictionary2DarkViolet.xaml", "Dictionary3Blue.xaml", "Light.xaml" };
         }
-
+        private void uploadingWindowMode()
+        {
+            comboBoxWindowMode.ItemsSource = new int[] { 1, 2, 3};
+        }
 
         private void btSave_Click(object sender, RoutedEventArgs e)
         {
@@ -73,7 +95,9 @@ namespace ExpertComputerService
                 ExpConfig.Default.ConnectionString = tbDBConnectionString.Text;
                 //темы
                 ExpConfig.Default.Thema = comboBoxThema.Text;
+                ExpConfig.Default.FullscreanWinow = int.Parse(comboBoxWindowMode.Text);
 
+                InitializeFullscreanMode();
                 ExpConfig.Default.Save();
             }
             catch(Exception ex)

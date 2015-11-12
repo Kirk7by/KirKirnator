@@ -30,7 +30,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <DataGrid x:Name="dgrid" Margin="177,0,10,10" Background="#CCF0F0F0" ColumnWidth="*" Grid.Row="1"/>
+            <DataGrid x:Name="dgrid" Margin="177,0,10,10" Background="#CCF0F0F0" ColumnWidth="*" Grid.Row="1" SelectionUnit="Cell"/>
             <Grid x:Name="gridAddQuest" Height="0" Margin="177,0,10,0" VerticalAlignment="Top">
                 <Grid.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

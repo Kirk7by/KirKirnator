@@ -95,5 +95,17 @@ namespace Configurate {
                 this["Thema"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int FullscreanWinow {
+            get {
+                return ((int)(this["FullscreanWinow"]));
+            }
+            set {
+                this["FullscreanWinow"] = value;
+            }
+        }
     }
 }

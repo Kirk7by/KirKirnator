@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Domain;
+using System.Data;
+using Configurate;
 
 namespace ExpertComputerService
 {
@@ -24,6 +26,19 @@ namespace ExpertComputerService
         public LearnSystem()
         {
             InitializeComponent();
+            switch (ExpConfig.Default.FullscreanWinow)
+            {
+                case 1:
+                    this.WindowState = WindowState.Normal;
+                    break;
+                case 2:
+                    this.WindowState = WindowState.Maximized;
+                    break;
+                case 3:
+                    this.WindowStyle = WindowStyle.None;
+                    this.WindowState = WindowState.Maximized;
+                    break;
+            }
         }
         enum selectedButtons
         {
@@ -63,16 +78,26 @@ namespace ExpertComputerService
 
         private void deletebut_Click(object sender, RoutedEventArgs e)
         {
+            
             try
             {
-                Exception ERep=null;
-/*
-                switch(SelectBut)
+                int selectedColumn = dgrid.CurrentCell.Column.DisplayIndex;
+                var selectedCell = dgrid.SelectedCells[selectedColumn];
+                var cellContent = selectedCell.Column.GetCellContent(selectedCell.Item);
+                MessageBox.Show((cellContent as TextBlock).Text);
+                if (cellContent is TextBlock)
                 {
-                    case selectedButtons.QuestionsBut:
-                        var NameQuest = dgrid.SelectedItems. as string;
+                    
+                }
+
+                Exception ERep=null;
+
+           /*     switch(SelectBut)
+                {
+       /*             case selectedButtons.QuestionsBut:
+                        var NameQuest = ((DataRowView)dgrid.SelectedItem).Row.ItemArray[0].ToString();
                         MessageBox.Show(NameQuest);
-                        ERep = new Repository().RemoveQuestion(NameQuest);
+                  //      ERep = new Repository().RemoveQuestion(NameQuest);
                         break;
                         /*           case selectedButtons.HeroesBut:
                                        var NameHero = dgrid.SelectedItem as string;
@@ -83,11 +108,12 @@ namespace ExpertComputerService
 
                                }
                                else
-                                   MessageBox.Show("Всё плохо! Удалить данные невозможно!!!");*/
+                                   MessageBox.Show("Всё плохо! Удалить данные невозможно!!!");
+                                   */
 
-                }
+        //        }
 
-            */
+            
 
 
             }
@@ -95,6 +121,8 @@ namespace ExpertComputerService
             {
                 MessageBox.Show(ex.Message);
             }
+
+    
         }
 
         private void Window_MouseMove(object sender, MouseEventArgs e)
