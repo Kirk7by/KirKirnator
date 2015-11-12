@@ -25,13 +25,24 @@ namespace ExpertComputerService
         {
             InitializeComponent();
         }
+        enum selectedButtons
+        {
+            HeroesBut,
+            QuestionsBut,
+            DominatingBut
+        }
+        selectedButtons SelectBut;
+
+
         private void buttonHeroes_Click(object sender, RoutedEventArgs e)
         {
-            dgrid.ItemsSource = (new Repository().GetHeroesSource()).Select(d => new { d.NameHeroes, d.TextHero, d.WeigthHero }).ToList(); 
+            dgrid.ItemsSource = (new Repository().GetHeroesSource()).Select(d => new { d.NameHeroes, d.TextHero, d.WeigthHero }).ToList();
+            SelectBut = selectedButtons.HeroesBut; 
         }
         private void buttonQuestions_Click(object sender, RoutedEventArgs e)
         {
             dgrid.ItemsSource=(new Repository().GetQuestionsSource()).Select(d => new{ d.NameQestion } ).Distinct().ToList();
+            SelectBut = selectedButtons.QuestionsBut;
         }
         private void buttonDominations_Click(object sender, RoutedEventArgs e)
         {
@@ -46,6 +57,7 @@ namespace ExpertComputerService
                 d.OtvetQuest5,
                 d.OtvetSelected
             }).ToList();
+            SelectBut = selectedButtons.DominatingBut;
         }
         
 
@@ -54,27 +66,30 @@ namespace ExpertComputerService
             try
             {
                 Exception ERep=null;
-                var deletelst1 = dgrid.SelectedItem as Questions;
-                if (deletelst1 != null)
+/*
+                switch(SelectBut)
                 {
-                    ERep = new Repository().RemoveQuestion(deletelst1.NameQestion);
-                    if (ERep != null)
-                        MessageBox.Show(ERep.Message);
-                    ProgressSuccessLabel.Visibility = Visibility.Visible;
-                    return;
+                    case selectedButtons.QuestionsBut:
+                        var NameQuest = dgrid.SelectedItems. as string;
+                        MessageBox.Show(NameQuest);
+                        ERep = new Repository().RemoveQuestion(NameQuest);
+                        break;
+                        /*           case selectedButtons.HeroesBut:
+                                       var NameHero = dgrid.SelectedItem as string;
+                                        var deletelst2 = dgrid.SelectedItem as Heroes;
+                               if (deletelst2 != null)
+                               {
+                                   ERep = new Repository().RemoveHeroes(deletelst2.NameHeroes);
+
+                               }
+                               else
+                                   MessageBox.Show("Всё плохо! Удалить данные невозможно!!!");*/
+
                 }
 
-                var deletelst2 = dgrid.SelectedItem as Heroes;
-                if (deletelst2 != null)
-                {
-                    ERep = new Repository().RemoveHeroes(deletelst2.NameHeroes);
-                    if (ERep != null)
-                        MessageBox.Show(ERep.Message);
-                    ProgressSuccessLabel.Visibility = Visibility.Visible;
-                    return;
-                }
-                else
-                    MessageBox.Show("Всё плохо! Удалить данные невозможно!!!");
+            */
+
+
             }
             catch (Exception ex)
             {
