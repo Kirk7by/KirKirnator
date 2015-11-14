@@ -14,7 +14,28 @@
         <Label x:Name="TittleLabel1"  VerticalAlignment="Top" RenderTransformOrigin="0.526,0.577" Height="59" Foreground="White" Background="#FF5764A0" FontWeight="Bold" FontFamily="Comic Sans MS" FontSize="16" Padding="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <TextBlock x:Name="TittleLabel" TextAlignment="Center" TextWrapping="Wrap"  Text="Мне очень жаль, что мы не угадали твоего героя" />
         </Label>
-        <Button x:Name="butRetryGame_Copy" Content="Добавить вопрос" Margin="-1,0,0,74" VerticalAlignment="Bottom" Height="74" FontSize="26.667" Style="{DynamicResource buttonSetupStyle}" Background="#FF39871B" BorderThickness="5" BorderBrush="Black" Foreground="White" Click="butRetryGame_Click"/>
+        <Button x:Name="butaddQuests" Content="Добавить вопрос" Margin="-1,0,0,74" VerticalAlignment="Bottom" Height="74" FontSize="26.667" Style="{DynamicResource buttonSetupStyle}" Background="#FF39871B" BorderThickness="5" BorderBrush="Black" Foreground="White" Click="butaddQuests_Click"/>
+        <Grid x:Name="gridAddQuest" Visibility="Visible" Margin="0,64,0,227" RenderTransformOrigin="-1.14,-0.99" Background="#C6000000">
+            <TextBox x:Name="textBoxquest" Height="119" Margin="10,0,10,68" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="26.667" Background="#3368BBFF" Foreground="#FFF3FF00" BorderBrush="{x:Null}" FontFamily="Consolas"/>
+            <Label x:Name="label" Content="Введите вопрос:" HorizontalAlignment="Left" Margin="10,0,0,192" VerticalAlignment="Bottom" Height="52" Width="217" Background="#339EA251" FontSize="26.667" Foreground="#FF17FD00" BorderBrush="White"/>
+            <Button x:Name="addQuestact" Content="Сохранить" Margin="293,0,10,0" VerticalAlignment="Bottom" Height="63" FontSize="26.667" Style="{DynamicResource buttonSetupStyle}" Background="#51C3AE50" BorderThickness="5" BorderBrush="Black" Foreground="#FFFFE800" Click="addQuestact_Click"/>
+            <Label x:Name="label_success" Visibility="Collapsed" Content="Вопрос добавлен!!!" HorizontalAlignment="Left" Margin="10,0,0,5" VerticalAlignment="Bottom" Height="53" Width="278" Background="#6600F787" FontSize="26.667" Foreground="#FFE6FD00" BorderBrush="White"/>
+            <Label x:Name="label_error" Visibility="Collapsed" Content="Ошибка сохранения! &#xD;&#xA;Добавить не удалось:(" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Bottom" Height="77" Width="278" Background="#66000000" FontSize="24" Foreground="#FFCF1010" BorderBrush="White"/>
+            <ListView x:Name="listViewConsole"  Margin="10,10,10,249" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFFFD100" FontFamily="Consolas" FontSize="20" BorderThickness="0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+                <ListView.Resources>
+                    <Style TargetType="GridViewColumnHeader">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                    </Style>
+                    
+                    
+                </ListView.Resources>
+            </ListView>
+        </Grid>
 
 
     </Grid>

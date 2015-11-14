@@ -62,6 +62,8 @@
     <Compile Include="GeneralWork.xaml.cs">
       <DependentUpon>GeneralWork.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LearnSystemsMaterials\PHero.cs" />
+    <Compile Include="LearnSystemsMaterials\PQuestions.cs" />
     <Compile Include="SumbitCancelWindow.xaml.cs">
       <DependentUpon>SumbitCancelWindow.xaml</DependentUpon>
     </Compile>

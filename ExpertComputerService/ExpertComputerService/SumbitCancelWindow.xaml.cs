@@ -1,4 +1,5 @@
 ﻿using Configurate;
+using DataBase.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace ExpertComputerService
         public SumbitCancelWindow(string TittleStr = null)
         {
             InitializeComponent();
+            
             switch (ExpConfig.Default.FullscreanWinow)
             {
                 case 1:
@@ -56,6 +58,30 @@ namespace ExpertComputerService
         private void butExitGame_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void addQuestact_Click(object sender, RoutedEventArgs e)
+        {
+            try {
+                if (textBoxquest.Text == "") throw new System.ArgumentException("не есть хорошо");
+                new Repository().AddQuestion(textBoxquest.Text);
+                label_success.Visibility = Visibility.Visible;
+                label_error.Visibility = Visibility.Collapsed;
+                listViewConsole.Items.Add("Добавлен вопрос:"+ textBoxquest.Text);
+            }
+            catch(Exception ex) {
+                label_success.Visibility = Visibility.Collapsed;
+                label_error.Visibility = Visibility.Visible;
+                listViewConsole.Items.Add("Ошибка: " + ex.Message);
+            }
+        }
+
+        private void butaddQuests_Click(object sender, RoutedEventArgs e)
+        {
+            gridAddQuest.Visibility = Visibility.Visible;
+            textBoxquest.Text = "";
+            label_error.Visibility = Visibility.Collapsed;
+            label_success.Visibility = Visibility.Collapsed;
         }
     }
 }

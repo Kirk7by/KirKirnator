@@ -48,25 +48,25 @@
                 </Label>
             </Grid>
         </Viewbox>
-        <Viewbox Grid.Row="2" StretchDirection="UpOnly" Margin="0,76,0,0" d:IsHidden="True">
+        <Viewbox Grid.Row="2" StretchDirection="UpOnly" Margin="0,76,0,0">
             <Grid x:Name="GridSelectedAnswers" Height="160" Width="426" VerticalAlignment="Bottom">
                 <StackPanel Margin="10,0">
                     <Button x:Name="button1" Content="Да" VerticalAlignment="Bottom" Click="button1_Click" Height="32" Foreground="White"   Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="0,3" VerticalContentAlignment="Center">
 
                     </Button>
                     <Button x:Name="button2" Content="Нет" VerticalAlignment="Bottom" Click="button2_Click" Height="32" Foreground="White"   Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="0,3" VerticalContentAlignment="Center"/>
-                    <Button x:Name="button3" Content="Возможно да" VerticalAlignment="Bottom" Click="button3_Click" Height="31" Foreground="White"   Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="0,3" VerticalContentAlignment="Center"/>
-                    <Button x:Name="button4" Content="Возможно нет" VerticalAlignment="Bottom" Height="32" Foreground="White"  Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="0,3" VerticalContentAlignment="Center" Click="button4_Click"/>
+                    <Button x:Name="button3" Content="Возможно, частично" VerticalAlignment="Bottom" Click="button3_Click" Height="31" Foreground="White"   Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="0,3" VerticalContentAlignment="Center"/>
+                    <Button x:Name="button4" Content="Скорее нет, не совсем" VerticalAlignment="Bottom" Height="32" Foreground="White"  Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="0,3" VerticalContentAlignment="Center" Click="button4_Click"/>
                     <Button x:Name="button5" Content="Не знаю" VerticalAlignment="Bottom" Height="32" Foreground="White"   Style="{DynamicResource buttonSetupStyle}" FontFamily="Comic Sans MS" FontSize="13.333" BorderThickness="0,3" VerticalContentAlignment="Center" Click="button5_Click"/>
                 </StackPanel>
             </Grid>
         </Viewbox>
-        <Button x:Name="btBackMenu" Content="Меню" HorizontalAlignment="Left" VerticalAlignment="Top" Width="122" BorderBrush="{x:Null}" Foreground="#FFFFEEEE" BorderThickness="0,0,3,3" Height="28" Margin="0,-1,0,0" Style="{DynamicResource buttonSetupStyle}" FontFamily="Consolas" FontStyle="Italic" FontSize="16" Click="btBackMenu_Click">
+        <Button x:Name="btBackMenu" Content="Меню" HorizontalAlignment="Left" VerticalAlignment="Top" Width="122" BorderBrush="{x:Null}" Foreground="#FFFFEEEE" BorderThickness="0,0,3,3" Height="28" Margin="0,-1,0,0" Style="{DynamicResource buttonSetupStyle}" FontFamily="Consolas" FontStyle="Italic" FontSize="16" Click="btBackMenu_Click" d:IsHidden="True">
             <Button.Background>
                 <SolidColorBrush Color="#99708977" Opacity="0.6"/>
             </Button.Background>
         </Button>
-        <Grid x:Name="DevainedGrid" Grid.RowSpan="3" Background="#7F000000">
+        <Grid x:Name="DevainedGrid" Grid.RowSpan="3" Background="#7F000000" d:IsHidden="True">
             <Grid x:Name="DevainedGrid2" Margin="127,10,134,10" Background="#FFF2F9D0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="141"/>

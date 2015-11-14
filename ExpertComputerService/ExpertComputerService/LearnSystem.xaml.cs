@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Domain;
 using System.Data;
 using Configurate;
+using ExpertComputerService.LearnSystemsMaterials;
 
 namespace ExpertComputerService
 {
@@ -48,9 +49,12 @@ namespace ExpertComputerService
         }
         selectedButtons SelectBut;
 
+       
+
 
         private void buttonHeroes_Click(object sender, RoutedEventArgs e)
         {
+         //   var a = (new Repository().GetHeroesSource()).Select(d => new { d.NameHeroes, d.TextHero, d.WeigthHero }).ToList();
             dgrid.ItemsSource = (new Repository().GetHeroesSource()).Select(d => new { d.NameHeroes, d.TextHero, d.WeigthHero }).ToList();
             SelectBut = selectedButtons.HeroesBut; 
         }
@@ -81,37 +85,24 @@ namespace ExpertComputerService
             
             try
             {
-                int selectedColumn = dgrid.CurrentCell.Column.DisplayIndex;
-                var selectedCell = dgrid.SelectedCells[selectedColumn];
-                var cellContent = selectedCell.Column.GetCellContent(selectedCell.Item);
-                MessageBox.Show((cellContent as TextBlock).Text);
-                if (cellContent is TextBlock)
+                if (dgrid.SelectedItem != null)
                 {
-                    
+                    PHero a = dgrid.SelectedItem as PHero;
+                    var NameQuest = dgrid.SelectedCells[0].Item.ToString();
+               
+                
+               // MessageBox.Show(NameQuest.Substring("{"));
                 }
-
                 Exception ERep=null;
 
-           /*     switch(SelectBut)
+                switch(SelectBut)
                 {
-       /*             case selectedButtons.QuestionsBut:
-                        var NameQuest = ((DataRowView)dgrid.SelectedItem).Row.ItemArray[0].ToString();
-                        MessageBox.Show(NameQuest);
-                  //      ERep = new Repository().RemoveQuestion(NameQuest);
+                    case selectedButtons.QuestionsBut:
+                        
+                        ERep = new Repository().RemoveQuestion(textBoxAddQuestion.Text);
                         break;
-                        /*           case selectedButtons.HeroesBut:
-                                       var NameHero = dgrid.SelectedItem as string;
-                                        var deletelst2 = dgrid.SelectedItem as Heroes;
-                               if (deletelst2 != null)
-                               {
-                                   ERep = new Repository().RemoveHeroes(deletelst2.NameHeroes);
-
-                               }
-                               else
-                                   MessageBox.Show("Всё плохо! Удалить данные невозможно!!!");
-                                   */
-
-        //        }
+                                   
+               }
 
             
 
