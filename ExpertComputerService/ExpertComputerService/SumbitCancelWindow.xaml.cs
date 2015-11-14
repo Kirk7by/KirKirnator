@@ -57,7 +57,8 @@ namespace ExpertComputerService
 
         private void butExitGame_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            new MainWindow().Show();
+            this.Close();
         }
 
         private void addQuestact_Click(object sender, RoutedEventArgs e)
@@ -67,15 +68,27 @@ namespace ExpertComputerService
                 new Repository().AddQuestion(textBoxquest.Text);
                 label_success.Visibility = Visibility.Visible;
                 label_error.Visibility = Visibility.Collapsed;
-                listViewConsole.Items.Add("Добавлен вопрос:"+ textBoxquest.Text);
+                Log(textBlockConsole, "Добавлен вопрос:" + textBoxquest.Text + "\r", Brushes.LightBlue);
+                //         textBlockConsole.Text=("Добавлен вопрос:"+ textBoxquest.Text);
+
             }
             catch(Exception ex) {
                 label_success.Visibility = Visibility.Collapsed;
                 label_error.Visibility = Visibility.Visible;
-                listViewConsole.Items.Add("Ошибка: " + ex.Message);
+            //    textBlockConsole.Text = ("Ошибка: " + ex.Message);
+                Log(textBlockConsole, "Ошибка..." +ex.Message +"\r", Brushes.Red);
             }
         }
-
+        public void Log(RichTextBox box1, string msg, object color)//Здесь у обжект будем передавать цвет Brushes.Color!!!
+        {
+            box1.Dispatcher.Invoke(new Action(() =>
+            {
+                TextRange range = new TextRange(box1.Document.ContentEnd, box1.Document.ContentEnd);
+                range.Text = msg;
+                range.ApplyPropertyValue(TextElement.ForegroundProperty, color);
+                box1.ScrollToEnd();// функция Autoscroll
+            }));
+        }
         private void butaddQuests_Click(object sender, RoutedEventArgs e)
         {
             gridAddQuest.Visibility = Visibility.Visible;
