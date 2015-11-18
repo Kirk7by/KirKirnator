@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ExpertCore;
 using Configurate;
+using Microsoft.Win32;
+using System.IO;
 
 namespace ExpertComputerService
 {
@@ -77,14 +79,21 @@ namespace ExpertComputerService
 
         private void Sumbit_Click(object sender, RoutedEventArgs e)
         {
-            if (tbHeroName.Text != "" && tbQuestName.Text != "")
+            if (tbHeroName.Text != "" && tbQuestName.Text != "" && tbHeroName_Detayl.Text!="")
             {
-                Exception ex = expCore.OutputNewHero(tbHeroName.Text, tbQuestName.Text);
-                if (ex != null)
-                    MessageBox.Show(ex.Message);
-                else
-                    MessageBox.Show("successfully added question");
+                string HeroName = tbHeroName.Text + "(" + tbHeroName_Detayl.Text + ")";
 
+                if (ImageSave(HeroName))
+                    return;
+
+                Exception ex = expCore.OutputNewHero(HeroName, tbQuestName.Text);
+                if (ex != null)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+
+                
                 new SumbitCancelWindow("Нам было приятно с вами играть, теперь ваш "+ tbHeroName.Text+" будет присутствовать в моей угадывательной памяти!").Show();
                 this.Close();
             }
@@ -94,10 +103,56 @@ namespace ExpertComputerService
                 TittleLabel2.Background = Brushes.DarkRed;
             }
         }
+
+        #region intialyze Image
+        string patchImage = null;
+        private bool ImageSave(string HeroName)
+        {
+            bool errors = false;
+            if (patchImage != null)
+            {
+                try
+                {
+                    if (!Directory.Exists(ExpConfig.Default.patchImages))
+                    {
+                        Directory.CreateDirectory(ExpConfig.Default.patchImages);
+                    }
+             //       MessageBox.Show("TESTS: "+HeroName);
+                    System.IO.File.Copy(patchImage, ExpConfig.Default.patchImages + HeroName + ".jpg", true);
+               //     MessageBox.Show("something loaded" + patchImage);
+                }
+                catch (Exception ex)
+                {
+                    var result = MessageBox.Show("Не удалось сохранить картинку. Продолжить отправку?: \n" + ex.Message,"Ошибка сохранения фото",MessageBoxButton.YesNo,MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.No)
+                        errors = true;
+                }
+            }
+            return errors;
+        }
+        private void addimagebut_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Файлы изображений|*.png;*.jpg;*.gif|Все файлы(*.*)|*.*";
+            openFileDialog1.Title = "Выберите картинку героя";
+
+            if (openFileDialog1.ShowDialog() == true)
+            {
+                patchImage = openFileDialog1.FileName;
+                image.Source = new BitmapImage(new Uri(openFileDialog1.FileName));
+            }
+        }
+        #endregion
+
+
+
+
         private void Sumbit_Cancel_Click(object sender, RoutedEventArgs e)
         {
             new SumbitCancelWindow().Show();
             this.Close();
         }
+
+        
     }
 }

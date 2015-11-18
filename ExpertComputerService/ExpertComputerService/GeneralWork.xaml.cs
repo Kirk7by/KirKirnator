@@ -17,6 +17,7 @@ using Domain;
 using DataBase;
 using System.Windows.Media.Animation;
 using Configurate;
+using System.IO;
 
 namespace ExpertComputerService
 {
@@ -79,7 +80,7 @@ namespace ExpertComputerService
         private void CoreLink(int otv)
         {
             string quest = ExpCore.GetQuestion(otv);
-            if(quest!=null)
+            if (quest != null)
                 LabelWrap.Text = quest;
         }
 
@@ -87,7 +88,8 @@ namespace ExpertComputerService
         {
             LabelWrap.Text = Question;
             thinkWrap.Text = Hero;
-            
+
+            #region Visual
             //Тест анимации в коде
             DoubleAnimation db = new DoubleAnimation();
             db.From = 0;
@@ -96,13 +98,43 @@ namespace ExpertComputerService
             db.AutoReverse = false;
             db.RepeatBehavior = RepeatBehavior.Forever;
 
-            db.RepeatBehavior=new RepeatBehavior(1);
+            db.RepeatBehavior = new RepeatBehavior(1);
             DevainedGrid.BeginAnimation(OpacityProperty, db);
             DevainedGrid.Visibility = Visibility.Visible;
 
             //
             GridSelectedAnswers.Visibility = Visibility.Collapsed;
             GridWrapAnswer.Visibility = Visibility.Collapsed;
+            #endregion
+
+            string imgpatch = ExpConfig.Default.patchImages + Hero;
+
+            if (File.Exists(imgpatch + ".jpg"))
+                initializeImage(imgpatch, ".jpg");
+            else if (File.Exists(imgpatch + ".png"))
+                initializeImage(imgpatch, ".png");
+            else if (File.Exists(imgpatch + ".gif"))
+                initializeImage(imgpatch, ".gif");
+        }
+        private void initializeImage(string imgpatch, string ImgFormat)
+        {
+            try {
+                MemoryStream ms = new MemoryStream();
+                FileStream stream = new FileStream(imgpatch + ImgFormat, FileMode.Open, FileAccess.Read);
+                ms.SetLength(stream.Length);
+                stream.Read(ms.GetBuffer(), 0, (int)stream.Length);
+
+                ms.Flush();
+                stream.Close();
+
+                BitmapImage src = new BitmapImage();
+                src.BeginInit();
+                src.StreamSource = ms;
+                src.EndInit();
+                image.Source = src;
+            }
+            catch(Exception ex)
+            { MessageBox.Show(ex.Message); }
         }
 
 

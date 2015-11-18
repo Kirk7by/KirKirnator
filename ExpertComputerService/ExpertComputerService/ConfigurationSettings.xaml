@@ -54,8 +54,8 @@
                             </LinearGradientBrush>
                         </Border.Background>
                     </Border>
-                    <Label x:Name="label_Copy3" Content="Строка подключения&#xD;&#xA;(для опытных)" HorizontalAlignment="Left" Margin="0,243,0,0" VerticalAlignment="Top" Width="146" Height="45" FontFamily="Consolas" FontSize="13.333" FontWeight="Bold"/>
-                    <Border BorderThickness="1" Height="7" Margin="0,222,0,0" VerticalAlignment="Top">
+                    <Label x:Name="label_Copy3" Content="Строка подключения&#xD;&#xA;(для опытных)" HorizontalAlignment="Left" Margin="0,243,0,0" VerticalAlignment="Top" Width="146" Height="45" FontFamily="Consolas" FontSize="13.333" FontWeight="Bold" Foreground="#FF6A0000"/>
+                    <Border BorderThickness="1" Height="7" Margin="0,231,0,0" VerticalAlignment="Top">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FFBD9A9A" Offset="0"/>
@@ -68,6 +68,18 @@
                     <Button x:Name="SelectedBdFile" Content="Выбрать&#xD;&#xA;файл бд" HorizontalAlignment="Right" Margin="0,243,10,0" VerticalAlignment="Top" Width="74" Height="45" FontSize="10.667" Click="SelectedBdFile_Click" Foreground="#FF870000" FontWeight="Bold"/>
                     <TextBox x:Name="tbMinProbabilityQuestion" HorizontalAlignment="Left" Height="28" Margin="326,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" BorderThickness="1" FontSize="18.667" Background="White" VerticalContentAlignment="Center" Foreground="#FF9B0404" FontWeight="Bold" CaretBrush="#FF09FFE9" FontFamily="Consolas"/>
                     <Button x:Name="btRandomQuestion" Content="Случайный&#xD;&#xA;вопрос" HorizontalAlignment="Right" Margin="0,26,10,0" VerticalAlignment="Top" Width="74" Height="31" FontSize="10.667" Click="btRandomQuestion_Click" Foreground="Black" FontWeight="Bold" BorderBrush="{x:Null}" FontFamily="Consolas"/>
+                    <Label x:Name="label_Copy4" Content="Путь к папке с &#xD;&#xA;изображениями &#xD;&#xA;героев" HorizontalAlignment="Left" Margin="7,305,0,0" VerticalAlignment="Top" Width="132" Height="61" FontFamily="Consolas" FontSize="13.333" FontWeight="Bold"/>
+                    <TextBox x:Name="tb_patch_Images" Height="45" Margin="139,305,89,0" TextWrapping="Wrap" VerticalAlignment="Top" BorderThickness="1" Background="#FF1C2649" Foreground="White" FontFamily="Courier New" FontSize="13.333" FontWeight="Bold"/>
+                    <Button x:Name="bt_patch_Images" Content="Выбрать&#xD;&#xA;папку" HorizontalAlignment="Right" Margin="0,305,10,0" VerticalAlignment="Top" Width="74" Height="45" FontSize="10.667" Foreground="#FF318700" FontWeight="Bold" Click="bt_patch_Images_Click"/>
+                    <Border BorderThickness="1" Height="7" Margin="-1,293,1,0" VerticalAlignment="Top">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFBD9A9A" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                                <GradientStop Color="#7F424242" Offset="0.371"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
                 </Grid>
             </TabItem>
             <TabItem Header="Визуальные&#xD;&#xA;Настройки" Margin="-3,-2,-1,0">
@@ -81,7 +93,8 @@
             </TabItem>
             <TabItem Header="Тестирование&#xD;&#xA;системы" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="92" Margin="-2,-2,-5,0">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="button" Content="Окно выдачи героев" HorizontalAlignment="Left" VerticalAlignment="Top" Width="255" Margin="0,38,0,0" Height="40"/>
+                    <Button x:Name="buttonheroImage" Content="Окно выдачи героев" HorizontalAlignment="Left" VerticalAlignment="Top" Width="255" Margin="0,38,0,0" Height="40" Click="buttonheroImage_Click"/>
+                    <Image x:Name="image" HorizontalAlignment="Left" Height="177" Margin="16,104,0,0" VerticalAlignment="Top" Width="239" Source="Media/smileCat.jpg"/>
                 </Grid>
             </TabItem>
         </TabControl>

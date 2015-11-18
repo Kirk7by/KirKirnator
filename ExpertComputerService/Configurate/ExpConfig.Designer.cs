@@ -107,5 +107,17 @@ namespace Configurate {
                 this["FullscreanWinow"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("./")]
+        public string patchImages {
+            get {
+                return ((string)(this["patchImages"]));
+            }
+            set {
+                this["patchImages"] = value;
+            }
+        }
     }
 }

@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Configurate;
 using DataBase.Repository;
 using Microsoft.Win32;
+using System.IO;
 
 namespace ExpertComputerService
 {
@@ -41,7 +42,7 @@ namespace ExpertComputerService
             tbAttempts.Text = Convert.ToString(ExpConfig.Default.QuantityAttempt);
             if ((tbDBConnectionString.Text = ExpConfig.Default.ConnectionString) == "")
                 btDefaultSettings.Background = Brushes.GreenYellow;
-
+            tb_patch_Images.Text = ExpConfig.Default.patchImages;
             //формы
             comboBoxThema.Text = ExpConfig.Default.Thema;
             comboBoxWindowMode.Text = Convert.ToString(ExpConfig.Default.FullscreanWinow);
@@ -96,6 +97,7 @@ namespace ExpertComputerService
                 //темы
                 ExpConfig.Default.Thema = comboBoxThema.Text;
                 ExpConfig.Default.FullscreanWinow = int.Parse(comboBoxWindowMode.Text);
+                ExpConfig.Default.patchImages = tb_patch_Images.Text;
 
                 InitializeFullscreanMode();
                 ExpConfig.Default.Save();
@@ -110,17 +112,41 @@ namespace ExpertComputerService
             TbListHeroMaxProbality.Text = "10";
             tbAttempts.Text = "5";
             tbDBConnectionString.Text = @"(LocalDb)\MSSQLLocalDB; initial catalog = ExpertHeros; integrated security = True; MultipleActiveResultSets = True; App = EntityFramework";
+
+            
+            tb_patch_Images.Text = "./HeroesImage/";
+            if (!Directory.Exists("./HeroesImage/"))
+            {
+                Directory.CreateDirectory("./HeroesImage");
+            }
         }
+
+        #region annecessary events
         private void SelectedBdFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "mdf File|*.mdf|ALL Files|*. ";
             openFileDialog1.Title = "Select a Cursor File";
 
-
-
             if (openFileDialog1.ShowDialog() == true)
-                tbDBConnectionString.Text = @"(LocalDB)\MSSQLLocalDB; AttachDbFilename =" + openFileDialog1.FileName+ ";Integrated Security = True; Connect Timeout = 30";
+                tbDBConnectionString.Text = @"(LocalDB)\MSSQLLocalDB; AttachDbFilename =" + openFileDialog1.FileName + ";Integrated Security = True; Connect Timeout = 30";
+        }
+        private void bt_patch_Images_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            
+            openFileDialog1.CheckPathExists = true;
+            openFileDialog1.ShowReadOnly = false;
+            openFileDialog1.ReadOnlyChecked = true;
+            openFileDialog1.CheckFileExists = false;
+            openFileDialog1.ValidateNames = false;
+            openFileDialog1.FileName = "Выберите папку";
+
+            var Result = openFileDialog1.ShowDialog();
+            if (Result == true)
+            {
+                tb_patch_Images.Text = openFileDialog1.FileName.Remove(openFileDialog1.FileName.Length - openFileDialog1.SafeFileName.Length, openFileDialog1.SafeFileName.Length);
+            }
         }
         private void btRandomQuestion_Click(object sender, RoutedEventArgs e)
         {
@@ -131,7 +157,6 @@ namespace ExpertComputerService
         {
             btRandomQuestion.Background = Brushes.White;
         }
-
         private void btThema_Click(object sender, RoutedEventArgs e)
         {
             switch(comboBoxThema.Text)
@@ -140,11 +165,37 @@ namespace ExpertComputerService
                     break;
             }
         }
-
         private void button_back_Click(object sender, RoutedEventArgs e)
         {
             new MainWindow().Show();
             this.Close();
         }
+        #endregion
+        private void buttonheroImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Файлы изображений|*.png;*.jpg;*.gif|Все файлы(*.*)|*.*";
+            openFileDialog1.Title = "Выберите картинку героя";
+            
+            if (openFileDialog1.ShowDialog() == true)
+            {
+                try
+                {
+                    if (!Directory.Exists(ExpConfig.Default.patchImages))
+                    {
+                        Directory.CreateDirectory(ExpConfig.Default.patchImages);
+                    }
+                    
+                    System.IO.File.Copy(openFileDialog1.FileName, ExpConfig.Default.patchImages + "tr.jpg", true);
+                    MessageBox.Show("something loaded" + openFileDialog1.FileName);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }            
+        }
+
+        
     }
 }

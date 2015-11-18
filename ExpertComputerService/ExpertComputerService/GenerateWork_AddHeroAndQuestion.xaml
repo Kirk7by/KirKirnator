@@ -26,10 +26,10 @@
                 <Border BorderBrush="#FFB0B057" BorderThickness="4" HorizontalAlignment="Left" Height="190" Margin="213,102,0,0" VerticalAlignment="Top" Width="279" RenderTransformOrigin="-0.903,0.169" Background="#FF9AE297" Grid.Column="1">
                     <Image x:Name="image" Margin="9,9,9,6" RenderTransformOrigin="0.079,0.129" Source="Media/Unknown_Flag.png"/>
                 </Border>
-                <Button x:Name="button" Content="Выбрать" HorizontalAlignment="Left" Margin="306,102,0,0" VerticalAlignment="Top" Width="98" Grid.Column="1" Height="25" Background="#E5B0B057" BorderBrush="{x:Null}" Foreground="White"/>
+                <Button x:Name="addimagebut" Content="Выбрать" HorizontalAlignment="Left" Margin="306,102,0,0" VerticalAlignment="Top" Width="98" Grid.Column="1" Height="25" Background="#E5B0B057" BorderBrush="{x:Null}" Foreground="White" Click="addimagebut_Click"/>
             </Grid>
         </Viewbox>
-        <Viewbox x:Name="vievbox1">
+        <Viewbox x:Name="vievbox1" d:IsHidden="True">
             <Grid x:Name="GridSelectedHero" Background="#FFDAF1B3" Height="541" Width="972">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="57*"/>

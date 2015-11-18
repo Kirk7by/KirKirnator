@@ -23,5 +23,8 @@
     <Setting Name="FullscreanWinow" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
+    <Setting Name="patchImages" Type="System.String" Scope="User">
+      <Value Profile="(Default)">./</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
