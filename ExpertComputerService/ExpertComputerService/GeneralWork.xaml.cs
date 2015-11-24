@@ -24,6 +24,7 @@ namespace ExpertComputerService
     public partial class GeneralWork : Window
     {
         Expertcore ExpCore = new Expertcore();
+        private int NumberQuest = 1;
         public GeneralWork()
         {
             InitializeComponent();
@@ -82,6 +83,23 @@ namespace ExpertComputerService
             string quest = ExpCore.GetQuestion(otv);
             if (quest != null)
                 LabelWrap.Text = quest;
+            NumberQuest++;
+            btnNumberQuest.Content = NumberQuest;
+            btnBackQuest.Visibility = Visibility.Visible;
+        }
+        private void btnBackQuest_Click(object sender, RoutedEventArgs e)
+        {
+            string quest = ExpCore.GetBackQuestion();
+            if (quest != null)
+            { 
+                LabelWrap.Text = quest;
+                NumberQuest--;
+                btnNumberQuest.Content = NumberQuest;
+            }
+            else
+            {
+                btnBackQuest.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void outputHeroMessage(string Hero, string Question)
@@ -173,5 +191,28 @@ namespace ExpertComputerService
             new MainWindow().Show();
             this.Close();
         }
+
+        private void btCorrected_Click(object sender, RoutedEventArgs e)
+        {
+            if (btCorrected.Content != "Сохранить")
+            {
+                #region Visual
+                DoubleAnimation db = new DoubleAnimation();
+                db.From = 0;
+                db.To = 1.0;
+                db.Duration = new Duration(TimeSpan.FromSeconds(0.5));
+                db.AutoReverse = false;
+                db.RepeatBehavior = RepeatBehavior.Forever;
+
+                db.RepeatBehavior = new RepeatBehavior(1);
+                correctedGrid.BeginAnimation(OpacityProperty, db);
+                correctedGrid.Visibility = Visibility.Visible;
+                #endregion
+            }
+            btCorrected.Background = Brushes.LightGreen;
+            btCorrected.Content = "Сохранить";
+        }
+
+
     }
 }

@@ -25,6 +25,7 @@ namespace ExpertCore
 
         static int indexQuest2; //индексатор выбранных вопросов
         static int IterAttempst; //Итератор вывода предположительного героя
+        static int BackQuestIter;
         internal OperatingMechanism()
         {
         }
@@ -48,8 +49,10 @@ namespace ExpertCore
 
             Quest2 = GetQuestionDistinctList(lQuestions.ToList()).ToList(); //возвращаем quest2 список без повторяющихся вопросов
             Quest1 = new List<Questions>();
+
             indexQuest2 = -1;
             IterAttempst = 0;
+            BackQuestIter = 0;
 
             Random rd = new Random();
             foreach (var t in Quest2)
@@ -151,8 +154,12 @@ namespace ExpertCore
         }
 
         public string GetQuestion()  // Микширует все вопросы по вероятностям, при этом не проводит отбора// Безболезненный метод
-        {
-           
+        {           
+            if(Quest1.Count==0)
+            {
+                indexQuest2 = Quest2.Count-1;
+                return Quest2[Quest2.Count - 1].NameQestion;
+            }
             GetProbabilityProizvHero(Quest1.ToList());
             if (Quest2.Count == 0)
             {
@@ -190,6 +197,7 @@ namespace ExpertCore
            //         Quest1.RemoveAll((item) => item.NameHeroes == heroName);
                     lQuestions.RemoveAll((item) => item.NameHeroes == heroName);
                     GetProbabilityProizvHero(Quest1.ToList());//
+                    BackQuestIter = Quest1.Count;
                 }
             }
             catch(Exception ex)
@@ -218,8 +226,18 @@ namespace ExpertCore
             return new Repository().AddHeroesAndQuestion(nameHero, nameQuestion, Quest1);
         } //Отправка нового героя и вопроса на сервер
 
-
-        
+        public bool BackQuestion()  
+        //тупо возвращает на 1 вопрос назад, но нужно получить ответ! //Примечание!!! после него обычно вызывают GetQuestion
+        {
+            if (Quest1.Count > BackQuestIter)
+            {
+                Quest2.Add(Quest1[Quest1.Count - 1]);
+                Quest1.RemoveAt(Quest1.Count - 1);
+                return true;
+            }
+            return false;
+        }
+        //возвращает булевское значение, сумели ли мы вернуть вопрос назад
         #endregion
 
 

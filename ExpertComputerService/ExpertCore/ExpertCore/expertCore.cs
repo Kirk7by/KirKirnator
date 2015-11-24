@@ -32,7 +32,16 @@ namespace ExpertCore
         public string GetQuestion()
         {
             return Mech.GetQuestion();
-        }
+        }       //безболезненное получение вопроса
+        public string GetBackQuestion()     //откат на вопрос назад, возвращает null, если откадываться больше некуда
+        {
+            if (Mech.BackQuestion())
+            {
+                return Mech.GetQuestion();
+            }
+            else
+                return null;   
+        }   //получить прошлый вопрос
 
         public Exception OutputNewHero(string heroName, string questName)
         {
