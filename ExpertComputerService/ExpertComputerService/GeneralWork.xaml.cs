@@ -87,6 +87,7 @@ namespace ExpertComputerService
             btnNumberQuest.Content = NumberQuest;
             btnBackQuest.Visibility = Visibility.Visible;
         }
+
         private void btnBackQuest_Click(object sender, RoutedEventArgs e)
         {
             string quest = ExpCore.GetBackQuestion();
@@ -102,11 +103,84 @@ namespace ExpertComputerService
             }
         }
 
+       
+
+
+       
+
+        private void openWindowAddHero(object sender, EventArgs e)
+        {
+            new GenerateWork_AddHeroAndQuestion().Show();
+            this.Close();
+        }
+
+        private void btBackMenu_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
+        }
+
+      
+
+
+        #region Всплывающие окно с предложенным героем
+        private void loadImage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void btCorrected_Click(object sender, RoutedEventArgs e)
+        {
+            if (btCorrected.Content != "Сохранить")
+            {
+                #region Visual
+                DoubleAnimation db = new DoubleAnimation();
+                db.From = 0;
+                db.To = 1.0;
+                db.Duration = new Duration(TimeSpan.FromSeconds(0.5));
+                db.AutoReverse = false;
+                db.RepeatBehavior = RepeatBehavior.Forever;
+
+                db.RepeatBehavior = new RepeatBehavior(1);
+                correctedGrid.BeginAnimation(OpacityProperty, db);
+                correctedGrid.Visibility = Visibility.Visible;
+
+                btCorrected.Background = Brushes.LightGreen;
+                btCorrected.Content = "Сохранить";
+                #endregion
+            }
+            else
+            {
+
+                correctedGrid.Visibility = Visibility.Collapsed;
+                btCorrected.Content = "Редактировать";
+            }
+            
+        }
+
+
         private void outputHeroMessage(string Hero, string Question)
         {
             LabelWrap.Text = Question;
             thinkWrap.Text = Hero;
 
+            try
+            {
+                string OldHero2 = Hero.Substring(Hero.IndexOf("(") + 1);
+                OldHero2 = OldHero2.Substring(0, OldHero2.Length - 1);
+                string OldHero1 = Hero.Substring(0, Hero.Length - OldHero2.Length - 2);
+
+                OldName1.Text = OldHero1;
+                OldName2.Text = OldHero2;
+            }
+            catch
+            {
+                MessageBox.Show("Названия героя заданы некорректо, исправьте на корректное название");
+                OldName1.Text = "Некорректно";
+                OldName2.Text = "Некорректно";
+            }
+
+
+           
             #region Visual
             //Тест анимации в коде
             DoubleAnimation db = new DoubleAnimation();
@@ -133,10 +207,13 @@ namespace ExpertComputerService
                 initializeImage(imgpatch, ".png");
             else if (File.Exists(imgpatch + ".gif"))
                 initializeImage(imgpatch, ".gif");
+            else
+                image.Source = new BitmapImage(new Uri("pack://application:,,,/Media/Unknown_Flag.png"));
         }
         private void initializeImage(string imgpatch, string ImgFormat)
         {
-            try {
+            try
+            {
                 MemoryStream ms = new MemoryStream();
                 FileStream stream = new FileStream(imgpatch + ImgFormat, FileMode.Open, FileAccess.Read);
                 ms.SetLength(stream.Length);
@@ -151,7 +228,7 @@ namespace ExpertComputerService
                 src.EndInit();
                 image.Source = src;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             { MessageBox.Show(ex.Message); }
         }
 
@@ -179,40 +256,6 @@ namespace ExpertComputerService
             new SumbitCancelWindow("Мне было очень приятно играть с вами.").Show();
             this.Close();
         }
-
-        private void openWindowAddHero(object sender, EventArgs e)
-        {
-            new GenerateWork_AddHeroAndQuestion().Show();
-            this.Close();
-        }
-
-        private void btBackMenu_Click(object sender, RoutedEventArgs e)
-        {
-            new MainWindow().Show();
-            this.Close();
-        }
-
-        private void btCorrected_Click(object sender, RoutedEventArgs e)
-        {
-            if (btCorrected.Content != "Сохранить")
-            {
-                #region Visual
-                DoubleAnimation db = new DoubleAnimation();
-                db.From = 0;
-                db.To = 1.0;
-                db.Duration = new Duration(TimeSpan.FromSeconds(0.5));
-                db.AutoReverse = false;
-                db.RepeatBehavior = RepeatBehavior.Forever;
-
-                db.RepeatBehavior = new RepeatBehavior(1);
-                correctedGrid.BeginAnimation(OpacityProperty, db);
-                correctedGrid.Visibility = Visibility.Visible;
-                #endregion
-            }
-            btCorrected.Background = Brushes.LightGreen;
-            btCorrected.Content = "Сохранить";
-        }
-
-
+        #endregion
     }
 }

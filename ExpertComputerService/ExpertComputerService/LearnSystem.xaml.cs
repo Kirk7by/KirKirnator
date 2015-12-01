@@ -54,13 +54,16 @@ namespace ExpertComputerService
 
         private void buttonHeroes_Click(object sender, RoutedEventArgs e)
         {
-         //   var a = (new Repository().GetHeroesSource()).Select(d => new { d.NameHeroes, d.TextHero, d.WeigthHero }).ToList();
-            dgrid.ItemsSource = (new Repository().GetHeroesSource()).Select(d => new { d.NameHeroes, d.TextHero, d.WeigthHero }).ToList();
+            var a = (new Repository().GetHeroesSource()).Select(d => new { d.NameHeroes, d.TextHero, d.WeigthHero }).ToList();
+      //      dgrid.ItemsSource = (new Repository().GetHeroesSource()).Select(d => new { d.NameHeroes, d.TextHero, d.WeigthHero }).ToList();
+            dgrid.ItemsSource = a.ToList();
             SelectBut = selectedButtons.HeroesBut; 
+            
         }
         private void buttonQuestions_Click(object sender, RoutedEventArgs e)
         {
-            dgrid.ItemsSource=(new Repository().GetQuestionsSource()).Select(d => new{ d.NameQestion } ).Distinct().ToList();
+            var a = (new Repository().GetQuestionsSource()).Select(d => new { d.NameQestion }).Distinct().ToList();
+            dgrid.ItemsSource = a.ToList();
             SelectBut = selectedButtons.QuestionsBut;
         }
         private void buttonDominations_Click(object sender, RoutedEventArgs e)
@@ -103,9 +106,6 @@ namespace ExpertComputerService
                         break;
                                    
                }
-
-            
-
 
             }
             catch (Exception ex)
