@@ -18,6 +18,7 @@ using DataBase;
 using System.Windows.Media.Animation;
 using Configurate;
 using System.IO;
+using Microsoft.Win32;
 
 namespace ExpertComputerService
 {
@@ -25,6 +26,7 @@ namespace ExpertComputerService
     {
         Expertcore ExpCore = new Expertcore();
         private int NumberQuest = 1;
+        string patchImage = null; //путь к картинке
         public GeneralWork()
         {
             InitializeComponent();
@@ -120,14 +122,51 @@ namespace ExpertComputerService
             this.Close();
         }
 
-      
+
 
 
         #region Всплывающие окно с предложенным героем
+        
         private void loadImage_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Файлы изображений|*.png;*.jpg;*.gif|Все файлы(*.*)|*.*";
+            openFileDialog1.Title = "Выберите картинку героя";
+            try
+            {
+                if (openFileDialog1.ShowDialog() == true)
+                {
+                    patchImage = openFileDialog1.FileName;
+                    image.Source = new BitmapImage(new Uri(openFileDialog1.FileName));
+                }
+            }
+            catch
+            { patchImage = null; }
+        }   //загрузка картинки в имедж
+        private bool ImageSave(string HeroName)
+        {
+            bool errors = false;
+            if (patchImage != null)
+            {
+                try
+                {
+                    if (!Directory.Exists(ExpConfig.Default.patchImages))
+                    {
+                        Directory.CreateDirectory(ExpConfig.Default.patchImages);
+                    }
+                    System.IO.File.Copy(patchImage, ExpConfig.Default.patchImages + HeroName + patchImage.Substring(patchImage.Length-4,4), true);
+                }
+                catch (Exception ex)
+                {
+                    var result = MessageBox.Show("Не удалось сохранить картинку. Продолжить отправку?: \n" + ex.Message, "Ошибка сохранения фото", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.No)
+                        errors = true;
+                }
+            }
+            return errors;
+        }   //сохранение картинки в папке с соответствующим имененм
 
-        }
+
         private void btCorrected_Click(object sender, RoutedEventArgs e)
         {
             if (btCorrected.Content != "Сохранить")
@@ -150,7 +189,37 @@ namespace ExpertComputerService
             }
             else
             {
+                //save
+                if (NewName1.Text != "" && NewName2.Text != "")
+                {
+                    if(NewName1.Text == OldName1.Text && NewName2.Text == OldName2.Text)
+                    {
+                        ImageSave(thinkWrap.Text);
+                        return;
+                    }
+                    //
+                    
+                    string NewHeroName = NewName1.Text + "(" + NewName2.Text + ")";
+                    string OldHeroName = thinkWrap.Text;
 
+                    if (ImageSave(NewHeroName))
+                        return;
+                    
+                    Exception ex = new Repository().updHero(OldHeroName, NewHeroName);
+                    if (ex != null)
+                    {
+                        MessageBox.Show(ex.Message);
+                        return;
+                    }
+                    ExpCore.updNameHero(OldHeroName, NewHeroName);
+                    MessageBox.Show("Данные сохранены!");
+                }
+                else
+                {
+                    MessageBox.Show("Данные не сохранены. Не вводите глупости!"); return;
+                }
+
+                btCorrected.Background = (Brush)new BrushConverter().ConvertFrom("#FFD3FFC3");
                 correctedGrid.Visibility = Visibility.Collapsed;
                 btCorrected.Content = "Редактировать";
             }
@@ -163,24 +232,31 @@ namespace ExpertComputerService
             LabelWrap.Text = Question;
             thinkWrap.Text = Hero;
 
+            patchImage = null;
+            btCorrected.Background = (Brush)new BrushConverter().ConvertFrom("#26D3FFC3");
+            correctedGrid.Visibility = Visibility.Collapsed;
+            btCorrected.Content = "Редактировать";
             try
             {
                 string OldHero2 = Hero.Substring(Hero.IndexOf("(") + 1);
                 OldHero2 = OldHero2.Substring(0, OldHero2.Length - 1);
                 string OldHero1 = Hero.Substring(0, Hero.Length - OldHero2.Length - 2);
 
+
                 OldName1.Text = OldHero1;
                 OldName2.Text = OldHero2;
+                NewName1.Text = OldHero1;
+                NewName2.Text = OldHero2;
             }
             catch
             {
                 MessageBox.Show("Названия героя заданы некорректо, исправьте на корректное название");
                 OldName1.Text = "Некорректно";
                 OldName2.Text = "Некорректно";
+                NewName1.Text = "";
+                NewName2.Text = "";
             }
 
-
-           
             #region Visual
             //Тест анимации в коде
             DoubleAnimation db = new DoubleAnimation();
@@ -227,6 +303,7 @@ namespace ExpertComputerService
                 src.StreamSource = ms;
                 src.EndInit();
                 image.Source = src;
+                patchImage = imgpatch + ImgFormat;
             }
             catch (Exception ex)
             { MessageBox.Show(ex.Message); }

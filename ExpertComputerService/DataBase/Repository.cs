@@ -397,5 +397,22 @@ namespace DataBase.Repository
         }
         #endregion
 
+
+
+        //Хранимые процедуры
+         //   public updHeroName //TODO: THIS STOPPED
+         public Exception updHero(string OldHeroName, string NewHeroName)
+        {
+            Exception ex = null;
+            try
+            {
+                using (MyModelContext _context = new MyModelContext())
+                {
+                    _context.Database.ExecuteSqlCommand("UPDATE Heroes SET NameHeroes=N'" + NewHeroName + "' WHERE NameHeroes=N'" + OldHeroName + "'");
+                }
+            }
+            catch(Exception e) { ex = e; }
+            return ex;
+        }
     }
 }

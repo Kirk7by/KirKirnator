@@ -17,7 +17,7 @@
 
     <Grid Style="{DynamicResource GridStyleMainWindow}">
         <Button x:Name="lern" Content="Обучение" Margin="10,0,22,197" VerticalAlignment="Bottom" RenderTransformOrigin="0.256,-6.533" Height="78" BorderBrush="{x:Null}" Foreground="White" Style="{DynamicResource DefaultButtonStyle}"  FontFamily="Segoe UI" FontSize="26.667" Click="lern_Click"/>
-        <Label x:Name="label" Content="Добро пожаловать в KirKinator BETA Version 0.2.0 . &#xA;Выберите режим работы." VerticalAlignment="Top" Background="#B2000000" FontSize="20" Foreground="White" Height="72"/>
+        <Label x:Name="label" Content="Добро пожаловать в KirKinator BETA Version 0.2.2. (Байесовская&#xD;&#xA;гибридная динамическая сеть)... Выберите режим работы." VerticalAlignment="Top" Background="#B2000000" FontSize="20" Foreground="White" Height="72"/>
         <Button x:Name="diagnostyc" Content="Играть!" Margin="10,0,22,116" VerticalAlignment="Bottom" RenderTransformOrigin="0.256,-6.533" Height="76" IsDefault="True" Click="diagnostyc_Click" BorderBrush="{x:Null}" Foreground="White" Style="{DynamicResource DefaultButtonStyle}"  FontFamily="Segoe UI" FontSize="26.667" />
         <Button x:Name="configurations" Content="Конфигурирование" Margin="10,0,22,30" VerticalAlignment="Bottom" RenderTransformOrigin="0.256,-6.533" Height="81" BorderBrush="{x:Null}" Foreground="White" Style="{DynamicResource DefaultButtonStyle}" FontFamily="Segoe UI" FontSize="26.667"  Click="configurations_Click"/>
         <CheckBox x:Name="checkBox" Content="Больше не показывать" HorizontalAlignment="Right" Margin="0,0,8,4" VerticalAlignment="Bottom" Background="White" BorderBrush="#FF955151" Foreground="Black" FontWeight="Bold"/>

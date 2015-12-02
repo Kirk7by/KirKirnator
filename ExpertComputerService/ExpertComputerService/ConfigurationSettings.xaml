@@ -95,6 +95,7 @@
                 <Grid Background="#FFE5E5E5">
                     <Button x:Name="buttonheroImage" Content="Окно выдачи героев" HorizontalAlignment="Left" VerticalAlignment="Top" Width="255" Margin="0,38,0,0" Height="40" Click="buttonheroImage_Click"/>
                     <Image x:Name="image" HorizontalAlignment="Left" Height="177" Margin="16,104,0,0" VerticalAlignment="Top" Width="239" Source="Media/smileCat.jpg"/>
+                    <Button x:Name="test2" Content="Тест Запросов" HorizontalAlignment="Left" Margin="212,104,0,0" VerticalAlignment="Top" Width="210" Height="40" Click="test2_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

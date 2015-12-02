@@ -196,6 +196,9 @@ namespace ExpertComputerService
             }            
         }
 
-        
+        private void test2_Click(object sender, RoutedEventArgs e)
+        {
+            new Repository().updHero("Беар Грилс", "Беар Грилс2");
+        }
     }
 }

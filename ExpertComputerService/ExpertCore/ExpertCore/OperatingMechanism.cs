@@ -14,7 +14,7 @@ namespace ExpertCore
     internal class OperatingMechanism : IMechanism
     {
         internal event EventHandler QuestionEnter;   //событие, максимальное количество попыток выбора исчерпано, необходимо добавить новый вопрос, *либо выбрать из списка подобный*
-        internal event Action<string,string> GetMessageHero; //событие, Нужно вывести предположительный ответ
+        internal event Action<string, string> GetMessageHero; //событие, Нужно вывести предположительный ответ
 
         static string heroName; //последний вероятный герой
 
@@ -37,8 +37,8 @@ namespace ExpertCore
             EntityStorage ent = new Repository().GetEntityStorage();
             //   lHeroes = ent.Heroes.ToList();
 
-             lHeroes = new List<HeroesProgramm>();
-          
+            lHeroes = new List<HeroesProgramm>();
+
             lHeroes.Clear();
             foreach (var prHero in ent.Heroes.ToList())
             {
@@ -68,8 +68,6 @@ namespace ExpertCore
         }
         public string GetQuestion(int otv)
         {
-
-
             if (Quest2.Count == 0)
             {
                 GetProbabilityProizvHero(Quest1.ToList());
@@ -77,7 +75,7 @@ namespace ExpertCore
                 return "Количество вопросов исчерпано";
             }
 
-            Quest2[indexQuest2].OtvetSelected = otv;    //TODO: НУЖНЫ ТЕСТЫ именно этой части кода
+            Quest2[indexQuest2].OtvetSelected = otv;
             Quest1.Add(Quest2[indexQuest2]);
             Quest2.RemoveAt(indexQuest2);
 
@@ -103,7 +101,7 @@ namespace ExpertCore
                 {
                     QuestionEnter(this, EventArgs.Empty);
                 }
-                return null; // TODO:ОСТАНОВИСЬ
+                return null;
             }
 
             if (Quest2.Count == 0)
@@ -153,6 +151,16 @@ namespace ExpertCore
             return Qestion;
         }
 
+        public void UpdHeroName(string oldName, string newName)
+        {
+            lHeroes.SingleOrDefault(item => item.NameHeroes == oldName).NameHeroes = newName;
+            foreach(var Lq in lQuestions)
+            {
+                if (Lq.NameHeroes == oldName)
+                    Lq.NameHeroes = newName;
+            }
+            heroName = newName;
+        }   //Сменяем имя героя
         public string GetQuestion()  // Микширует все вопросы по вероятностям, при этом не проводит отбора// Безболезненный метод
         {           
             if(Quest1.Count==0)

@@ -62,7 +62,10 @@ namespace ExpertCore
         {
             return Mech.GetPriorityListHero();
         }   //Получение списка наиболее вероятных героев
-
+        public void updNameHero(string oldName, string newName)     //Динамическое изменение названия героя //обновление 2ух списков
+        {
+            Mech.UpdHeroName(oldName, newName);
+        }
 
 
         private void GetMessageHeroMethod(string Hero, string Quest)  //обработчик получения предположительного ответа

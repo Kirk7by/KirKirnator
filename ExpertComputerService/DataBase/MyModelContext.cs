@@ -3,6 +3,8 @@
     using Domain;
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.Core.Objects;
+    using System.Data.Entity.Infrastructure;
     using System.Linq;
 
     public class MyModelContext : DbContext
@@ -22,5 +24,14 @@
         }
         public virtual DbSet<Heroes> heroes { get; set; }
         public virtual DbSet<Questions> qestions { get; set; }
+        /*
+        public virtual int HR_UPDHEROES(string OldHeroName1, string NewHeroName1)
+        {
+            var OldHeroName = new ObjectParameter("OldHeroName", OldHeroName1);
+            var NewHeroName = new ObjectParameter("NewHeroName", NewHeroName1);
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("HR_UPDHEROES", OldHeroName, NewHeroName);
+        }
+        */ //то что не пригодилось
     }
 }

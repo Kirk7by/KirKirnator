@@ -85,37 +85,30 @@
             </GridSplitter>
         </Grid>
         <Grid x:Name="DevainedGrid" Grid.RowSpan="3" Background="#7F000000">
-            <Grid x:Name="DevainedGrid2" Margin="127,10,134,10" Background="#FFF2F9D0">
+            <Grid x:Name="DevainedGrid2" Margin="127,10,134,10" Background="#CC000000">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="115"/>
-                    <RowDefinition Height="375*"/>
-                    <RowDefinition Height="30*"/>
-                    <RowDefinition Height="79*"/>
+                    <RowDefinition Height="414*"/>
+                    <RowDefinition Height="41*"/>
+                    <RowDefinition Height="29*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="247*"/>
                     <ColumnDefinition Width="248*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="button_No" Content="НЕТ" Margin="12,9,10,10" Click="button_No_Click" Style="{DynamicResource buttonSetupStyle}" Background="#FFB8887E" Foreground="White" FontFamily="Comic Sans MS" Grid.Column="1" Grid.Row="3" BorderThickness="7" BorderBrush="#FFB8887E"/>
-                <Button x:Name="button_Yes" Content="Да" Margin="10,9,13,10" Click="buttonYes_Click" Style="{DynamicResource buttonSetupStyle}" Background="#FF445D38" Foreground="White" FontFamily="Comic Sans MS" RenderTransformOrigin="0.537,0.032" Grid.Row="3" BorderThickness="7" BorderBrush="#FF445D38"/>
-                <Label x:Name="label1" Content="Угадал ли я?" VerticalAlignment="Stretch" FontSize="20" Grid.ColumnSpan="2" Foreground="#FF249C00" FontWeight="Bold" Background="#FFD3FFC3" Height="Auto" Grid.Row="2" BorderThickness="0,0,0,0" VerticalContentAlignment="Center" Padding="10,0,0,0"/>
-                <Label x:Name="label_Copy" HorizontalContentAlignment="Center" Foreground="White" FontFamily="Sitka Small" Margin="10,65,10,0" Grid.ColumnSpan="2" Background="#FF979576" FontSize="20">
-                    <TextBlock x:Name="thinkWrap" TextAlignment="Center" TextWrapping="Wrap" Height="40" Width="541" Text="Текст того, что он думает" />
-                </Label>
-                <Label x:Name="label1_Copy" Content="Я думаю это:" Margin="10,10,10,0" VerticalAlignment="Top" FontSize="24" Grid.ColumnSpan="2" Foreground="#FF050600" FontWeight="Bold" Background="#FFFFFBB2" Height="43"/>
-                <Image x:Name="image" Margin="10,0,10,2" Grid.Row="1" Grid.ColumnSpan="2" Source="Media/Unknown_Flag.png"/>
-                <Button x:Name="btCorrected" Content="Редактировать" Grid.Column="1" Margin="0,0,9,0" Grid.Row="2" BorderBrush="{x:Null}" Style="{DynamicResource DefaultButtonStyle}" Padding="0,0,10,0" HorizontalContentAlignment="Right" Background="#FFD3FFC3" FontFamily="Segoe UI" FontSize="20" FontWeight="Bold" Click="btCorrected_Click">
-                    <Button.Foreground>
-                        <SolidColorBrush Color="#FF8B8AA4" Opacity="0.98"/>
-                    </Button.Foreground>
-                </Button>
-                <Grid x:Name="correctedGrid" Visibility="Visible" Margin="8,0,4,5" Grid.Row="1" Grid.ColumnSpan="2" Background="#B2000000" Height="135" VerticalAlignment="Bottom">
+                <Image x:Name="image"  Grid.ColumnSpan="2" Source="Media/Unknown_Flag.png" Grid.RowSpan="4" Stretch="UniformToFill">
+                </Image>
+                <Button x:Name="button_No" Content="НЕТ" Margin="12,0,10,-1" Click="button_No_Click" Style="{DynamicResource buttonSetupStyle}" Background="#4CB8887E" Foreground="White" FontFamily="Comic Sans MS" Grid.Column="1" Grid.Row="3" BorderThickness="3" BorderBrush="#4CB8887E" Padding="0" FontSize="13.333"/>
+                <Button x:Name="button_Yes" Content="Да" Margin="10,0,13,-1" Click="buttonYes_Click" Style="{DynamicResource buttonSetupStyle}" Background="#4B445D38" Foreground="White" FontFamily="Comic Sans MS" RenderTransformOrigin="0.537,0.032" Grid.Row="3" BorderThickness="3" BorderBrush="#4C445D38" Padding="0" FontSize="13.333"/>
+                <Label x:Name="label1" Content="Угадал ли я?" VerticalAlignment="Stretch" FontSize="20" Foreground="#4CE1EEDD" FontWeight="Bold" Background="#19000000" Height="Auto" Grid.Row="2" BorderThickness="0,0,0,0" VerticalContentAlignment="Center" Padding="10,0,0,0" HorizontalAlignment="Left" Width="168" Margin="0,3"/>
+                <Label x:Name="label1_Copy" Content="Я думаю это:" Margin="13,0,14,0" VerticalAlignment="Top" FontSize="18.667" Grid.ColumnSpan="2" Foreground="#7FFFFFFF" FontWeight="Bold" Background="#66463949" Height="35"/>
+                <Grid x:Name="correctedGrid" Visibility="Visible" Margin="8,0,4,0" Grid.Row="1" Grid.ColumnSpan="2" Background="#B2000000" Height="135" VerticalAlignment="Bottom">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="41*"/>
                         <ColumnDefinition Width="43*"/>
                         <ColumnDefinition Width="29*"/>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="loadImage" Content="Перезагрузить&#xD;&#xA;картинку" Margin="5,0,15,10" VerticalAlignment="Bottom" Height="85" Grid.Column="2" Style="{DynamicResource buttonSetupStyle}" Background="#997E5C41" BorderBrush="{x:Null}" Foreground="White" Click="loadImage_Click"/>
+                    <Button x:Name="loadImage" Content="Перезагрузить&#xA;картинку" Margin="5,0,15,10" VerticalAlignment="Bottom" Height="85" Grid.Column="2" Style="{DynamicResource buttonSetupStyle}" Background="#997E5C41" BorderBrush="{x:Null}" Foreground="White" Click="loadImage_Click"/>
                     <TextBox x:Name="OldName1" IsEnabled="False" Height="30" Margin="12,0,15,65" TextWrapping="Wrap" VerticalAlignment="Bottom" Background="#99FFFFFF" FontSize="16" FontWeight="Bold" Foreground="Black"/>
                     <Label x:Name="label2" Content="Старое название" HorizontalAlignment="Left" Margin="15,0,0,95" VerticalAlignment="Bottom" Foreground="#FFD4D2D0" FontWeight="Bold" FontSize="16" Width="152" Height="31"/>
                     <TextBox x:Name="OldName2" IsEnabled="False" Height="30" Margin="5,0,5,65" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.Column="1" Background="#99FFFFFF" FontSize="16" FontWeight="Bold" Foreground="Black"/>
@@ -123,6 +116,14 @@
                     <TextBox x:Name="NewName1" Height="30" Margin="14,0,15,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Background="#99FFFFFF" FontSize="16" FontWeight="Bold" Foreground="Black"/>
                     <TextBox x:Name="NewName2" Height="30" Margin="5,0,10,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.Column="1" Background="#99FFFFFF" FontSize="16" FontWeight="Bold" Foreground="Black"/>
                 </Grid>
+                <Label x:Name="label_Copy" HorizontalContentAlignment="Center" Foreground="White" FontFamily="Sitka Small" Margin="153,0,14,80" Grid.ColumnSpan="2" Background="#4C979576" FontSize="18.667" Padding="0,8,0,0">
+                    <TextBlock x:Name="thinkWrap" TextAlignment="Center" TextWrapping="Wrap" Height="25" Width="405" Text="Текст того, что он думает" FontSize="18.667" />
+                </Label>
+                <Button x:Name="btCorrected" Content="Редактировать" Grid.Column="1" Margin="0,-1,7,80" BorderBrush="{x:Null}" Style="{DynamicResource DefaultButtonStyle}" Padding="0,-3,10,0" HorizontalContentAlignment="Right" Background="#26D3FFC3" FontFamily="Segoe UI" FontSize="9.333" FontWeight="Bold" Click="btCorrected_Click" HorizontalAlignment="Right" Width="92" RenderTransformOrigin="0.619,0.839">
+                    <Button.Foreground>
+                        <SolidColorBrush Color="#4CFFFFFF" Opacity="0.98"/>
+                    </Button.Foreground>
+                </Button>
             </Grid>
         </Grid>
 

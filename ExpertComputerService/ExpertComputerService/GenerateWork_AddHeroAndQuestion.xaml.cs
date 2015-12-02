@@ -117,9 +117,7 @@ namespace ExpertComputerService
                     {
                         Directory.CreateDirectory(ExpConfig.Default.patchImages);
                     }
-             //       MessageBox.Show("TESTS: "+HeroName);
-                    System.IO.File.Copy(patchImage, ExpConfig.Default.patchImages + HeroName + ".jpg", true);
-               //     MessageBox.Show("something loaded" + patchImage);
+                    System.IO.File.Copy(patchImage, ExpConfig.Default.patchImages + HeroName + patchImage.Substring(patchImage.Length - 4, 4), true);
                 }
                 catch (Exception ex)
                 {
