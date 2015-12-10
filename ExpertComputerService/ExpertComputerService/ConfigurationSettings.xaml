@@ -91,6 +91,7 @@
                     </Border>
                     <Label x:Name="label_Copy5" Content="Учитывать ответ&#xD;&#xA;&quot;Не знаю&quot; в обучении системы?" HorizontalAlignment="Left" Margin="2,378,0,0" VerticalAlignment="Top" Width="245" Height="61" FontFamily="Consolas" FontSize="13.333" FontWeight="Bold"/>
                     <CheckBox x:Name="checkBoxDoNotAnswer" Content="Учитывать" HorizontalAlignment="Left" Margin="262,400,0,0" VerticalAlignment="Top" Width="150" FontSize="14.667" IsChecked="True"/>
+                    <CheckBox x:Name="checkBoxDoNotAnswer_Copy" Content="Выбор из списка ролевантных(планируемое)" HorizontalAlignment="Left" Margin="177,4,0,0" VerticalAlignment="Top" Width="340" FontSize="14.667" IsChecked="True" Foreground="#FFFFD68D"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Визуальные&#xD;&#xA;Настройки" Margin="-3,-2,-1,0">

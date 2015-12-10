@@ -31,6 +31,10 @@ namespace ExpertComputerService
         public LearnSystem()
         {
             InitializeComponent();
+
+            GridGeneral.Visibility = Visibility.Visible;
+            GridExtendet.Visibility = Visibility.Collapsed;
+
             switch (ExpConfig.Default.FullscreanWinow)
             {
                 case 1:
@@ -49,7 +53,9 @@ namespace ExpertComputerService
         {
             HeroesBut,
             QuestionsBut,
-            DominatingBut
+            DominatingBut,
+
+            QuestionTree
         }
         selectedButtons SelectBut;
 
@@ -80,7 +86,8 @@ namespace ExpertComputerService
                     GridHeroes.Visibility = Visibility.Visible;
                     GridQuestion.Visibility = Visibility.Collapsed;
 
-
+                    GridGeneral.Visibility = Visibility.Visible;
+                    GridExtendet.Visibility = Visibility.Collapsed;
                     break;
                 case selectedButtons.QuestionsBut:
                     //    var a = (new Repository().GetQuestionsSource()).Select(d => new { d.NameQestion }).Distinct().ToList();
@@ -106,7 +113,8 @@ namespace ExpertComputerService
                     GridHeroes.Visibility = Visibility.Collapsed;
                     GridQuestion.Visibility = Visibility.Visible;
 
-
+                    GridGeneral.Visibility = Visibility.Visible;
+                    GridExtendet.Visibility = Visibility.Collapsed;
                     break;
                 case selectedButtons.DominatingBut:
                     dgrid.ItemsSource = (new Repository().GetQuestionsSource()).Select(d => new
@@ -124,6 +132,14 @@ namespace ExpertComputerService
                     GridHeroes.Visibility = Visibility.Collapsed;
                     GridQuestion.Visibility = Visibility.Visible;
 
+                    GridGeneral.Visibility = Visibility.Visible;
+                    GridExtendet.Visibility = Visibility.Collapsed;
+                    break;
+                case selectedButtons.QuestionTree:
+                    GridGeneral.Visibility = Visibility.Collapsed;
+                    GridExtendet.Visibility = Visibility.Visible;
+
+
 
                     break;
             }
@@ -133,6 +149,7 @@ namespace ExpertComputerService
         {
             SelectBut = selectedButtons.HeroesBut;
             DataGridUpdate();
+            
         }
         private void buttonQuestions_Click(object sender, RoutedEventArgs e)
         {
@@ -390,9 +407,17 @@ namespace ExpertComputerService
 
 
         #endregion
+
+
         private void buttonSaveQuestion_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void buttonTreeQuestion_Click(object sender, RoutedEventArgs e)
+        {
+            SelectBut = selectedButtons.QuestionTree;
+            DataGridUpdate();
         }
     }
 }
