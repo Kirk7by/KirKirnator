@@ -9,5 +9,6 @@ namespace ExpertComputerService.LearnSystemsMaterials
     internal class PQuestions
     {
         public string NameQestion { get; set; }
+        public int TotalWeight { get; set; }
     }
 }

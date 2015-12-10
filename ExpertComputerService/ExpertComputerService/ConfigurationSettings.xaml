@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExpertComputerService"
         mc:Ignorable="d"
-        Title="ConfigurationSettings" Height="541.904" Width="650.812" WindowStartupLocation="CenterScreen">
+        Title="ConfigurationSettings" Height="591.952" Width="650.812" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="173*"/>
@@ -17,7 +17,7 @@
             <RowDefinition Height="48"/>
         </Grid.RowDefinitions>
         <TabControl x:Name="tabControl" Margin="0,0,0,2" Grid.ColumnSpan="3">
-            <TabItem Header="Настройки&#xD;&#xA;базы данных" Margin="-1,0,1,0">
+            <TabItem Header="Основные&#xD;&#xA;Настройки" Margin="-1,0,1,0">
                 <Grid Background="#FF8D9B86" Margin="0,0,0,3">
                     <Label x:Name="label" Content="Приоритетный вопрос:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" FontFamily="Consolas" FontWeight="Bold" FontSize="13.333" Margin="-1,0,0,0"/>
                     <ComboBox x:Name="tbQuestionPriority" Margin="10,26,89,0" VerticalAlignment="Top" Height="31" PreviewMouseDown="tbQuestionPriority_PreviewMouseDown"/>
@@ -71,7 +71,7 @@
                     <Label x:Name="label_Copy4" Content="Путь к папке с &#xD;&#xA;изображениями &#xD;&#xA;героев" HorizontalAlignment="Left" Margin="7,305,0,0" VerticalAlignment="Top" Width="132" Height="61" FontFamily="Consolas" FontSize="13.333" FontWeight="Bold"/>
                     <TextBox x:Name="tb_patch_Images" Height="45" Margin="139,305,89,0" TextWrapping="Wrap" VerticalAlignment="Top" BorderThickness="1" Background="#FF1C2649" Foreground="White" FontFamily="Courier New" FontSize="13.333" FontWeight="Bold"/>
                     <Button x:Name="bt_patch_Images" Content="Выбрать&#xD;&#xA;папку" HorizontalAlignment="Right" Margin="0,305,10,0" VerticalAlignment="Top" Width="74" Height="45" FontSize="10.667" Foreground="#FF318700" FontWeight="Bold" Click="bt_patch_Images_Click"/>
-                    <Border BorderThickness="1" Height="7" Margin="-1,293,1,0" VerticalAlignment="Top">
+                    <Border BorderThickness="1" Height="7" Margin="-1,360,1,0" VerticalAlignment="Top">
                         <Border.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FFBD9A9A" Offset="0"/>
@@ -80,6 +80,17 @@
                             </LinearGradientBrush>
                         </Border.Background>
                     </Border>
+                    <Border BorderThickness="1" Height="7" Margin="0,292,0,0" VerticalAlignment="Top">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFBD9A9A" Offset="0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                                <GradientStop Color="#7F424242" Offset="0.371"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <Label x:Name="label_Copy5" Content="Учитывать ответ&#xD;&#xA;&quot;Не знаю&quot; в обучении системы?" HorizontalAlignment="Left" Margin="2,378,0,0" VerticalAlignment="Top" Width="245" Height="61" FontFamily="Consolas" FontSize="13.333" FontWeight="Bold"/>
+                    <CheckBox x:Name="checkBoxDoNotAnswer" Content="Учитывать" HorizontalAlignment="Left" Margin="262,400,0,0" VerticalAlignment="Top" Width="150" FontSize="14.667" IsChecked="True"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Визуальные&#xD;&#xA;Настройки" Margin="-3,-2,-1,0">
@@ -91,11 +102,44 @@
                     <Label x:Name="label2_Copy" Content="Режим окон:" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Тестирование&#xD;&#xA;системы" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="92" Margin="-2,-2,-5,0">
+            <TabItem Header="Тестирование&#xD;&#xA;системы" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="92" Margin="0">
                 <Grid Background="#FFE5E5E5">
                     <Button x:Name="buttonheroImage" Content="Окно выдачи героев" HorizontalAlignment="Left" VerticalAlignment="Top" Width="255" Margin="0,38,0,0" Height="40" Click="buttonheroImage_Click"/>
                     <Image x:Name="image" HorizontalAlignment="Left" Height="177" Margin="16,104,0,0" VerticalAlignment="Top" Width="239" Source="Media/smileCat.jpg"/>
                     <Button x:Name="test2" Content="Тест Запросов" HorizontalAlignment="Left" Margin="212,104,0,0" VerticalAlignment="Top" Width="210" Height="40" Click="test2_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Режим работы&#xD;&#xA;системы" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="103" Margin="0,0,0,0">
+                <Grid Background="#FFE5E5E5">
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="2,44,5,8">
+                        <Viewbox Margin="-1,9,4,4">
+                            <Grid HorizontalAlignment="Left" Height="105" VerticalAlignment="Top" Width="201">
+                                <Button x:Name="button1" Content="KirKinator Heroes-Questions" Margin="-1,4,-1,0" VerticalAlignment="Top" Background="#FF9787A6" Foreground="#FFFFFCFC" BorderBrush="White" FontSize="6.667" Height="22"/>
+                                <Button x:Name="button1_Copy" Content="KirKinator Medicine" Margin="-1,30,-1,0" VerticalAlignment="Top" Background="White" Foreground="Red" BorderBrush="Black" FontSize="6.667" Height="17"/>
+                                <Button x:Name="button1_Copy1" Content="KirKinator Computer Diagnostic" Margin="-1,53,-1,0" VerticalAlignment="Top" Background="#FF2F3D5D" Foreground="White" FontFamily="Consolas" BorderBrush="#FF003AFF" FontSize="6.667" Height="18"/>
+                                <Button x:Name="button1_Copy2" Content="Universal KirKinator" Margin="-1,77,-1,11" Background="#FF527639" BorderBrush="#FF895A91" Foreground="White" FontSize="6.667"/>
+                            </Grid>
+                        </Viewbox>
+                    </Border>
+                    <Label x:Name="label3_Copy3" Content="В данном разделе представлена выбор режима функцианирования системы Beta:" HorizontalAlignment="Left" Margin="8,9,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="504"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Безопасность" Height="46" VerticalAlignment="Top" Margin="0,0,0,0">
+                <Grid Background="#FFE5E5E5">
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="375" Margin="12,14,0,0" VerticalAlignment="Top" Width="575"/>
+                    <Button x:Name="button" Content="Установить пароль" HorizontalAlignment="Left" Margin="37,254,0,0" VerticalAlignment="Top" Width="210" Height="35"/>
+                    <CheckBox x:Name="checkBox" Content="Пароль на доступ к настройкам" HorizontalAlignment="Left" Margin="345,49,0,0" VerticalAlignment="Top" Width="236"/>
+                    <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="37,158,0,0" VerticalAlignment="Top" Width="210" Height="25"/>
+                    <PasswordBox x:Name="passwordBox_Copy" HorizontalAlignment="Left" Margin="37,205,0,0" VerticalAlignment="Top" Width="210" Height="25"/>
+                    <Label x:Name="label3" Content="Старый пароль:" HorizontalAlignment="Left" Margin="37,84,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="37,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="210"/>
+                    <CheckBox x:Name="checkBox_Copy" Content="Пароль на доступ к обучению" HorizontalAlignment="Left" Margin="345,69,0,0" VerticalAlignment="Top" Width="226"/>
+                    <CheckBox x:Name="checkBox_Copy1" Content="Пароль при запуске" HorizontalAlignment="Left" Margin="345,89,0,0" VerticalAlignment="Top" Width="159"/>
+                    <Label x:Name="label3_Copy" Content="Требованть пароль на:" HorizontalAlignment="Left" Margin="298,19,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="174"/>
+                    <Label x:Name="label3_Copy1" Content="Новый пароль:" HorizontalAlignment="Left" Margin="37,133,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label3_Copy2" Content="Повторить:" HorizontalAlignment="Left" Margin="37,183,0,0" VerticalAlignment="Top"/>
+
                 </Grid>
             </TabItem>
         </TabControl>

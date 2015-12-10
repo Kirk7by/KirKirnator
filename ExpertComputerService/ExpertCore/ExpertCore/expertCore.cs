@@ -42,6 +42,13 @@ namespace ExpertCore
             else
                 return null;   
         }   //получить прошлый вопрос
+        public string GetQuestionThisDelete()   
+        {
+            Mech.DeleteQuestion();
+            return Mech.GetQuestion();
+        }  //удаление вопроса с ответом "Не знаю" ПС. Если включено в настройках
+
+
 
         public Exception OutputNewHero(string heroName, string questName)
         {

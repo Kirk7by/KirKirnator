@@ -43,6 +43,7 @@ namespace ExpertComputerService
             if ((tbDBConnectionString.Text = ExpConfig.Default.ConnectionString) == "")
                 btDefaultSettings.Background = Brushes.GreenYellow;
             tb_patch_Images.Text = ExpConfig.Default.patchImages;
+            checkBoxDoNotAnswer.IsChecked = ExpConfig.Default.DoNotAnswer;
             //формы
             comboBoxThema.Text = ExpConfig.Default.Thema;
             comboBoxWindowMode.Text = Convert.ToString(ExpConfig.Default.FullscreanWinow);
@@ -94,6 +95,7 @@ namespace ExpertComputerService
                 ExpConfig.Default.MinGetQuestionMaxProbality = Convert.ToInt32(TbListHeroMaxProbality.Text);
                 ExpConfig.Default.QuantityAttempt = Convert.ToInt32(tbAttempts.Text);
                 ExpConfig.Default.ConnectionString = tbDBConnectionString.Text;
+                ExpConfig.Default.DoNotAnswer = (bool)checkBoxDoNotAnswer.IsChecked;
                 //темы
                 ExpConfig.Default.Thema = comboBoxThema.Text;
                 ExpConfig.Default.FullscreanWinow = int.Parse(comboBoxWindowMode.Text);
@@ -112,8 +114,8 @@ namespace ExpertComputerService
             TbListHeroMaxProbality.Text = "10";
             tbAttempts.Text = "5";
             tbDBConnectionString.Text = @"(LocalDb)\MSSQLLocalDB; initial catalog = ExpertHeros; integrated security = True; MultipleActiveResultSets = True; App = EntityFramework";
+            checkBoxDoNotAnswer.IsChecked = true;
 
-            
             tb_patch_Images.Text = "./HeroesImage/";
             if (!Directory.Exists("./HeroesImage/"))
             {

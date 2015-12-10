@@ -76,10 +76,37 @@ namespace ExpertComputerService
                     }
 
                     dgrid.ItemsSource = Hp.ToList();
+
+                    GridHeroes.Visibility = Visibility.Visible;
+                    GridQuestion.Visibility = Visibility.Collapsed;
+
+
                     break;
                 case selectedButtons.QuestionsBut:
-                    var a = (new Repository().GetQuestionsSource()).Select(d => new { d.NameQestion }).Distinct().ToList();
-                    dgrid.ItemsSource = a.ToList();
+                    //    var a = (new Repository().GetQuestionsSource()).Select(d => new { d.NameQestion }).Distinct().ToList();
+                    var a = new Repository().GetQuestionsSource();
+
+
+                    List<PQuestions> Pq = new List<PQuestions>();
+                    foreach(var ia in a.Select(d => new { d.NameQestion }).Distinct())
+                    {
+                        int summary = 0;
+                        foreach(var ia2 in a)
+                        {
+                            if(ia2.NameQestion==ia.NameQestion)
+                            {
+                                summary = (int)ia2.OtvetSelected + summary;
+                            }
+                        }
+                        Pq.Add(new PQuestions { NameQestion = ia.NameQestion, TotalWeight = summary });
+                    }
+                    
+                    dgrid.ItemsSource = Pq.ToList();
+
+                    GridHeroes.Visibility = Visibility.Collapsed;
+                    GridQuestion.Visibility = Visibility.Visible;
+
+
                     break;
                 case selectedButtons.DominatingBut:
                     dgrid.ItemsSource = (new Repository().GetQuestionsSource()).Select(d => new
@@ -93,6 +120,11 @@ namespace ExpertComputerService
                         d.OtvetQuest5,
                         d.OtvetSelected
                     }).ToList();
+
+                    GridHeroes.Visibility = Visibility.Collapsed;
+                    GridQuestion.Visibility = Visibility.Visible;
+
+
                     break;
             }
         }
@@ -166,9 +198,10 @@ namespace ExpertComputerService
 
         private void dgrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (SelectBut == selectedButtons.HeroesBut)
+            switch (SelectBut)
             {
-                PHero hero = dgrid.SelectedItem as PHero;
+                case selectedButtons.HeroesBut:
+                    PHero hero = dgrid.SelectedItem as PHero;
                 if (hero != null)
                 {
                     try
@@ -203,6 +236,19 @@ namespace ExpertComputerService
                     else
                         image.Source = new BitmapImage(new Uri("pack://application:,,,/Media/Unknown_Flag.png"));
                 }
+                    break;
+
+                case selectedButtons.QuestionsBut:
+                    PQuestions quest = dgrid.SelectedItem as PQuestions;
+                    if(quest!=null)
+                    {
+                        LabelUpd.Content = quest.NameQestion;
+                        TBOldQuestion.Text = quest.NameQestion;
+                        TBNewQuestion.Text = quest.NameQestion;
+                    }
+
+
+                    break;
             }
         }
         #region Operations with Heroes
@@ -328,10 +374,25 @@ namespace ExpertComputerService
                 }
                 new Repository().updHero(OldHeroName, NewHeroName);
                 DataGridUpdate();
+                OldName1.Text = NewName1.Text;
+                OldName2.Text = NewName2.Text;
+                LabelUpd.Content = NewHeroName;
                 ProgressSuccessLabel.Visibility = Visibility.Visible;
               //  MessageBox.Show("Данные сохранены!");
             }
         }
         #endregion
+
+        #region Operations with Questions
+//Okay
+//go     
+        
+
+
+        #endregion
+        private void buttonSaveQuestion_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

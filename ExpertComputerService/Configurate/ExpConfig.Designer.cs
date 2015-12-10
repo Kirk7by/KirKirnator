@@ -119,5 +119,17 @@ namespace Configurate {
                 this["patchImages"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DoNotAnswer {
+            get {
+                return ((bool)(this["DoNotAnswer"]));
+            }
+            set {
+                this["DoNotAnswer"] = value;
+            }
+        }
     }
 }

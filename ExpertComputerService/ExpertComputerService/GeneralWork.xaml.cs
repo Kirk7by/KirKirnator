@@ -76,7 +76,10 @@ namespace ExpertComputerService
         }
         private void button5_Click(object sender, RoutedEventArgs e)
         {
-            CoreLink(5);
+            if (ExpConfig.Default.DoNotAnswer)
+                CoreLink(5);
+            else
+                NextQuestionDeleteThisQuestion();
         }
         #endregion
 
@@ -105,8 +108,12 @@ namespace ExpertComputerService
             }
         }
 
-       
-
+        private void NextQuestionDeleteThisQuestion()
+        {
+            string quest = ExpCore.GetQuestionThisDelete();
+            LabelWrap.Text = quest;
+            btnNumberQuest.Content = NumberQuest;
+        }
 
        
 

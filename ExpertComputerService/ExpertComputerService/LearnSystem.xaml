@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExpertComputerService"
         mc:Ignorable="d"
-        Title="LearnSystem" Height="510.421" Width="706.941" MouseMove="Window_MouseMove">
+        Title="LearnSystem" Height="572" Width="706.941" MouseMove="Window_MouseMove">
 
     <Grid Background="#FF9B9CA0">
 
@@ -13,21 +13,29 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
-                <RowDefinition Height="Auto" MinHeight="170"/>
-                <RowDefinition Height="9"/>
+                <RowDefinition Height="Auto" MinHeight="145"/>
+                <RowDefinition Height="0"/>
             </Grid.RowDefinitions>
-            <DataGrid x:Name="dgrid" Margin="175,0,12,4" Background="#CCF0F0F0" ColumnWidth="*" Grid.Row="1" Grid.RowSpan="3" SelectionChanged="dgrid_SelectionChanged" AutoGenerateColumns="True" IsReadOnly="True">
-
-            </DataGrid>
+            <DataGrid x:Name="dgrid" Margin="175,0,12,4" Background="#CCF0F0F0" ColumnWidth="*" Grid.Row="1" SelectionChanged="dgrid_SelectionChanged" AutoGenerateColumns="True" IsReadOnly="True"/>
             <GridSplitter x:Name="gridSplitter_Copy" Height="131" Margin="176,9,14,0" VerticalAlignment="Top" Background="#F2F0F0F0" Grid.Row="2" HorizontalAlignment="Stretch"/>
-            <Grid x:Name="gridAddQuest" Height="120" Margin="176,10,14,0" VerticalAlignment="Top" Grid.Row="2">
+            <Grid x:Name="gridAddQuest" Height="135" Margin="176,10,14,0" VerticalAlignment="Top" Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="204*"/>
                     <ColumnDefinition Width="305*"/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="label" Content="Редактирование" Margin="0,-3,1,0" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Consolas" Foreground="Black" HorizontalAlignment="Right" Width="105" Height="25" Grid.Column="1"/>
-                <Label x:Name="LabelUpd" Content="Label" Margin="4,-5,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Black" FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2"/>
-                <Grid x:Name="GridHeroes" Margin="-1,0,0,0" Grid.ColumnSpan="2">
+                <Label x:Name="LabelUpd" Content="Выберите требуемую операцию" Margin="4,-5,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="Black" FontWeight="Bold" FontSize="16" Grid.ColumnSpan="2"/>
+                <Grid x:Name="GridQuestion" Margin="-1,20,0,5" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="37*"/>
+                        <ColumnDefinition Width="65*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="TBOldQuestion" Height="23" Margin="5,5,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" IsEnabled="False"/>
+                    <TextBox x:Name="TBNewQuestion" Height="23" Margin="5,32,5,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Button x:Name="buttonSaveQuestion" Content="Сохранить изменения" Margin="5,65,5,0" VerticalAlignment="Top" Height="40" BorderThickness="0" Style="{DynamicResource DefaultButtonStyle}" Foreground="White" Grid.Column="1" Click="buttonSaveQuestion_Click"/>
+                    <Button x:Name="buttonNewQuestion" Content="Новый" Margin="5,65,5,0" VerticalAlignment="Top" Height="40" BorderThickness="0" Style="{DynamicResource DefaultButtonStyle}" Foreground="White"/>
+                </Grid>
+                <Grid x:Name="GridHeroes" Margin="-1,0,0,0" Grid.ColumnSpan="2" d:IsHidden="True">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="37*"/>
                         <ColumnDefinition Width="65*"/>
@@ -43,15 +51,16 @@
                     <Button x:Name="buttonAddQuest_Copy" Content="Новый" Margin="5,85,5,-5" VerticalAlignment="Top" Height="40" BorderThickness="0" Style="{DynamicResource DefaultButtonStyle}" Foreground="White"/>
                 </Grid>
             </Grid>
-            <Grid HorizontalAlignment="Left" Width="177" Grid.RowSpan="4">
-                <Button x:Name="buttonQuestions" HorizontalAlignment="Left" Content="Вопросы" Margin="9,92,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonQuestions_Click"></Button>
+            <Grid HorizontalAlignment="Left" Width="177" Grid.RowSpan="3">
+                <Button x:Name="buttonQuestions" HorizontalAlignment="Left" Content="Вопросы" Margin="9,92,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonQuestions_Click"/>
                 <Button x:Name="buttonDominations" Content="Доминирование" HorizontalAlignment="Left" Margin="9,157,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonDominations_Click"/>
-                <Button x:Name="deletebut" Content="Удалить" HorizontalAlignment="Left" Margin="8,402,0,0" VerticalAlignment="Top" Width="162" Height="38" Click="deletebut_Click"/>
                 <Button x:Name="buttonHeroes" Content="Герои" HorizontalAlignment="Left" Margin="9,29,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonHeroes_Click"/>
-                <Label x:Name="ProgressSuccessLabel" Content="Успех операции" HorizontalAlignment="Left" Margin="9,261,0,0" VerticalAlignment="Top" Background="White" BorderBrush="#FF5DE61C" Foreground="#FF05B405" FontWeight="Bold" FontSize="18.667" Width="162"/>
-                <Button x:Name="button_upd" Content="Изменить" HorizontalAlignment="Left" Margin="8,359,0,0" VerticalAlignment="Top" Width="162" Height="38" Click="button_upd_Click"/>
-                <Button x:Name="button_Add" Content="Добавить" HorizontalAlignment="Left" Margin="7,316,0,0" VerticalAlignment="Top" Width="162" Height="38"/>
                 <Label x:Name="label1" Content="Общие" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Width="177" Background="#FF403C47" Foreground="White" Height="26"/>
+                <Label x:Name="label1_Copy" Content="Расширенный" HorizontalAlignment="Left" Margin="0,219,0,0" VerticalAlignment="Top" Width="177" Background="#FF403C47" Foreground="White" Height="26"/>
+                <Button x:Name="buttonHeroes_Copy" Content="Четкое обучение&#xD;&#xA;По Героям" HorizontalAlignment="Left" Margin="10,247,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonHeroes_Click"/>
+                <Button x:Name="buttonHeroes_Copy1" Content="Древо Героев" HorizontalAlignment="Left" Margin="10,307,0,0" VerticalAlignment="Top" Width="163" Height="30" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonHeroes_Click" RenderTransformOrigin="0.491,1.833"/>
+                <Button x:Name="buttonHeroes_Copy2" Content="Древо Вопросов" HorizontalAlignment="Left" Margin="10,337,0,0" VerticalAlignment="Top" Width="163" Height="30" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonHeroes_Click" RenderTransformOrigin="0.491,1.833"/>
+                <Button x:Name="buttonHeroes_Copy3" Content="Звенья" HorizontalAlignment="Left" Margin="10,367,0,0" VerticalAlignment="Top" Width="163" Height="30" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonHeroes_Click" RenderTransformOrigin="0.491,1.833"/>
             </Grid>
             <GridSplitter x:Name="gridSplitter" Height="11" Margin="175,1,14,0" VerticalAlignment="Top" Grid.Row="2" Background="#FF403C47" HorizontalAlignment="Stretch"/>
         </Grid>
@@ -61,6 +70,7 @@
                 <ImageBrush ImageSource="Media/Unknown_Flag.png"/>
             </Button.Background>
         </Button>
+        <Label x:Name="ProgressSuccessLabel" Content="Успех операции" HorizontalAlignment="Center" Margin="270,230,0,0" VerticalAlignment="Center" Background="White" BorderBrush="#FF5DE61C" Foreground="#FF05B405" FontWeight="Bold" FontSize="18.667" Width="167" d:IsHidden="True"/>
 
     </Grid>
 </Window>
