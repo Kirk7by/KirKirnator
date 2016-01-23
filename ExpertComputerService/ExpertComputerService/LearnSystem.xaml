@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExpertComputerService"
         mc:Ignorable="d"
-        Title="LearnSystem" Height="572" Width="853.971" MouseMove="Window_MouseMove">
+        Title="LearnSystem" Height="517" Width="853.971" MouseMove="Window_MouseMove">
 
     <Grid Background="#FF9B9CA0">
 
@@ -87,28 +87,79 @@
                 <Label x:Name="label2_Copy4" Content="Поиск Слабых сторон" HorizontalAlignment="Left" Margin="5,390,0,0" VerticalAlignment="Top" Width="381" Padding="0" FontSize="26.667" Foreground="White" Background="#FF643C3C" Height="40" ToolTip="Нахождение вопроса, где необходимо разрешить однозначность"/>
                 <Label x:Name="label2_Copy1" Content="Поиск Критических вопросов:" HorizontalAlignment="Left" Margin="4,13,0,0" VerticalAlignment="Top" Width="381" Padding="0" FontSize="26.667" Foreground="White" Background="#FF643C3C" Height="40"/>
             </Grid>
-            <Grid x:Name="GridHeroLearnClear" Margin="180,2,6,6" Grid.RowSpan="3" Background="#FFCBCBCB" d:IsHidden="True">
+            <Grid x:Name="GridHeroLearnClear" Margin="180,2,6,6" Grid.RowSpan="3" Background="#FFCBCBCB">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="95"/>
-                    <RowDefinition Height="17*"/>
-                    <RowDefinition Height="24*"/>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="43*"/>
                 </Grid.RowDefinitions>
-                <Label x:Name="label2_Copy5" Content="Четкое обучение по героям:" HorizontalAlignment="Left" Margin="4,13,0,0" VerticalAlignment="Top" Width="436" Padding="0" FontSize="26.667" Foreground="White" Background="#FF3C4764" Height="40"/>
-                <Border BorderBrush="#FF3C4764" BorderThickness="5" Height="40" VerticalAlignment="Top" Background="#FF636D76" Margin="4,50,6,0"/>
-                <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="26" Margin="12,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="228" Background="#CC3F4147" Foreground="White"/>
-                <Border BorderBrush="#FF3C4764" BorderThickness="5" Background="#FF636D76" Margin="5,10,5,5" Grid.Row="2">
-                    <Label x:Name="label2_Copy7" Content="Список вопросов со скрол расстановкой" HorizontalAlignment="Left" VerticalAlignment="Top" Width="380" Padding="0" FontSize="18.667" Foreground="#FFDDDCF9" Margin="5,5,0,0" Height="30"/>
-                </Border>
-                <TextBox x:Name="textBox1_Copy" HorizontalAlignment="Left" Height="26" Margin="245,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Background="#CC3F4147" Foreground="White"/>
-                <Border BorderBrush="#FF3C4764" BorderThickness="5" Background="#FF636D76" Margin="5,0" Grid.Row="1">
+                <Label x:Name="label2_Copy5" Content="Четкое обучение по героям:" HorizontalAlignment="Left" Margin="4,5,0,0" VerticalAlignment="Top" Width="436" Padding="0" FontSize="26.667" Foreground="White" Background="#FF3C4764" Height="40"/>
+                <Border BorderBrush="#FF3C4764" BorderThickness="5" Height="40" VerticalAlignment="Top" Background="#FF676F85" Margin="4,42,0,0" HorizontalAlignment="Left" Width="436"/>
+                <TextBox x:Name="GridHeroLearnTextbox1" HorizontalAlignment="Left" Height="26" Margin="12,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" Background="#CC3F4147" Foreground="White" KeyUp="GridHeroLearnTextbox1_KeyUp"/>
+                <TextBox x:Name="GridHeroLearnTextbox2" HorizontalAlignment="Left" Height="26" Margin="235,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Background="#CC3F4147" Foreground="White" KeyUp="GridHeroLearnTextbox2_KeyUp"/>
+                <Border BorderBrush="#FF3C4764" BorderThickness="5" Background="#FF636D76" Margin="4,82,5,0" Grid.ColumnSpan="2">
                     <Label x:Name="label2_Copy6" Content="Результаты поиска" VerticalAlignment="Top" Padding="0" FontSize="53.333" Foreground="#26000000" Margin="5,5,5,0" Height="150" FontWeight="Bold" FontFamily="Segoe UI Black"/>
                 </Border>
-                <GridSplitter x:Name="gridSplitter1" HorizontalAlignment="Stretch" Height="20" Margin="5,0,0,0" VerticalAlignment="Top" Background="#02F0F0F0" Grid.Row="2"/>
-                <GridSplitter x:Name="gridSplitter1_Copy" HorizontalAlignment="Stretch" Height="10" Margin="5,0,0,0" VerticalAlignment="Bottom" Background="#02F0F0F0"/>
-                <DataGrid x:Name="HeroesLearnClear_DataGridResultFind" Margin="10,5" Grid.Row="1" Background="#3DB2FFFC"/>
-                <Button x:Name="button_Copy1" Content="Обновить" VerticalAlignment="Top" Height="77" ToolTip="Поиск вопросов, Ответ не знаю на который встречается чаще всех" FontSize="18.667" BorderBrush="#FF3C4764" BorderThickness="5" Style="{DynamicResource buttonSetupStyle}" Foreground="White" Background="#FF3C4764" Margin="439,13,6,0"/>
+                <GridSplitter x:Name="gridSplitter1" HorizontalAlignment="Stretch" Height="20" Margin="5,0,0,0" VerticalAlignment="Top" Background="#02F0F0F0" Grid.Row="1" Grid.ColumnSpan="2"/>
+                <DataGrid x:Name="GridHeroLearnDataGrid1" Margin="10,87,10,8" Background="#3DB2FFFC" IsReadOnly="True" ColumnWidth="*" Grid.ColumnSpan="2"/>
+                <Button x:Name="GridHeroLearnButton1" Content="Обновить" VerticalAlignment="Top" Height="77" ToolTip="Поиск вопросов, Ответ не знаю на который встречается чаще всех" FontSize="18.667" BorderBrush="#FF3C4764" BorderThickness="5" Style="{DynamicResource buttonSetupStyle}" Foreground="White" Background="#FF596583" Margin="440,5,5,0" Click="GridHeroLearnButton1_Click" Grid.ColumnSpan="2"/>
+                <GridSplitter x:Name="gridSplitter1_Copy" HorizontalAlignment="Stretch" Margin="455,5,5,5" Background="#FF3C4764" Grid.Row="1" RenderTransformOrigin="0.5,0.5" BorderBrush="#FFECD8D8" BorderThickness="1,0,0,0"/>
+                <Grid Grid.Row="1" Margin="0,5,5,5" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto" MinWidth="203"/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="#FF3C4764" BorderThickness="5" Background="#FFA2A8B6" Margin="4,0,0,0" Grid.ColumnSpan="2"/>
+                    <DataGrid x:Name="GridHeroLearnDataGrid1_Copy" Margin="10,7,7,5" Background="#FF596583" IsReadOnly="True" ColumnWidth="*"/>
+                    <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                        <Grid HorizontalAlignment="Left" Height="230" VerticalAlignment="Top" Width="225">
+                            <Border BorderBrush="#FF3C4764" BorderThickness="5" Margin="-1,80,0,0">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF999999" Offset="1"/>
+                                        <GradientStop Color="#FF31A007"/>
+                                        <GradientStop Color="#FF84AE84" Offset="0.36"/>
+                                        <GradientStop Color="#FF645151" Offset="0.68"/>
+                                        <GradientStop Color="#FFA40C0C" Offset="0.563"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                            <Label x:Name="label3" Content="Yes" HorizontalAlignment="Left" Margin="5,98,0,0" VerticalAlignment="Top" Width="210" Foreground="White" Height="21" Padding="5,0,0,0" Background="#FF00A800"/>
+                            <Label x:Name="label3_Copy" Content="Yes~" HorizontalAlignment="Left" Margin="5,123,0,0" VerticalAlignment="Top" Width="210" Foreground="White" Height="21" Padding="5,0,0,0" Background="#FF84AE84"/>
+                            <Label x:Name="label3_Copy1" Content="No" HorizontalAlignment="Left" Margin="5,147,0,0" VerticalAlignment="Top" Width="210" Foreground="White" Height="22" Padding="5,0,0,0" Background="#FF852020"/>
+                            <Label x:Name="label3_Copy2" Content="No~" HorizontalAlignment="Left" Margin="5,173,0,0" VerticalAlignment="Top" Width="210" Foreground="White" Height="21" Padding="5,0,0,0" Background="#FF645151"/>
+                            <Label x:Name="label3_Copy3" Content="N/A~" HorizontalAlignment="Left" Margin="5,199,0,0" VerticalAlignment="Top" Width="210" Foreground="White" Height="21" Padding="5,0,0,0" Background="#FF999999"/>
+                            <Slider x:Name="slider_Copy" HorizontalAlignment="Left" Margin="41,98,0,0" VerticalAlignment="Top" Width="138" Height="22"/>
+                            <Slider x:Name="slider_Copy2" HorizontalAlignment="Left" Margin="41,147,0,0" VerticalAlignment="Top" Width="138" Height="24"/>
+                            <Slider x:Name="slider_Copy3" HorizontalAlignment="Left" Margin="41,173,0,0" VerticalAlignment="Top" Width="138" Height="22"/>
+                            <Slider x:Name="slider_Copy4" HorizontalAlignment="Left" Margin="41,198,0,0" VerticalAlignment="Top" Width="138" Height="22"/>
+                            <Slider x:Name="slider_Copy1" HorizontalAlignment="Left" Margin="41,123,0,0" VerticalAlignment="Top" Width="138" Height="22"/>
+                            <Border BorderBrush="#FF3C4764" BorderThickness="5" Background="#FF596583" Margin="-1,0,0,155"/>
+                            <Slider x:Name="slider" HorizontalAlignment="Left" Margin="4,30,0,0" VerticalAlignment="Top" Width="216" Height="20" Background="#FF437A6D"/>
+                            <Label x:Name="label3_Copy4" Content="Yes" HorizontalAlignment="Left" Margin="4,50,0,0" VerticalAlignment="Top" Width="216" Foreground="White" Height="20" Padding="5,0,0,0">
+                                <Label.Background>
+                                    <LinearGradientBrush EndPoint="0,0" StartPoint="0.9,0">
+                                        <GradientStop Color="#FF999999" Offset="0.463"/>
+                                        <GradientStop Color="#FF31A007" Offset="1"/>
+                                        <GradientStop Color="#FF84AE84" Offset="0.666"/>
+                                        <GradientStop Color="#FF645151" Offset="0.26"/>
+                                        <GradientStop Color="#FFA40C0C"/>
+                                    </LinearGradientBrush>
+                                </Label.Background>
+                            </Label>
+                            <Label x:Name="label3_Copy9" Content="Шкала возможностей" HorizontalAlignment="Left" Margin="4,5,0,0" VerticalAlignment="Top" Width="216" Foreground="White" Height="25" Padding="5,0,0,0" Background="#FFC1C1C1"/>
+                            <Label x:Name="label3_Copy5" Content="Yes~" HorizontalAlignment="Left" Margin="45,50,0,0" VerticalAlignment="Top" Width="30" Foreground="White" Height="21" Padding="5,0,0,0" Background="{x:Null}"/>
+                            <Label x:Name="label3_Copy6" Content="N/A~" HorizontalAlignment="Left" Margin="95,50,0,0" VerticalAlignment="Top" Width="40" Foreground="White" Height="21" Padding="5,0,0,0" Background="{x:Null}"/>
+                            <Label x:Name="label3_Copy7" Content="No" HorizontalAlignment="Left" Margin="190,50,0,0" VerticalAlignment="Top" Width="30" Foreground="White" Height="22" Padding="5,0,0,0" Background="{x:Null}" RenderTransformOrigin="2.833,0.227"/>
+                            <Label x:Name="label3_Copy8" Content="No~" HorizontalAlignment="Left" Margin="145,50,0,0" VerticalAlignment="Top" Width="30" Foreground="White" Height="20" Padding="5,0,0,0" Background="{x:Null}"/>
+                        </Grid>
+                    </Viewbox>
+                    <GridSplitter x:Name="gridSplitter2" Width="7" RenderTransformOrigin="0.5,0.4" Background="#FFCBCBCB"/>
+                </Grid>
             </Grid>
-            <Grid x:Name="GridHeroesThree" Margin="180,2,4,1" Grid.Row="1" Grid.RowSpan="2" Background="#FF618565">
+            <Grid x:Name="GridHeroesThree" Margin="180,2,4,1" Grid.Row="1" Grid.RowSpan="2" Background="#FF618565" d:IsHidden="True">
                 <Border BorderBrush="#FF004D07" BorderThickness="5" Height="195" VerticalAlignment="Top" Background="#FF7A5353" Margin="4,50,8,0"/>
                 <Button x:Name="button1" Content="Создать дерево" VerticalAlignment="Top" Height="130" ToolTip="Поиск вопросов, Ответ не знаю на который встречается чаще всех" FontSize="18.667" BorderBrush="#FF643C3C" BorderThickness="5" Style="{DynamicResource buttonSetupStyle}" Foreground="White" Background="#FF7A7777" Margin="436,81,20,0"/>
                 <CheckBox x:Name="checkBox1" Content="Отображать силу связей между героями" HorizontalAlignment="Left" Margin="22,75,0,0" VerticalAlignment="Top" Width="403" FontSize="18.667" Foreground="#FFDDDCF9"/>

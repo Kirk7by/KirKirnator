@@ -62,19 +62,12 @@ namespace ExpertComputerService
             HeroesLearnClear
         }
         selectedButtons SelectBut;
+
+        //
+        List<PHero> Hl = new List<PHero>();
    
         private void DataGridUpdate()
         {
-            DoubleAnimation db = new DoubleAnimation();
-            db.From = 0;
-            db.To = 1.0;
-            db.Duration = new Duration(TimeSpan.FromSeconds(0.4));
-            db.AutoReverse = false;
-            db.RepeatBehavior = RepeatBehavior.Forever;
-
-            db.RepeatBehavior = new RepeatBehavior(1);
-            dgrid.BeginAnimation(OpacityProperty, db);
-
             showEltmtnts();
 
             switch (SelectBut)
@@ -83,16 +76,15 @@ namespace ExpertComputerService
                     List<PHero> Hp = new List<PHero>();
                     foreach (var item in new Repository().GetHeroesSource().ToList())
                     {
-                        Hp.Add(new PHero { NameHeroes = item.NameHeroes, WeigthHero = item.WeigthHero, TextHero = item.TextHero });
+                        Hp.Add(new PHero { NameHeroes = item.NameHeroes, WeigthHero = item.WeigthHero });
                     }
 
                     dgrid.ItemsSource = Hp.ToList();
                     break;
+
                 case selectedButtons.QuestionsBut:
                     //    var a = (new Repository().GetQuestionsSource()).Select(d => new { d.NameQestion }).Distinct().ToList();
                     var a = new Repository().GetQuestionsSource();
-
-
                     List<PQuestions> Pq = new List<PQuestions>();
                     foreach(var ia in a.Select(d => new { d.NameQestion }).Distinct())
                     {
@@ -109,6 +101,7 @@ namespace ExpertComputerService
                     
                     dgrid.ItemsSource = Pq.ToList();
                     break;
+
                 case selectedButtons.DominatingBut:
                     dgrid.ItemsSource = (new Repository().GetQuestionsSource()).Select(d => new
                     {
@@ -122,15 +115,32 @@ namespace ExpertComputerService
                         d.OtvetSelected
                     }).ToList();
                     break;
+
                 case selectedButtons.QuestionTree:
                     break;
 
                 case selectedButtons.HeroesLearnClear:
+                  //  List<PHero> Hl = new List<PHero>();
+                    foreach (var item in new Repository().GetHeroesSource().ToList())
+                    {
+                        Hl.Add(new PHero { NameHeroes = item.NameHeroes, WeigthHero = item.WeigthHero });
+                    }
+
+                    GridHeroLearnDataGrid1.ItemsSource = Hl.ToList();
                     break;
             }
         }
         private void showEltmtnts()
         {
+            DoubleAnimation db = new DoubleAnimation();
+            db.From = 0;
+            db.To = 1.0;
+            db.Duration = new Duration(TimeSpan.FromSeconds(0.4));
+            db.AutoReverse = false;
+            db.RepeatBehavior = RepeatBehavior.Forever;
+
+            db.RepeatBehavior = new RepeatBehavior(1);
+            dgrid.BeginAnimation(OpacityProperty, db);
             switch (SelectBut)
             {
                 case selectedButtons.HeroesBut:
@@ -464,6 +474,7 @@ namespace ExpertComputerService
         }
 
 
+
         #endregion
 
         #region Operations with Questions
@@ -474,6 +485,38 @@ namespace ExpertComputerService
 
         #endregion
 
-        
+        //others operations
+        #region Others operations
+
+        #region GridHeroLearn
+
+        private void GridHeroLearnTextbox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+            if (GridHeroLearnTextbox1.Text!="")
+            {
+                GridHeroLearnDataGrid1.ItemsSource = (from d in Hl
+                                                      where d.NameHeroes.ToLower().Contains(GridHeroLearnTextbox1.Text.ToLower())
+                                                      select d).ToList();
+                
+            }
+            else
+            {
+                GridHeroLearnDataGrid1.ItemsSource = Hl.ToList();
+            }
+        }
+
+        private void GridHeroLearnTextbox2_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void GridHeroLearnButton1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
+        #endregion
     }
 }

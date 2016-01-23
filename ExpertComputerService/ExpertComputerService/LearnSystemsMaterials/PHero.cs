@@ -10,7 +10,7 @@ namespace ExpertComputerService.LearnSystemsMaterials
     {
         public string NameHeroes { get; set; }  //название Hero, или по-простому "Условный идентификатор"
 
-        public string TextHero { get; set; }  //текст ответа, подробности о герое
+  //      public string TextHero { get; set; }  //текст ответа, подробности о герое
         public int? WeigthHero { get; set; }    //Количество угаданных раз этого Hero (вес)
     }
 }
