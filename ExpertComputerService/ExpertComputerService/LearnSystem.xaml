@@ -65,12 +65,12 @@
                 <Button x:Name="buttonHeroes" Content="Герои" HorizontalAlignment="Left" Margin="9,29,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonHeroes_Click"/>
                 <Label x:Name="label1" Content="Общие" HorizontalAlignment="Left" Margin="0,1,0,0" VerticalAlignment="Top" Width="177" Background="#FF403C47" Foreground="White" Height="26"/>
                 <Label x:Name="label1_Copy" Content="Расширенный" HorizontalAlignment="Left" Margin="0,219,0,0" VerticalAlignment="Top" Width="177" Background="#FF403C47" Foreground="White" Height="26"/>
-                <Button x:Name="buttonHeroes_Copy" Content="Четкое обучение&#xA;По Героям" HorizontalAlignment="Left" Margin="10,247,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonHeroes_Click"/>
-                <Button x:Name="buttonTreeHeroes" Content="Древо Героев" HorizontalAlignment="Left" Margin="10,307,0,0" VerticalAlignment="Top" Width="163" Height="30" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonHeroes_Click" RenderTransformOrigin="0.491,1.833"/>
+                <Button x:Name="buttonHeroes_clear_lern" Content="Четкое обучение&#xA;По Героям" HorizontalAlignment="Left" Margin="10,247,0,0" VerticalAlignment="Top" Width="163" Height="60" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonHeroes_clear_lern_Click"/>
+                <Button x:Name="buttonTreeHeroes" Content="Древо Героев" HorizontalAlignment="Left" Margin="10,307,0,0" VerticalAlignment="Top" Width="163" Height="30" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" RenderTransformOrigin="0.491,1.833" Click="buttonTreeHeroes_Click"/>
                 <Button x:Name="buttonTreeQuestion" Content="Операции&#xD;&#xA;с вопросами" HorizontalAlignment="Left" Margin="10,337,0,0" VerticalAlignment="Top" Width="163" Height="55" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" RenderTransformOrigin="0.491,1.833" Click="buttonTreeQuestion_Click"/>
-                <Button x:Name="buttonHeroes_Copy3" Content="Звенья" HorizontalAlignment="Left" Margin="10,400,0,0" VerticalAlignment="Top" Width="163" Height="30" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" Click="buttonHeroes_Click" RenderTransformOrigin="0.491,1.833"/>
+                <Button x:Name="buttonlinks" Content="Звенья" HorizontalAlignment="Left" Margin="10,400,0,0" VerticalAlignment="Top" Width="163" Height="30" Style="{DynamicResource DefaultButtonStyle}" BorderBrush="{x:Null}" Background="#CCC6C7C6" Foreground="White" RenderTransformOrigin="0.491,1.833"/>
             </Grid>
-            <Grid x:Name="GridExtendet" Margin="180,2,4,1" Grid.Row="1" Grid.RowSpan="2" Background="#FFC5C5C5">
+            <Grid x:Name="GridExtendet" Margin="180,2,4,1" Grid.Row="1" Grid.RowSpan="2" Background="#FFC5C5C5" d:IsHidden="True">
                 <Border BorderBrush="#FF643C3C" BorderThickness="5" Height="195" VerticalAlignment="Top" Background="#FF766363" Margin="4,50,8,0"/>
                 <Button x:Name="button" Content="Начать поиск" VerticalAlignment="Top" Height="130" ToolTip="Поиск вопросов, Ответ не знаю на который встречается чаще всех" FontSize="18.667" BorderBrush="#FF643C3C" BorderThickness="5" Style="{DynamicResource buttonSetupStyle}" Foreground="White" Background="#FF643C3C" Margin="436,81,20,0"/>
                 <CheckBox x:Name="checkBox" Content="Отображать конкретное значение вопросов" HorizontalAlignment="Left" Margin="22,75,0,0" VerticalAlignment="Top" Width="403" FontSize="18.667" Foreground="#FFDDDCF9"/>
@@ -80,12 +80,41 @@
                 <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" Margin="361,100,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="64" VerticalContentAlignment="Center" FontSize="18.667" Background="#FF764B4B" Foreground="#FFD2FBFF" BorderBrush="{x:Null}" FontWeight="Bold" TextDecorations="{x:Null}" FontStyle="Italic"/>
                 <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="30" Margin="362,182,0,0" TextWrapping="Wrap" Text="50" VerticalAlignment="Top" Width="63" VerticalContentAlignment="Center" FontSize="18.667" RenderTransformOrigin="0.815,0.667" Background="#FF764B4B" Foreground="#FFD2FBFF" BorderBrush="{x:Null}" FontWeight="Bold" TextDecorations="{x:Null}" FontStyle="Italic"/>
                 <Label x:Name="label1_Copy1" Content="0," HorizontalAlignment="Left" Margin="338,177,0,0" VerticalAlignment="Top" Width="25" HorizontalContentAlignment="Right" FontSize="21.333" FontWeight="Bold" RenderTransformOrigin="0.6,0.429" Foreground="White"/>
-                <Label x:Name="label2_Copy1" Content="Поиск Критических вопросов:" HorizontalAlignment="Left" Margin="4,13,0,0" VerticalAlignment="Top" Width="381" Padding="0" FontSize="26.667" Foreground="White" Background="#FF643C3C" Height="40"/>
                 <Border BorderBrush="#FF643C3C" BorderThickness="5" Height="195" VerticalAlignment="Top" Background="#FF766363" Margin="5,287,7,0"/>
                 <Button x:Name="button_Copy" Content="Начать поиск" VerticalAlignment="Top" Height="130" ToolTip="Поиск вопросов, Ответ не знаю на который встречается чаще всех" FontSize="18.667" BorderBrush="#FF643C3C" BorderThickness="5" Style="{DynamicResource buttonSetupStyle}" Foreground="White" Background="#FF643C3C" Margin="437,318,19,0"/>
                 <Label x:Name="label2_Copy2" Content="Поиск Схожих вопросов:" HorizontalAlignment="Left" Margin="5,250,0,0" VerticalAlignment="Top" Width="381" Padding="0" FontSize="26.667" Foreground="White" Background="#FF643C3C" Height="40"/>
                 <Label x:Name="label2_Copy3" Content="Поиск Однозначных вопросов" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" Width="381" Padding="0" FontSize="26.667" Foreground="White" Background="#FF643C3C" Height="40" ToolTip="Поиск вопросов, которые почти всегда дают один и тот же ответ"/>
                 <Label x:Name="label2_Copy4" Content="Поиск Слабых сторон" HorizontalAlignment="Left" Margin="5,390,0,0" VerticalAlignment="Top" Width="381" Padding="0" FontSize="26.667" Foreground="White" Background="#FF643C3C" Height="40" ToolTip="Нахождение вопроса, где необходимо разрешить однозначность"/>
+                <Label x:Name="label2_Copy1" Content="Поиск Критических вопросов:" HorizontalAlignment="Left" Margin="4,13,0,0" VerticalAlignment="Top" Width="381" Padding="0" FontSize="26.667" Foreground="White" Background="#FF643C3C" Height="40"/>
+            </Grid>
+            <Grid x:Name="GridHeroLearnClear" Margin="180,2,6,6" Grid.RowSpan="3" Background="#FFCBCBCB" d:IsHidden="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="95"/>
+                    <RowDefinition Height="17*"/>
+                    <RowDefinition Height="24*"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="label2_Copy5" Content="Четкое обучение по героям:" HorizontalAlignment="Left" Margin="4,13,0,0" VerticalAlignment="Top" Width="436" Padding="0" FontSize="26.667" Foreground="White" Background="#FF3C4764" Height="40"/>
+                <Border BorderBrush="#FF3C4764" BorderThickness="5" Height="40" VerticalAlignment="Top" Background="#FF636D76" Margin="4,50,6,0"/>
+                <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="26" Margin="12,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="228" Background="#CC3F4147" Foreground="White"/>
+                <Border BorderBrush="#FF3C4764" BorderThickness="5" Background="#FF636D76" Margin="5,10,5,5" Grid.Row="2">
+                    <Label x:Name="label2_Copy7" Content="Список вопросов со скрол расстановкой" HorizontalAlignment="Left" VerticalAlignment="Top" Width="380" Padding="0" FontSize="18.667" Foreground="#FFDDDCF9" Margin="5,5,0,0" Height="30"/>
+                </Border>
+                <TextBox x:Name="textBox1_Copy" HorizontalAlignment="Left" Height="26" Margin="245,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Background="#CC3F4147" Foreground="White"/>
+                <Border BorderBrush="#FF3C4764" BorderThickness="5" Background="#FF636D76" Margin="5,0" Grid.Row="1">
+                    <Label x:Name="label2_Copy6" Content="Результаты поиска" VerticalAlignment="Top" Padding="0" FontSize="53.333" Foreground="#26000000" Margin="5,5,5,0" Height="150" FontWeight="Bold" FontFamily="Segoe UI Black"/>
+                </Border>
+                <GridSplitter x:Name="gridSplitter1" HorizontalAlignment="Stretch" Height="20" Margin="5,0,0,0" VerticalAlignment="Top" Background="#02F0F0F0" Grid.Row="2"/>
+                <GridSplitter x:Name="gridSplitter1_Copy" HorizontalAlignment="Stretch" Height="10" Margin="5,0,0,0" VerticalAlignment="Bottom" Background="#02F0F0F0"/>
+                <DataGrid x:Name="HeroesLearnClear_DataGridResultFind" Margin="10,5" Grid.Row="1" Background="#3DB2FFFC"/>
+                <Button x:Name="button_Copy1" Content="Обновить" VerticalAlignment="Top" Height="77" ToolTip="Поиск вопросов, Ответ не знаю на который встречается чаще всех" FontSize="18.667" BorderBrush="#FF3C4764" BorderThickness="5" Style="{DynamicResource buttonSetupStyle}" Foreground="White" Background="#FF3C4764" Margin="439,13,6,0"/>
+            </Grid>
+            <Grid x:Name="GridHeroesThree" Margin="180,2,4,1" Grid.Row="1" Grid.RowSpan="2" Background="#FF618565">
+                <Border BorderBrush="#FF004D07" BorderThickness="5" Height="195" VerticalAlignment="Top" Background="#FF7A5353" Margin="4,50,8,0"/>
+                <Button x:Name="button1" Content="Создать дерево" VerticalAlignment="Top" Height="130" ToolTip="Поиск вопросов, Ответ не знаю на который встречается чаще всех" FontSize="18.667" BorderBrush="#FF643C3C" BorderThickness="5" Style="{DynamicResource buttonSetupStyle}" Foreground="White" Background="#FF7A7777" Margin="436,81,20,0"/>
+                <CheckBox x:Name="checkBox1" Content="Отображать силу связей между героями" HorizontalAlignment="Left" Margin="22,75,0,0" VerticalAlignment="Top" Width="403" FontSize="18.667" Foreground="#FFDDDCF9"/>
+                <Label x:Name="label2_Copy8" Content="Минимальная вероятность ответа:" HorizontalAlignment="Left" Margin="40,183,0,0" VerticalAlignment="Top" Width="299" Padding="0" FontSize="18.667" Foreground="#FFDDDCF9"/>
+                <CheckBox x:Name="checkBox_Copy1" Content="Детальный режим" HorizontalAlignment="Left" Margin="23,103,0,0" VerticalAlignment="Top" Width="192" FontSize="18.667" Foreground="#FFDDDCF9"/>
+                <Label x:Name="label2_Copy12" Content="Дерево героев" HorizontalAlignment="Left" Margin="4,13,0,0" VerticalAlignment="Top" Width="381" Padding="0" FontSize="26.667" Foreground="White" Background="#FF004D07" Height="40" ToolTip="Выберите героев для создания дерева"/>
             </Grid>
         </Grid>
         <Button x:Name="BackMenu" Content="Вернуться" HorizontalAlignment="Left" Width="92" Style="{DynamicResource buttonSetupStyle}" Background="#FF698181" BorderBrush="{x:Null}" Foreground="White" Height="28" VerticalAlignment="Top" BorderThickness="1,1,1,0" Click="BackMenu_Click"/>

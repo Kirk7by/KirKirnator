@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExpertComputerService"
         mc:Ignorable="d"
-        Title="ConfigurationSettings" Height="591.952" Width="650.812" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="ConfigurationSettings" Height="591.952" Width="650.812" WindowStartupLocation="CenterScreen" MouseMove="Window_MouseMove">
+    <Grid Background="#FF8D9B86">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="173*"/>
             <ColumnDefinition Width="169*"/>
@@ -16,8 +16,14 @@
             <RowDefinition/>
             <RowDefinition Height="48"/>
         </Grid.RowDefinitions>
-        <TabControl x:Name="tabControl" Margin="0,0,0,2" Grid.ColumnSpan="3">
-            <TabItem Header="Основные&#xD;&#xA;Настройки" Margin="-1,0,1,0">
+        <TabControl x:Name="tabControl" Margin="0,0,0,2" Grid.ColumnSpan="3" Background="#FF5D5B5B">
+            <TabItem Header="Основные&#xD;&#xA;Настройки" Margin="-2,-2,1,0">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="White"/>
+                        <GradientStop Color="#FF8D9B86" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
                 <Grid Background="#FF8D9B86" Margin="0,0,0,3">
                     <Label x:Name="label" Content="Приоритетный вопрос:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="164" FontFamily="Consolas" FontWeight="Bold" FontSize="13.333" Margin="-1,0,0,0"/>
                     <ComboBox x:Name="tbQuestionPriority" Margin="10,26,89,0" VerticalAlignment="Top" Height="31" PreviewMouseDown="tbQuestionPriority_PreviewMouseDown"/>
@@ -95,30 +101,48 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Визуальные&#xD;&#xA;Настройки" Margin="-3,-2,-1,0">
-                <Grid Background="#FFE5E5E5">
-                    <Button x:Name="btThema" Content="Выбрать внешнюю тему" HorizontalAlignment="Left" Margin="231,32,0,0" VerticalAlignment="Top" Width="149" Height="30" Click="btThema_Click"/>
-                    <ComboBox x:Name="comboBoxThema" Margin="10,32,424,0" VerticalAlignment="Top" Height="30"/>
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF8D9B86" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Background="#FF8D9B86" Margin="-5,0,-3,0">
+                    <Button x:Name="btThema" Content="Выбрать внешнюю тему" HorizontalAlignment="Left" Margin="231,32,0,0" VerticalAlignment="Top" Width="149" Height="30" Click="btThema_Click" ToolTip="Изменения не отображаются"/>
+                    <ComboBox x:Name="comboBoxThema" Margin="10,32,424,0" VerticalAlignment="Top" Height="30" ToolTip="Внимение, изменение на настройках не отображаются"/>
                     <Label x:Name="label2" Content="Тема оформления:" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="comboBoxWindowMode" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="203" Height="29"/>
                     <Label x:Name="label2_Copy" Content="Режим окон:" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Тестирование&#xD;&#xA;системы" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="92" Margin="0">
-                <Grid Background="#FFE5E5E5">
+            <TabItem Header="Тестирование&#xD;&#xA;системы" HorizontalAlignment="Left" Width="92" Margin="0,-2,0,0">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF8D9B86" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid Background="#FF8D9B86">
                     <Button x:Name="buttonheroImage" Content="Окно выдачи героев" HorizontalAlignment="Left" VerticalAlignment="Top" Width="255" Margin="0,38,0,0" Height="40" Click="buttonheroImage_Click"/>
                     <Image x:Name="image" HorizontalAlignment="Left" Height="177" Margin="16,104,0,0" VerticalAlignment="Top" Width="239" Source="Media/smileCat.jpg"/>
                     <Button x:Name="test2" Content="Тест Запросов" HorizontalAlignment="Left" Margin="212,104,0,0" VerticalAlignment="Top" Width="210" Height="40" Click="test2_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Режим работы&#xD;&#xA;системы" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="103" Margin="0,0,0,0">
+            <TabItem Header="Режим работы&#xD;&#xA;системы" HorizontalAlignment="Left" Width="103" Margin="0,-2,0,0">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF8D9B86" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
                 <Grid Background="#FFE5E5E5">
                     <Border BorderBrush="Black" BorderThickness="1" Margin="2,44,5,8">
                         <Viewbox Margin="-1,9,4,4">
                             <Grid HorizontalAlignment="Left" Height="105" VerticalAlignment="Top" Width="201">
-                                <Button x:Name="button1" Content="KirKinator Heroes-Questions" Margin="-1,4,-1,0" VerticalAlignment="Top" Background="#FF9787A6" Foreground="#FFFFFCFC" BorderBrush="White" FontSize="6.667" Height="22"/>
-                                <Button x:Name="button1_Copy" Content="KirKinator Medicine" Margin="-1,30,-1,0" VerticalAlignment="Top" Background="White" Foreground="Red" BorderBrush="Black" FontSize="6.667" Height="17"/>
-                                <Button x:Name="button1_Copy1" Content="KirKinator Computer Diagnostic" Margin="-1,53,-1,0" VerticalAlignment="Top" Background="#FF2F3D5D" Foreground="White" FontFamily="Consolas" BorderBrush="#FF003AFF" FontSize="6.667" Height="18"/>
-                                <Button x:Name="button1_Copy2" Content="Universal KirKinator" Margin="-1,77,-1,11" Background="#FF527639" BorderBrush="#FF895A91" Foreground="White" FontSize="6.667"/>
+                                <Button x:Name="button1" Content="KirKinator Heroes-Questions" Margin="-1,4,-1,0" VerticalAlignment="Top" Background="#FF9787A6" Foreground="#FFFFFCFC" BorderBrush="White" FontSize="6.667" Height="22" Style="{DynamicResource buttonSetupStyle}"/>
+                                <Button x:Name="button1_Copy" Content="KirKinator Medicine" Margin="-1,30,-1,0" VerticalAlignment="Top" Background="White" Foreground="Red" BorderBrush="Black" FontSize="6.667" Height="17" Style="{DynamicResource buttonSetupStyle}"/>
+                                <Button x:Name="button1_Copy1" Content="KirKinator Computer Diagnostic" Margin="-1,53,-1,0" VerticalAlignment="Top" Background="#FF2F3D5D" Foreground="White" FontFamily="Consolas" BorderBrush="#FF003AFF" FontSize="6.667" Height="18" Style="{DynamicResource buttonSetupStyle}"/>
+                                <Button x:Name="button1_Copy2" Content="Universal KirKinator" Margin="-1,77,-1,11" Background="#FF527639" BorderBrush="#FF895A91" Foreground="White" FontSize="6.667" Style="{DynamicResource buttonSetupStyle}"/>
                             </Grid>
                         </Viewbox>
                     </Border>
@@ -126,7 +150,13 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Безопасность" Height="46" VerticalAlignment="Top" Margin="0,0,0,0">
+            <TabItem Header="Безопасность" Margin="0,-2,0,0">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF8D9B86" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
                 <Grid Background="#FFE5E5E5">
                     <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="375" Margin="12,14,0,0" VerticalAlignment="Top" Width="575"/>
                     <Button x:Name="button" Content="Установить пароль" HorizontalAlignment="Left" Margin="37,254,0,0" VerticalAlignment="Top" Width="210" Height="35"/>
@@ -144,9 +174,11 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button x:Name="btSave" Content="Сохранить" Margin="7,0,7,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Click="btSave_Click" Grid.Row="1" Grid.Column="1" Height="38" VerticalAlignment="Bottom"/>
-        <Button x:Name="button_back" Content="Вернуться" Margin="10,0,7,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Grid.Row="1" Height="38" VerticalAlignment="Bottom" Click="button_back_Click"/>
-        <Button x:Name="btDefaultSettings" Content="По умолчанию" Margin="7,0,10,5" BorderThickness="0" Background="#FF727685" BorderBrush="White" Foreground="White" Grid.Row="1" Grid.Column="2" Height="38" VerticalAlignment="Bottom" Click="btDefaultSettings_Click"/>
+        <Button x:Name="btSave" Content="Сохранить" BorderThickness="0" Background="#FF5B6457" BorderBrush="White" Foreground="White" Click="btSave_Click" Grid.Row="1" Grid.Column="1" Height="48" VerticalAlignment="Bottom" Margin="1,0"/>
+        <Button x:Name="button_back" Content="Вернуться" BorderThickness="0" Background="#FF5B6457" BorderBrush="White" Foreground="White" Grid.Row="1" Height="48" VerticalAlignment="Bottom" Click="button_back_Click" Margin="0,0,1,0" Style="{DynamicResource DefaultButtonStyle}"/>
+        <Button x:Name="btDefaultSettings" Content="По умолчанию" BorderThickness="0" Background="#FF5B6457" BorderBrush="White" Foreground="White" Grid.Row="1" Grid.Column="2" Height="47" VerticalAlignment="Bottom" Click="btDefaultSettings_Click" Margin="1,0,53,1"/>
+        <Label x:Name="SuccessLabel" Content="Успех Операции" HorizontalAlignment="Center" Margin="155,235,0,0" VerticalAlignment="Center" Width="325" Grid.ColumnSpan="3" Height="75" Background="#FF02B039" Foreground="White" FontSize="40" BorderBrush="White" BorderThickness="5" Visibility="Collapsed"/>
+        <Border BorderThickness="1" Grid.Column="2" Margin="0,0,1,1" Grid.Row="1" Background="#FF5B6457" ToolTip="Выберите соответствующую операцию" HorizontalAlignment="Right" Width="52"/>
 
     </Grid>
 </Window>

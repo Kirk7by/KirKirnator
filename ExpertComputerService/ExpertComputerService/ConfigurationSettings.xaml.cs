@@ -103,6 +103,7 @@ namespace ExpertComputerService
 
                 InitializeFullscreanMode();
                 ExpConfig.Default.Save();
+                SuccessLabel.Visibility = Visibility.Visible;
             }
             catch(Exception ex)
             { MessageBox.Show(ex.Message); }
@@ -201,6 +202,12 @@ namespace ExpertComputerService
         private void test2_Click(object sender, RoutedEventArgs e)
         {
             new Repository().updHero("Беар Грилс", "Беар Грилс2");
+        }
+
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(SuccessLabel.Visibility==Visibility.Visible)
+                SuccessLabel.Visibility = Visibility.Collapsed;
         }
     }
 }
