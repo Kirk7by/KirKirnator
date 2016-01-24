@@ -65,7 +65,8 @@ namespace ExpertComputerService
 
         //
         List<PHero> Hl = new List<PHero>();
-   
+        List<PQuestionsDominations> Pq = new List<PQuestionsDominations>();
+
         private void DataGridUpdate()
         {
             showEltmtnts();
@@ -515,8 +516,53 @@ namespace ExpertComputerService
         {
 
         }
+
+
+
+
+        private void GridHeroLearnDataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GridHeroLearnDataGrid1.SelectedItem == null)
+                return;
+
+
+            string HeroName = (GridHeroLearnDataGrid1.SelectedItem as PHero).NameHeroes;
+            GridHeroLearnLabel2.Content = HeroName;
+            Pq.Clear();
+            foreach (var ia in new Repository().GetQuestionsSource())
+            {
+                if (ia.NameHeroes == HeroName)
+                {
+                    Pq.Add(new PQuestionsDominations
+                    {
+                        NameQestion = ia.NameQestion,
+                        OtvetQuest1 = ia.OtvetQuest1,
+                        OtvetQuest2 = ia.OtvetQuest2,
+                        OtvetQuest3 = ia.OtvetQuest3,
+                        OtvetQuest4 = ia.OtvetQuest4,
+                        OtvetQuest5 = ia.OtvetQuest5
+                    });
+                }
+            }
+
+            GridHeroLearnDataGrid2.ItemsSource = Pq.ToList();
+        }
+
+
+        private void GridHeroLearnDataGrid2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GridHeroLearnDataGrid2.SelectedItem != null)
+            {
+                PQuestions vod = GridHeroLearnDataGrid2.SelectedItem as PQuestions;
+                
+            }
+        }
+
+
         #endregion
 
         #endregion
+
+       
     }
 }

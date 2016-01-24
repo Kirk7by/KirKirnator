@@ -95,7 +95,7 @@
                     <RowDefinition Height="47*"/>
                     <RowDefinition Height="43*"/>
                 </Grid.RowDefinitions>
-                <Label x:Name="label2_Copy5" Content="Четкое обучение по героям:" HorizontalAlignment="Left" Margin="4,5,0,0" VerticalAlignment="Top" Width="436" Padding="0" FontSize="26.667" Foreground="White" Background="#FF3C4764" Height="40"/>
+                <Label x:Name="GridHeroLearnLabel1" Content="Четкое обучение по героям:" HorizontalAlignment="Left" Margin="4,5,0,0" VerticalAlignment="Top" Width="436" Padding="0" FontSize="26.667" Foreground="White" Background="#FF3C4764" Height="40"/>
                 <Border BorderBrush="#FF3C4764" BorderThickness="5" Height="40" VerticalAlignment="Top" Background="#FF676F85" Margin="4,42,0,0" HorizontalAlignment="Left" Width="436"/>
                 <TextBox x:Name="GridHeroLearnTextbox1" HorizontalAlignment="Left" Height="26" Margin="12,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" Background="#CC3F4147" Foreground="White" KeyUp="GridHeroLearnTextbox1_KeyUp"/>
                 <TextBox x:Name="GridHeroLearnTextbox2" HorizontalAlignment="Left" Height="26" Margin="235,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" Background="#CC3F4147" Foreground="White" KeyUp="GridHeroLearnTextbox2_KeyUp"/>
@@ -103,17 +103,19 @@
                     <Label x:Name="label2_Copy6" Content="Результаты поиска" VerticalAlignment="Top" Padding="0" FontSize="53.333" Foreground="#26000000" Margin="5,5,5,0" Height="150" FontWeight="Bold" FontFamily="Segoe UI Black"/>
                 </Border>
                 <GridSplitter x:Name="gridSplitter1" HorizontalAlignment="Stretch" Height="20" Margin="5,0,0,0" VerticalAlignment="Top" Background="#02F0F0F0" Grid.Row="1" Grid.ColumnSpan="2"/>
-                <DataGrid x:Name="GridHeroLearnDataGrid1" Margin="10,87,10,8" Background="#3DB2FFFC" IsReadOnly="True" ColumnWidth="*" Grid.ColumnSpan="2"/>
+                <DataGrid x:Name="GridHeroLearnDataGrid1" Margin="10,87,10,8" Background="#3DB2FFFC" IsReadOnly="True" ColumnWidth="*" Grid.ColumnSpan="2" SelectionChanged="GridHeroLearnDataGrid1_SelectionChanged"/>
                 <Button x:Name="GridHeroLearnButton1" Content="Обновить" VerticalAlignment="Top" Height="77" ToolTip="Поиск вопросов, Ответ не знаю на который встречается чаще всех" FontSize="18.667" BorderBrush="#FF3C4764" BorderThickness="5" Style="{DynamicResource buttonSetupStyle}" Foreground="White" Background="#FF596583" Margin="440,5,5,0" Click="GridHeroLearnButton1_Click" Grid.ColumnSpan="2"/>
-                <GridSplitter x:Name="gridSplitter1_Copy" HorizontalAlignment="Stretch" Margin="455,5,5,5" Background="#FF3C4764" Grid.Row="1" RenderTransformOrigin="0.5,0.5" BorderBrush="#FFECD8D8" BorderThickness="1,0,0,0"/>
                 <Grid Grid.Row="1" Margin="0,5,5,5" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15"/>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="Auto" MinWidth="203"/>
                     </Grid.ColumnDefinitions>
-                    <Border BorderBrush="#FF3C4764" BorderThickness="5" Background="#FFA2A8B6" Margin="4,0,0,0" Grid.ColumnSpan="2"/>
-                    <DataGrid x:Name="GridHeroLearnDataGrid1_Copy" Margin="10,7,7,5" Background="#FF596583" IsReadOnly="True" ColumnWidth="*"/>
-                    <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                    <Border BorderBrush="#FF3C4764" BorderThickness="5" Background="#FFA2A8B6" Margin="4,0,7,0" Grid.ColumnSpan="2">
+                        <Label x:Name="GridHeroLearnLabel2" Content="Выберите образ" Margin="-3,-5,0,0" VerticalAlignment="Top" Padding="0" FontSize="13.333" Foreground="White" Background="#FF3C4764" Height="20"/>
+                    </Border>
+                    <DataGrid x:Name="GridHeroLearnDataGrid2" Margin="9,20,12,5" Background="#FF596583" IsReadOnly="True" ColumnWidth="*" Grid.ColumnSpan="2" SelectionChanged="GridHeroLearnDataGrid2_SelectionChanged"/>
+                    <Viewbox Grid.Column="2" HorizontalAlignment="Left">
                         <Grid HorizontalAlignment="Left" Height="230" VerticalAlignment="Top" Width="225">
                             <Border BorderBrush="#FF3C4764" BorderThickness="5" Margin="-1,80,0,0">
                                 <Border.Background>
@@ -156,7 +158,7 @@
                             <Label x:Name="label3_Copy8" Content="No~" HorizontalAlignment="Left" Margin="145,50,0,0" VerticalAlignment="Top" Width="30" Foreground="White" Height="20" Padding="5,0,0,0" Background="{x:Null}"/>
                         </Grid>
                     </Viewbox>
-                    <GridSplitter x:Name="gridSplitter2" Width="7" RenderTransformOrigin="0.5,0.4" Background="#FFCBCBCB"/>
+                    <GridSplitter x:Name="gridSplitter2" Width="7" RenderTransformOrigin="0.5,0.4" Background="#FFCBCBCB" Grid.Column="1"/>
                 </Grid>
             </Grid>
             <Grid x:Name="GridHeroesThree" Margin="180,2,4,1" Grid.Row="1" Grid.RowSpan="2" Background="#FF618565" d:IsHidden="True">

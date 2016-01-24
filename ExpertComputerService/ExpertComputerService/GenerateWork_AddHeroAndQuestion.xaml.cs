@@ -26,6 +26,18 @@ namespace ExpertComputerService
         Expertcore expCore;
         public GenerateWork_AddHeroAndQuestion()
         {
+
+            InitializeComponent();
+            ConfigWindow();
+            expCore = new Expertcore();
+            var HeroNamesList = from lh in expCore.GetPriorityListHero().ToList()
+                                select lh.NameHeroes;
+            comboBox.ItemsSource = HeroNamesList;
+            listBox.ItemsSource = HeroNamesList;
+        }
+
+        private void ConfigWindow()
+        {
             switch (ExpConfig.Default.FullscreanWinow)
             {
                 case 1:
@@ -39,15 +51,8 @@ namespace ExpertComputerService
                     this.WindowState = WindowState.Maximized;
                     break;
             }
-            InitializeComponent();
-            expCore = new Expertcore();
-            var HeroNamesList= from lh in expCore.GetPriorityListHero().ToList()
-                          select lh.NameHeroes;
-            comboBox.ItemsSource = HeroNamesList;
-            listBox.ItemsSource = HeroNamesList;
         }
 
-        
 
         private void buttonExist_Click(object sender, RoutedEventArgs e)
         {
